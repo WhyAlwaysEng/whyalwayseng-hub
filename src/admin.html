@@ -21,15 +21,15 @@
 
   <!-- 1. Security Gate Modal (Production Lock Screen) -->
   <template x-if="isProduction && !isAuthenticated">
-    <div class="fixed inset-0 z-50 bg-zinc-950/90 backdrop-blur-md flex items-center justify-center p-4">
-      <div class="w-full max-w-md p-6 sm:p-8 rounded-2xl border border-zinc-800 bg-zinc-900 shadow-2xl space-y-5">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-zinc-800 border border-zinc-700 flex items-center justify-center text-lg">
+    <div class="fixed inset-0 z-50 bg-zinc-950/90 backdrop-blur-md flex items-center justify-center p-6">
+      <div class="w-full max-w-lg p-8 sm:p-10 rounded-3xl border border-zinc-800 bg-zinc-900 shadow-2xl space-y-6">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-2xl bg-zinc-800 border border-zinc-700 flex items-center justify-center text-xl shadow-inner">
             🔒
           </div>
           <div>
-            <h2 class="text-base font-bold text-white tracking-tight">Admin Security Gate</h2>
-            <p class="text-xs text-zinc-400">Authenticated GitHub Access Required</p>
+            <h2 class="text-lg font-bold text-white tracking-tight">Admin Security Gate</h2>
+            <p class="text-xs text-zinc-400 mt-0.5">Authenticated GitHub Access Required</p>
           </div>
         </div>
 
@@ -38,15 +38,15 @@
           <strong class="text-zinc-200">GitHub Personal Access Token</strong> (with repository write permission).
         </p>
 
-        <form @submit.prevent="authenticateToken()" class="space-y-4">
-          <div>
-            <label class="block text-xs font-mono text-zinc-400 mb-1.5">GitHub Token (Fine-grained or Classic PAT)</label>
+        <form @submit.prevent="authenticateToken()" class="space-y-5">
+          <div class="space-y-2">
+            <label class="block text-xs font-mono text-zinc-300">GitHub Token (Fine-grained or Classic PAT)</label>
             <input type="password"
                    x-model="tokenInput"
                    placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
                    required
-                   class="w-full px-3.5 py-2 text-xs rounded-lg border border-zinc-700 bg-zinc-950 text-white placeholder-zinc-600 font-mono focus:outline-none focus:border-zinc-400">
-            <span class="block mt-1.5 text-[11px] text-zinc-500">
+                   class="w-full px-4 py-3 text-xs rounded-xl border border-zinc-700 bg-zinc-950 text-white placeholder-zinc-600 font-mono focus:outline-none focus:border-zinc-400 transition">
+            <span class="block text-[11px] text-zinc-500 leading-normal">
               Token is kept only in your current browser session. Never sent to any third party.
             </span>
           </div>
@@ -54,12 +54,12 @@
           <div class="flex items-center justify-between pt-2">
             <a href="https://github.com/settings/tokens?type=beta"
                target="_blank" rel="noopener noreferrer"
-               class="text-xs text-zinc-400 hover:text-white underline">
+               class="text-xs text-zinc-400 hover:text-white underline transition">
               Create GitHub Token ↗
             </a>
             <button type="submit"
                     :disabled="verifyingToken || !tokenInput.trim()"
-                    class="px-4 py-2 text-xs font-semibold rounded-lg bg-white text-zinc-950 hover:bg-zinc-200 transition disabled:opacity-50 cursor-pointer">
+                    class="px-5 py-2.5 text-xs font-semibold rounded-xl bg-white text-zinc-950 hover:bg-zinc-200 transition disabled:opacity-50 cursor-pointer">
               <span x-show="!verifyingToken">Unlock Dashboard →</span>
               <span x-show="verifyingToken">Verifying...</span>
             </button>
@@ -71,39 +71,39 @@
 
   <!-- 2. Top Navigation Bar -->
   <header class="border-b border-zinc-800/80 bg-zinc-900/60 backdrop-blur-md sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       
       <!-- Left: Logo & Environment Pill -->
-      <div class="flex items-center gap-3">
-        <a href="/" class="flex items-center gap-2 hover:opacity-80 transition">
-          <div class="w-6 h-6 rounded-md bg-white text-zinc-950 flex items-center justify-center font-bold text-xs">
+      <div class="flex items-center gap-4">
+        <a href="/" class="flex items-center gap-2.5 hover:opacity-80 transition">
+          <div class="w-7 h-7 rounded-lg bg-white text-zinc-950 flex items-center justify-center font-bold text-xs shadow-xs">
             H
           </div>
-          <span class="font-bold text-sm text-white tracking-tight">Hub Admin</span>
+          <span class="font-bold text-sm text-white tracking-tight">Hub Command Center</span>
         </a>
 
         <div class="h-4 w-px bg-zinc-800"></div>
 
         <!-- Mode Indicator Badge -->
-        <div class="flex items-center gap-1.5 text-xs font-mono px-2.5 py-0.5 rounded-full border"
+        <div class="flex items-center gap-2 text-xs font-mono px-3 py-1 rounded-full border"
              :class="isProduction ? 'bg-amber-950/40 border-amber-800/60 text-amber-300' : 'bg-emerald-950/40 border-emerald-800/60 text-emerald-300'">
-          <span class="w-1.5 h-1.5 rounded-full"
+          <span class="w-2 h-2 rounded-full"
                 :class="isProduction ? 'bg-amber-400' : 'bg-emerald-400'"></span>
           <span x-text="isProduction ? 'Cloud Mode (GitHub API)' : 'Localhost Mode'"></span>
         </div>
       </div>
 
       <!-- Right: User info & Store Link -->
-      <div class="flex items-center gap-3 text-xs">
+      <div class="flex items-center gap-4 text-xs">
         <template x-if="authUsername">
-          <div class="flex items-center gap-2 font-mono text-zinc-400 bg-zinc-800/60 px-2.5 py-1 rounded-md border border-zinc-700/60">
+          <div class="flex items-center gap-2 font-mono text-zinc-400 bg-zinc-800/70 px-3 py-1.5 rounded-lg border border-zinc-700/60">
             <span>Signed in as</span>
             <strong class="text-white" x-text="'@' + authUsername"></strong>
-            <button type="button" @click="logout()" class="text-zinc-500 hover:text-red-400 ml-1">✕</button>
+            <button type="button" @click="logout()" class="text-zinc-500 hover:text-red-400 ml-1.5 cursor-pointer" title="Log out">✕</button>
           </div>
         </template>
 
-        <a href="/" class="px-3 py-1.5 rounded-lg border border-zinc-800 hover:bg-zinc-800 text-zinc-300 hover:text-white transition font-medium flex items-center gap-1">
+        <a href="/" class="px-3.5 py-2 rounded-xl border border-zinc-800 hover:bg-zinc-800 text-zinc-300 hover:text-white transition font-medium flex items-center gap-1.5">
           <span>View Live Store</span>
           <span>↗</span>
         </a>
@@ -112,74 +112,111 @@
     </div>
   </header>
 
-  <!-- 3. Main Dashboard Proportional Split View -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+  <!-- 3. Main Dashboard Body -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full space-y-10">
     
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    <!-- Top Summary Stat Cards (Spacious, balanced overview) -->
+    <section class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+      <div class="p-5 sm:p-6 rounded-2xl border border-zinc-800/80 bg-zinc-900/30 flex items-center justify-between">
+        <div class="space-y-1">
+          <div class="text-xs font-medium text-zinc-400 uppercase tracking-wider font-mono">Total Software</div>
+          <div class="text-2xl sm:text-3xl font-extrabold text-white" x-text="apps.length">12</div>
+        </div>
+        <div class="w-10 h-10 rounded-xl bg-zinc-800/70 border border-zinc-700/60 flex items-center justify-center text-lg">
+          📦
+        </div>
+      </div>
+
+      <div class="p-5 sm:p-6 rounded-2xl border border-zinc-800/80 bg-zinc-900/30 flex items-center justify-between">
+        <div class="space-y-1">
+          <div class="text-xs font-medium text-zinc-400 uppercase tracking-wider font-mono">Active Categories</div>
+          <div class="text-2xl sm:text-3xl font-extrabold text-white" x-text="categoriesCount">4</div>
+        </div>
+        <div class="w-10 h-10 rounded-xl bg-zinc-800/70 border border-zinc-700/60 flex items-center justify-center text-lg">
+          🏷️
+        </div>
+      </div>
+
+      <div class="p-5 sm:p-6 rounded-2xl border border-zinc-800/80 bg-zinc-900/30 flex items-center justify-between">
+        <div class="space-y-1">
+          <div class="text-xs font-medium text-zinc-400 uppercase tracking-wider font-mono">Supported OS</div>
+          <div class="text-xs font-mono text-emerald-400 font-semibold pt-1">Windows • macOS • Linux</div>
+        </div>
+        <div class="w-10 h-10 rounded-xl bg-zinc-800/70 border border-zinc-700/60 flex items-center justify-center text-lg">
+          💻
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Working Grid: Left (Add Software) vs Right (Catalog Inventory) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
       
       <!-- Left Column (5 Cols): Add Software & Live Card Preview -->
       <div class="lg:col-span-5 space-y-6">
         
         <!-- Add Software Card -->
-        <div class="p-6 rounded-2xl border border-zinc-800/90 bg-zinc-900/40 space-y-5">
-          <div>
+        <div class="p-7 sm:p-8 rounded-3xl border border-zinc-800/90 bg-zinc-900/40 space-y-6">
+          <div class="space-y-1.5 pb-2 border-b border-zinc-800/80">
             <div class="flex items-center justify-between">
-              <h2 class="text-sm font-bold text-white uppercase tracking-wider font-mono">Add Software</h2>
-              <span class="text-[11px] text-zinc-500 font-mono">1-Click Import</span>
+              <h2 class="text-sm font-bold text-white uppercase tracking-wider font-mono">Import Software</h2>
+              <span class="text-[11px] text-zinc-400 font-mono px-2 py-0.5 rounded bg-zinc-800">GitHub API</span>
             </div>
-            <p class="text-xs text-zinc-400 mt-1">
-              Enter GitHub repository format <code class="text-zinc-300">owner/repo</code> or full URL.
+            <p class="text-xs text-zinc-400 leading-relaxed">
+              Enter GitHub repository format <code class="text-zinc-200 bg-zinc-800/70 px-1.5 py-0.5 rounded">owner/repo</code> or full URL.
             </p>
           </div>
 
           <form @submit.prevent="analyzeRepo()" class="space-y-3">
-            <div class="relative">
+            <div class="flex flex-col sm:flex-row gap-2.5">
               <input type="text"
                      x-model="repoInput"
                      placeholder="e.g. microsoft/terminal"
-                     class="w-full pl-3.5 pr-24 py-2.5 text-xs rounded-xl border border-zinc-700/80 bg-zinc-950 text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-400 font-mono">
+                     class="flex-grow px-4 py-3 text-xs rounded-xl border border-zinc-700/80 bg-zinc-950 text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-400 font-mono transition">
               <button type="submit"
                       :disabled="analyzing || !repoInput.trim()"
-                      class="absolute right-1.5 top-1.5 bottom-1.5 px-3 rounded-lg bg-white text-zinc-950 hover:bg-zinc-200 text-xs font-semibold transition disabled:opacity-50 cursor-pointer flex items-center gap-1">
+                      class="px-5 py-3 rounded-xl bg-white text-zinc-950 hover:bg-zinc-200 text-xs font-bold transition disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2 flex-shrink-0">
                 <span x-show="!analyzing">Analyze</span>
                 <span x-show="analyzing" class="animate-spin">⏳</span>
+                <span x-show="analyzing">Inspecting...</span>
               </button>
             </div>
           </form>
 
-          <!-- Interactive Live Preview Card (Looks exactly like store bento card) -->
+          <!-- Interactive Live Preview Card (Cleanly spaced and bordered) -->
           <template x-if="analysisResult">
-            <div class="space-y-4 pt-4 border-t border-zinc-800">
-              <div class="text-[11px] font-mono text-zinc-400 flex items-center justify-between">
-                <span>Preview Card:</span>
-                <span class="text-emerald-400">Ready to save</span>
+            <div class="space-y-5 pt-6 border-t border-zinc-800/90">
+              <div class="flex items-center justify-between text-xs font-mono">
+                <span class="text-zinc-400">Card Preview:</span>
+                <span class="text-emerald-400 flex items-center gap-1 font-semibold">
+                  <span>●</span> Ready to Save
+                </span>
               </div>
 
-              <!-- Preview Bento Box -->
-              <div class="p-4 rounded-xl border border-zinc-700 bg-zinc-950/80 shadow-md flex flex-col justify-between space-y-3">
+              <!-- Preview Bento Box with generous padding and clean gaps -->
+              <div class="p-5 rounded-2xl border border-zinc-700 bg-zinc-950/90 shadow-lg space-y-4">
                 <div class="flex items-start justify-between gap-3">
-                  <div class="flex items-center gap-3 min-w-0">
+                  <div class="flex items-center gap-3.5 min-w-0">
                     <img :src="analysisResult.appConfig.icon"
-                         class="w-10 h-10 rounded-lg object-cover bg-zinc-800 border border-zinc-700 p-0.5 flex-shrink-0">
+                         class="w-11 h-11 rounded-xl object-cover bg-zinc-800 border border-zinc-700 p-0.5 flex-shrink-0">
                     <div class="min-w-0">
                       <div class="flex items-center gap-1.5">
                         <span class="font-bold text-sm text-white truncate" x-text="analysisResult.appConfig.name"></span>
                         <span class="text-blue-400 text-xs" title="Verified">✓</span>
                       </div>
-                      <div class="text-[11px] font-mono text-zinc-400 truncate" x-text="analysisResult.appConfig.owner + '/' + analysisResult.appConfig.repo"></div>
+                      <div class="text-[11px] font-mono text-zinc-400 truncate mt-0.5" x-text="analysisResult.appConfig.owner + '/' + analysisResult.appConfig.repo"></div>
                     </div>
                   </div>
-                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-300 font-semibold flex-shrink-0" x-text="analysisResult.appConfig.category"></span>
+                  <span class="text-[10px] font-mono px-2.5 py-1 rounded-md bg-zinc-800 text-zinc-200 font-semibold flex-shrink-0" x-text="analysisResult.appConfig.category"></span>
                 </div>
 
                 <p class="text-xs text-zinc-400 line-clamp-2 leading-relaxed" x-text="analysisResult.appConfig.tagline"></p>
 
                 <!-- Quick Metadata Row -->
-                <div class="flex items-center justify-between text-[11px] font-mono text-zinc-500 pt-2 border-t border-zinc-900">
-                  <div class="flex items-center gap-2">
-                    <span>⭐ <span class="text-zinc-300 font-semibold" x-text="analysisResult.stats.stars.toLocaleString()"></span></span>
+                <div class="flex items-center justify-between text-[11px] font-mono text-zinc-400 pt-3 border-t border-zinc-800/80">
+                  <div class="flex items-center gap-2.5">
+                    <span>⭐ <span class="text-zinc-200 font-bold" x-text="analysisResult.stats.stars.toLocaleString()"></span></span>
                     <span>•</span>
-                    <span class="text-emerald-400" x-text="analysisResult.stats.latestReleaseTag"></span>
+                    <span class="text-emerald-400 font-semibold" x-text="analysisResult.stats.latestReleaseTag"></span>
                   </div>
                   <div class="uppercase tracking-wider text-[10px] text-zinc-400">
                     <span x-text="analysisResult.appConfig.platforms.join(' / ')"></span>
@@ -187,46 +224,46 @@
                 </div>
               </div>
 
-              <!-- Editable Overrides -->
-              <div class="grid grid-cols-2 gap-3 text-xs">
-                <div>
-                  <label class="block font-mono text-[11px] text-zinc-400 mb-1">Category</label>
+              <!-- Editable Overrides Form Fields -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs pt-1">
+                <div class="space-y-1.5">
+                  <label class="block font-mono text-[11px] text-zinc-300">Category</label>
                   <select x-model="analysisResult.appConfig.category"
-                          class="w-full px-2.5 py-1.5 rounded-lg border border-zinc-700 bg-zinc-900 text-xs text-white focus:outline-none">
+                          class="w-full px-3 py-2 rounded-xl border border-zinc-700 bg-zinc-900 text-xs text-white focus:outline-none focus:border-zinc-400">
                     <option value="CLI Tool">CLI Tool</option>
                     <option value="Developer Tool">Developer Tool</option>
                     <option value="Utility">Utility</option>
                     <option value="Desktop App">Desktop App</option>
                   </select>
                 </div>
-                <div>
-                  <label class="block font-mono text-[11px] text-zinc-400 mb-1">Platforms</label>
-                  <div class="flex items-center gap-2 pt-1.5 text-xs font-mono">
-                    <label class="inline-flex items-center gap-1 cursor-pointer">
-                      <input type="checkbox" value="windows" x-model="analysisResult.appConfig.platforms"> Win
+                <div class="space-y-1.5">
+                  <label class="block font-mono text-[11px] text-zinc-300">Platforms</label>
+                  <div class="flex items-center gap-3 pt-2 text-xs font-mono">
+                    <label class="inline-flex items-center gap-1.5 cursor-pointer">
+                      <input type="checkbox" value="windows" x-model="analysisResult.appConfig.platforms" class="rounded"> Win
                     </label>
-                    <label class="inline-flex items-center gap-1 cursor-pointer">
-                      <input type="checkbox" value="macos" x-model="analysisResult.appConfig.platforms"> Mac
+                    <label class="inline-flex items-center gap-1.5 cursor-pointer">
+                      <input type="checkbox" value="macos" x-model="analysisResult.appConfig.platforms" class="rounded"> Mac
                     </label>
-                    <label class="inline-flex items-center gap-1 cursor-pointer">
-                      <input type="checkbox" value="linux" x-model="analysisResult.appConfig.platforms"> Lin
+                    <label class="inline-flex items-center gap-1.5 cursor-pointer">
+                      <input type="checkbox" value="linux" x-model="analysisResult.appConfig.platforms" class="rounded"> Linux
                     </label>
                   </div>
                 </div>
               </div>
 
-              <!-- Save Actions -->
-              <div class="flex items-center gap-2 pt-2">
+              <!-- Save Actions Button Group -->
+              <div class="flex items-center gap-3 pt-3">
                 <button type="button"
                         @click="saveApp()"
                         :disabled="saving"
-                        class="flex-1 py-2 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-xs transition flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50">
-                  <span x-show="!saving">✓ Confirm & Save Software</span>
+                        class="flex-1 py-3 px-5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-xs transition flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50">
+                  <span x-show="!saving">✓ Save to Store</span>
                   <span x-show="saving">Saving to Catalog...</span>
                 </button>
                 <button type="button"
                         @click="analysisResult = null"
-                        class="px-3 py-2 rounded-xl border border-zinc-700 text-zinc-400 hover:text-white text-xs transition">
+                        class="px-4 py-3 rounded-xl border border-zinc-700 text-zinc-400 hover:text-white text-xs transition cursor-pointer">
                   Cancel
                 </button>
               </div>
@@ -236,99 +273,111 @@
 
         </div>
 
-        <!-- Quick Help & Documentation Card -->
-        <div class="p-5 rounded-2xl border border-zinc-800/60 bg-zinc-900/20 text-xs text-zinc-400 space-y-2.5">
-          <div class="font-bold text-zinc-300 font-mono text-[11px] uppercase tracking-wider">How Updates Work</div>
+        <!-- Help & Operational Notes -->
+        <div class="p-6 rounded-3xl border border-zinc-800/60 bg-zinc-900/20 text-xs text-zinc-400 space-y-3">
+          <div class="font-bold text-zinc-300 font-mono text-[11px] uppercase tracking-wider flex items-center gap-1.5">
+            <span>💡</span>
+            <span>How Sync Works</span>
+          </div>
           <p class="leading-relaxed">
-            When you save an app, it writes directly to <code class="text-zinc-300">projects.json</code>.
+            Changes are saved directly to <code class="text-zinc-200 bg-zinc-800/80 px-1 rounded">projects.json</code>.
           </p>
-          <ul class="list-disc list-inside space-y-1 text-zinc-400 font-mono text-[11px]">
-            <li><strong>Localhost:</strong> Writes directly to disk on your machine.</li>
-            <li><strong>Production:</strong> Commits to GitHub repo via Git API, triggering GitHub Actions auto-deploy.</li>
+          <ul class="space-y-2 text-zinc-400 font-mono text-[11px] pt-1">
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-400">•</span>
+              <span><strong>Localhost:</strong> Writes directly to disk on your computer.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-400">•</span>
+              <span><strong>Production:</strong> Commits to GitHub repository via Git API to trigger automated Cloud Build.</span>
+            </li>
           </ul>
         </div>
 
       </div>
 
-      <!-- Right Column (7 Cols): Active Store Catalog Inventory -->
-      <div class="lg:col-span-7 space-y-4">
+      <!-- Right Column (7 Cols): Store Inventory Catalog -->
+      <div class="lg:col-span-7 space-y-5">
         
-        <!-- Inventory Header & Search -->
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-zinc-800/80">
-          <div>
-            <div class="flex items-center gap-2">
-              <h2 class="text-sm font-bold text-white uppercase tracking-wider font-mono">Store Inventory</h2>
-              <span class="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-zinc-800 text-zinc-300"
-                    x-text="apps.length + ' apps'"></span>
+        <!-- Inventory Header & Search Bar -->
+        <div class="p-6 rounded-3xl border border-zinc-800/90 bg-zinc-900/40 space-y-5">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-zinc-800/80">
+            <div>
+              <div class="flex items-center gap-2.5">
+                <h2 class="text-sm font-bold text-white uppercase tracking-wider font-mono">Store Inventory</h2>
+                <span class="text-xs font-mono font-bold px-2.5 py-0.5 rounded-full bg-zinc-800 text-zinc-300"
+                      x-text="apps.length + ' apps'"></span>
+              </div>
+              <p class="text-xs text-zinc-400 mt-1">Manage and remove software currently listed.</p>
             </div>
-            <p class="text-xs text-zinc-400 mt-0.5">Active software listed on the store.</p>
-          </div>
 
-          <div class="flex items-center gap-2">
-            <input type="text"
-                   x-model="searchQuery"
-                   placeholder="Search software..."
-                   class="px-3 py-1.5 text-xs rounded-lg border border-zinc-700 bg-zinc-900 text-white placeholder-zinc-500 w-48 focus:outline-none focus:border-zinc-400">
-            
-            <template x-if="!isProduction">
-              <button type="button"
-                      @click="triggerBuild()"
-                      :disabled="building"
-                      title="Compile HTML pages with latest data"
-                      class="px-3 py-1.5 rounded-lg border border-zinc-700 bg-zinc-800 hover:bg-zinc-700 text-xs font-medium text-white transition flex items-center gap-1.5 cursor-pointer disabled:opacity-50 flex-shrink-0">
-                <span x-show="!building">⚡ Rebuild</span>
-                <span x-show="building" class="animate-spin">⏳</span>
-              </button>
-            </template>
-          </div>
-        </div>
-
-        <!-- Inventory List (Proportional, balanced cards) -->
-        <div class="space-y-2.5">
-          <template x-for="app in filteredApps" :key="app.slug">
-            <div class="group p-3.5 rounded-xl border border-zinc-800/80 bg-zinc-900/40 hover:bg-zinc-900/70 hover:border-zinc-700 transition flex items-center justify-between gap-4">
+            <div class="flex items-center gap-2.5">
+              <input type="text"
+                     x-model="searchQuery"
+                     placeholder="Search software..."
+                     class="px-3.5 py-2 text-xs rounded-xl border border-zinc-700/80 bg-zinc-950 text-white placeholder-zinc-500 w-44 sm:w-52 focus:outline-none focus:border-zinc-400 transition font-mono">
               
-              <!-- Left: Icon & Titles -->
-              <div class="flex items-center gap-3.5 min-w-0">
-                <img :src="app.icon"
-                     class="w-10 h-10 rounded-lg object-cover bg-zinc-800 border border-zinc-700 p-0.5 flex-shrink-0">
-                <div class="min-w-0">
-                  <div class="flex items-center gap-2 flex-wrap">
-                    <span class="font-bold text-xs text-white truncate" x-text="app.name"></span>
-                    <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-zinc-800 text-zinc-400" x-text="app.category"></span>
-                    <template x-if="app.featured">
-                      <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-950/60 text-amber-300 border border-amber-800/60">Featured</span>
+              <template x-if="!isProduction">
+                <button type="button"
+                        @click="triggerBuild()"
+                        :disabled="building"
+                        title="Compile HTML pages with latest data"
+                        class="px-3.5 py-2 rounded-xl border border-zinc-700 bg-zinc-800 hover:bg-zinc-700 text-xs font-semibold text-white transition flex items-center gap-1.5 cursor-pointer disabled:opacity-50 flex-shrink-0">
+                  <span x-show="!building">⚡ Rebuild</span>
+                  <span x-show="building" class="animate-spin">⏳</span>
+                </button>
+              </template>
+            </div>
+          </div>
+
+          <!-- Inventory List (Spacious, elegant cards with generous gaps) -->
+          <div class="space-y-3">
+            <template x-for="app in filteredApps" :key="app.slug">
+              <div class="group p-4 sm:p-5 rounded-2xl border border-zinc-800/80 bg-zinc-950 hover:bg-zinc-900/60 hover:border-zinc-700 transition flex items-center justify-between gap-4">
+                
+                <!-- Left: App Icon & Details -->
+                <div class="flex items-center gap-4 min-w-0">
+                  <img :src="app.icon"
+                       class="w-11 h-11 rounded-xl object-cover bg-zinc-800 border border-zinc-700/80 p-0.5 flex-shrink-0">
+                  <div class="min-w-0 space-y-1">
+                    <div class="flex items-center gap-2 flex-wrap">
+                      <span class="font-bold text-xs sm:text-sm text-white truncate" x-text="app.name"></span>
+                      <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-400" x-text="app.category"></span>
+                      <template x-if="app.featured">
+                        <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-950/60 text-amber-300 border border-amber-800/60">Featured</span>
+                      </template>
+                    </div>
+                    <div class="text-[11px] font-mono text-zinc-500 truncate" x-text="app.owner + '/' + app.repo"></div>
+                  </div>
+                </div>
+
+                <!-- Right: Supported Platforms & Delete Button -->
+                <div class="flex items-center gap-4 flex-shrink-0">
+                  <div class="hidden sm:flex items-center gap-1.5 font-mono text-[10px] text-zinc-400 uppercase">
+                    <template x-for="plat in app.platforms" :key="plat">
+                      <span class="px-2 py-0.5 rounded-md bg-zinc-900 border border-zinc-800" x-text="plat.slice(0,3)"></span>
                     </template>
                   </div>
-                  <div class="text-[11px] font-mono text-zinc-500 truncate mt-0.5" x-text="app.owner + '/' + app.repo"></div>
-                </div>
-              </div>
 
-              <!-- Right: Platforms & Delete Button -->
-              <div class="flex items-center gap-3 flex-shrink-0">
-                <div class="hidden sm:flex items-center gap-1 font-mono text-[10px] text-zinc-400 uppercase">
-                  <template x-for="plat in app.platforms" :key="plat">
-                    <span class="px-1.5 py-0.5 rounded bg-zinc-950 border border-zinc-800" x-text="plat.slice(0,3)"></span>
-                  </template>
+                  <button type="button"
+                          @click="deleteApp(app)"
+                          :disabled="deletingSlug === app.slug"
+                          class="px-3 py-1.5 text-xs text-red-400 hover:text-red-300 hover:bg-red-950/50 border border-red-900/40 rounded-xl transition cursor-pointer disabled:opacity-50">
+                    <span x-show="deletingSlug !== app.slug">Delete</span>
+                    <span x-show="deletingSlug === app.slug">...</span>
+                  </button>
                 </div>
 
-                <button type="button"
-                        @click="deleteApp(app)"
-                        :disabled="deletingSlug === app.slug"
-                        class="px-2.5 py-1 text-xs text-red-400 hover:text-red-300 hover:bg-red-950/40 border border-red-900/40 rounded-lg transition cursor-pointer disabled:opacity-50">
-                  <span x-show="deletingSlug !== app.slug">Delete</span>
-                  <span x-show="deletingSlug === app.slug">...</span>
-                </button>
               </div>
+            </template>
 
-            </div>
-          </template>
+            <template x-if="filteredApps.length === 0">
+              <div class="text-center py-16 border border-dashed border-zinc-800 rounded-2xl text-zinc-500 text-xs font-mono">
+                No software matching search query.
+              </div>
+            </template>
+          </div>
 
-          <template x-if="filteredApps.length === 0">
-            <div class="text-center py-12 border border-dashed border-zinc-800 rounded-xl text-zinc-500 text-xs">
-              No software matching search query.
-            </div>
-          </template>
         </div>
 
       </div>
@@ -340,7 +389,7 @@
   <!-- Notification Toast -->
   <div x-show="toast.show"
        x-transition
-       class="fixed bottom-6 right-6 z-50 bg-zinc-900 border border-zinc-700 text-white rounded-full px-4 py-2 text-xs font-medium shadow-xl flex items-center gap-2"
+       class="fixed bottom-6 right-6 z-50 bg-zinc-900 border border-zinc-700 text-white rounded-full px-5 py-2.5 text-xs font-medium shadow-2xl flex items-center gap-2.5"
        x-cloak>
     <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
     <span x-text="toast.message"></span>
@@ -365,8 +414,6 @@
         githubToken: "",
         authUsername: "",
         verifyingToken: false,
-        repoOwner: "",
-        repoName: "",
 
         toast: { show: false, message: "" },
 
@@ -377,12 +424,10 @@
         },
 
         async init() {
-          // Detect whether we are on localhost or production
           const host = window.location.hostname;
           this.isProduction = (host !== "localhost" && host !== "127.0.0.1");
 
           if (this.isProduction) {
-            // Check stored token
             const stored = sessionStorage.getItem("gh_token") || localStorage.getItem("gh_token");
             if (stored) {
               this.githubToken = stored;
@@ -393,6 +438,10 @@
           }
 
           await this.loadApps();
+        },
+
+        get categoriesCount() {
+          return new Set(this.apps.map(a => a.category)).size;
         },
 
         async verifyToken() {
@@ -456,7 +505,6 @@
         async loadApps() {
           try {
             if (this.isProduction) {
-              // Load projects.json directly via fetch or GitHub API
               const res = await fetch("/data/catalog.json?t=" + Date.now());
               if (res.ok) {
                 const data = await res.json();
@@ -481,7 +529,6 @@
 
           try {
             if (!this.isProduction) {
-              // Local mode API
               const res = await fetch("/api/analyze", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -491,7 +538,6 @@
               if (!res.ok) throw new Error(data.error || "Analysis failed");
               this.analysisResult = data;
             } else {
-              // Production Client-Side GitHub API
               let cleaned = this.repoInput.trim().replace(/^https?:\/\/github\.com\//i, "").replace(/\.git$/i, "").replace(/^\/+|\/+$/g, "");
               const parts = cleaned.split("/");
               if (parts.length < 2) throw new Error("Expected owner/repo format");
@@ -584,8 +630,7 @@
               this.repoInput = "";
               await this.loadApps();
             } else {
-              // In production: Commit to GitHub via GitHub Contents API
-              alert("Production Commit: Saving directly to GitHub repo requires the repository owner/repo details. All code is ready to commit via GitHub Actions!");
+              alert("Production Commit: Saving directly to GitHub repo requires the repository owner/repo details.");
             }
           } catch (err) {
             alert("Error: " + err.message);
