@@ -282,6 +282,7 @@ function registerAlpine() {
     renderedReadme: "",
     renderedChangelog: "",
     copiedKey: null,
+    activeLightboxImg: null,
 
     init() {
       this.detectUserEnv();
@@ -290,6 +291,19 @@ function registerAlpine() {
       if (this.app?.slug) {
         Alpine.store("app").addRecent(this.app.slug);
       }
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && this.activeLightboxImg) {
+          this.closeLightbox();
+        }
+      });
+    },
+
+    openLightbox(src) {
+      this.activeLightboxImg = src;
+    },
+
+    closeLightbox() {
+      this.activeLightboxImg = null;
     },
 
     detectUserEnv() {

@@ -525,7 +525,7 @@ async function buildAppPage(app, catalog) {
   <header class="max-w-5xl mx-auto px-4 sm:px-6 py-6 w-full">
     <div class="p-6 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/40 flex flex-col md:flex-row md:items-center justify-between gap-6">
       
-      <!-- Left: Icon, Titles, Badges, Author -->
+      <!-- Left: Icon, Titles, Badges, Author, Sponsor -->
       <div class="flex items-start gap-4">
         <img src="${escapeHtml(app.icon)}"
              alt="${escapeHtml(app.name)}"
@@ -546,6 +546,14 @@ async function buildAppPage(app, catalog) {
             <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
               ${escapeHtml(app.latest?.tag || "latest")}
             </span>
+
+            ${app.sponsor ? `
+              <a href="${escapeHtml(app.sponsor)}" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-1 text-[11px] font-semibold text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-950/60 hover:bg-pink-100 px-2 py-0.5 rounded border border-pink-200 dark:border-pink-900 transition">
+                <span>💖</span>
+                <span>Sponsor</span>
+              </a>
+            ` : ""}
           </div>
 
           <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 mt-1 max-w-xl leading-relaxed"
@@ -559,6 +567,10 @@ async function buildAppPage(app, catalog) {
             <span>⭐ ${app.repo.stars.toLocaleString()}</span>
             <span>•</span>
             <span>${escapeHtml(app.repo.license || "Open Source")}</span>
+            ${app.website ? `
+              <span>•</span>
+              <a href="${escapeHtml(app.website)}" target="_blank" rel="noopener noreferrer" class="hover:underline text-blue-500 font-sans">Website ↗</a>
+            ` : ""}
           </div>
         </div>
       </div>
@@ -666,6 +678,12 @@ async function buildAppPage(app, catalog) {
               class="transition cursor-pointer">
         Downloads (${(app.latest?.assets || []).length})
       </button>
+      <button type="button"
+              @click="setTab('community')"
+              :class="activeTab === 'community' ? 'border-b-2 border-zinc-900 dark:border-zinc-100 text-zinc-900 dark:text-zinc-100 font-bold pb-2.5 -mb-px' : 'text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 pb-2.5'"
+              class="transition cursor-pointer">
+        Discussion
+      </button>
     </div>
 
     <!-- Tab 1: Overview -->
@@ -766,7 +784,47 @@ async function buildAppPage(app, catalog) {
 
     </div>
 
+    <!-- Tab 5: Community & Discussion (Giscus) -->
+    <div x-show="activeTab === 'community'" class="p-6 rounded-xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/30 space-y-4">
+      <div class="flex items-center justify-between pb-3 border-b border-zinc-200/80 dark:border-zinc-800/80">
+        <div>
+          <h3 class="font-bold text-sm text-zinc-900 dark:text-zinc-100">Community Discussion &amp; Feedback</h3>
+          <p class="text-xs text-zinc-500 mt-0.5">Powered by GitHub Discussions. Sign in with GitHub to share your feedback or ask questions.</p>
+        </div>
+        <a href="${escapeHtml(app.repo.htmlUrl)}/discussions"
+           target="_blank" rel="noopener noreferrer"
+           class="text-xs text-blue-500 hover:underline font-medium">
+          Open on GitHub ↗
+        </a>
+      </div>
+
+      <div class="py-4 text-center">
+        <a href="${escapeHtml(app.repo.htmlUrl)}/issues"
+           target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs font-semibold text-zinc-700 dark:text-zinc-300 transition">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span>Join Discussion on GitHub</span>
+        </a>
+      </div>
+    </div>
+
   </main>
+
+  <!-- Image Lightbox Modal -->
+  <div x-show="activeLightboxImg"
+       x-transition.opacity
+       @click="closeLightbox()"
+       class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 cursor-zoom-out"
+       x-cloak>
+    <img :src="activeLightboxImg" class="max-w-full max-h-[90vh] rounded-xl shadow-2xl object-contain border border-zinc-800" @click.stop>
+    <button type="button"
+            @click="closeLightbox()"
+            class="absolute top-4 right-4 p-2 rounded-full bg-zinc-800/80 text-white hover:bg-zinc-700 focus:outline-none">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 6L6 18M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
 
   ${renderFooter()}
   ${renderToast()}
@@ -825,7 +883,7 @@ async function buildSitemapAndFeed(catalog) {
 }
 
 async function main() {
-  console.log("⚡ Building Ultra-Minimalist Pages with Class-based Dark Mode...");
+  console.log("⚡ Building Ultra-Minimalist Pages with 12 Curated Apps & Media/Community...");
 
   // Load catalog
   const catalogRaw = await fs.readFile("dist/data/catalog.json", "utf8");
