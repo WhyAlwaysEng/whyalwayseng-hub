@@ -179,7 +179,7 @@ async function buildIndex(catalog) {
     content="default-src 'self';
              script-src 'self' 'unsafe-eval' https://giscus.app;
              style-src 'self' 'unsafe-inline';
-             img-src 'self' data: https://raw.githubusercontent.com https://avatars.githubusercontent.com;
+             img-src 'self' data: blob: https:;
              frame-src https://giscus.app https://www.youtube-nocookie.com;
              connect-src 'self';
              base-uri 'self'; form-action 'none'">
@@ -365,7 +365,8 @@ async function buildIndex(catalog) {
                 <img :src="app.icon"
                      :alt="app.name"
                      class="w-10 h-10 rounded-lg object-cover bg-zinc-100 dark:bg-zinc-800 border border-zinc-200/80 dark:border-zinc-800 p-0.5 flex-shrink-0"
-                     loading="lazy">
+                     loading="lazy"
+                     @error="$event.target.src = 'https://avatars.githubusercontent.com/' + app.owner">
                 <div class="min-w-0">
                   <div class="flex items-center gap-1.5">
                     <h3 class="font-bold text-sm text-zinc-900 dark:text-zinc-100 truncate group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors"
@@ -482,7 +483,7 @@ async function buildAppPage(app, catalog) {
     content="default-src 'self';
              script-src 'self' 'unsafe-eval' https://giscus.app;
              style-src 'self' 'unsafe-inline';
-             img-src 'self' data: https://raw.githubusercontent.com https://avatars.githubusercontent.com;
+             img-src 'self' data: blob: https:;
              frame-src https://giscus.app https://www.youtube-nocookie.com;
              connect-src 'self';
              base-uri 'self'; form-action 'none'">
@@ -529,7 +530,8 @@ async function buildAppPage(app, catalog) {
       <div class="flex items-start gap-4">
         <img src="${escapeHtml(app.icon)}"
              alt="${escapeHtml(app.name)}"
-             class="w-16 h-16 sm:w-20 sm:h-20 rounded-xl object-cover bg-zinc-100 dark:bg-zinc-800 border border-zinc-200/80 dark:border-zinc-800 p-1 flex-shrink-0">
+             class="w-16 h-16 sm:w-20 sm:h-20 rounded-xl object-cover bg-zinc-100 dark:bg-zinc-800 border border-zinc-200/80 dark:border-zinc-800 p-1 flex-shrink-0"
+             onerror="this.src='https://avatars.githubusercontent.com/${escapeHtml(app.owner)}'">
         
         <div>
           <div class="flex items-center gap-2 flex-wrap">
@@ -648,6 +650,45 @@ async function buildAppPage(app, catalog) {
 
     </div>
   </section>
+
+  <!-- Media Gallery (Screenshots & Video) -->
+  ${(app.screenshots && app.screenshots.length > 0) || app.video ? `
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 pt-4 w-full">
+    <div class="p-5 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/40 space-y-3">
+      <div class="flex items-center justify-between text-xs text-zinc-500 font-medium">
+        <span class="flex items-center gap-1.5 font-semibold text-zinc-800 dark:text-zinc-200">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+          Screenshots & Media
+        </span>
+        <span class="text-[11px] text-zinc-400">Click to expand in lightbox</span>
+      </div>
+      
+      <div class="flex items-center gap-3 overflow-x-auto pb-2 no-scrollbar rounded-xl">
+        ${app.video ? `
+        <div class="flex-shrink-0 w-80 h-48 rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-black">
+          <iframe src="${escapeHtml(app.video)}" class="w-full h-full" frameborder="0" allowfullscreen></iframe>
+        </div>
+        ` : ""}
+        ${(app.screenshots || []).map((img, idx) => `
+        <button type="button"
+                @click="openLightbox('${escapeHtml(img)}')"
+                class="flex-shrink-0 group relative rounded-xl overflow-hidden border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-100 dark:bg-zinc-900/60 transition hover:border-zinc-400 dark:hover:border-zinc-600 focus:outline-none cursor-zoom-in">
+          <img src="${escapeHtml(img)}"
+               alt="${escapeHtml(app.name)} preview ${idx + 1}"
+               class="h-44 sm:h-52 w-auto max-w-sm sm:max-w-md object-cover rounded-xl transition duration-200 group-hover:scale-[1.01]"
+               loading="lazy"
+               onerror="this.parentElement.style.display='none'">
+          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition rounded-xl"></div>
+        </button>
+        `).join("")}
+      </div>
+    </div>
+  </section>
+  ` : ""}
 
   <!-- Clean Interactive Tabs -->
   <main class="max-w-5xl mx-auto px-4 sm:px-6 py-6 flex-grow w-full space-y-6">

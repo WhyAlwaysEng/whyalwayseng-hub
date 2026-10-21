@@ -339,7 +339,23 @@ function registerAlpine() {
       if (window.marked && window.DOMPurify) {
         if (this.app?.readme) {
           try {
-            const raw = window.marked.parse(this.app.readme);
+            let text = this.app.readme;
+            const branch = this.app.repo?.defaultBranch || "master";
+            const rawBase = `https://raw.githubusercontent.com/${this.app.owner}/${this.app.repoName}/${branch}/`;
+
+            // Rewrite relative markdown images: ![alt](relative/path)
+            text = text.replace(/!\[([^\]]*)\]\((?!(?:https?:|\/\/|\/|data:))([^\)]+)\)/g, (match, alt, url) => {
+              const cleanUrl = url.replace(/^\.\//, "");
+              return `![${alt}](${rawBase}${cleanUrl})`;
+            });
+
+            // Rewrite relative HTML img src: <img src="relative/path"
+            text = text.replace(/(<img\b[^>]*?\bsrc=["'])(?!(?:https?:|\/\/|\/|data:))([^"']+)(["'][^>]*>)/gi, (match, p1, url, p3) => {
+              const cleanUrl = url.replace(/^\.\//, "");
+              return `${p1}${rawBase}${cleanUrl}${p3}`;
+            });
+
+            const raw = window.marked.parse(text);
             this.renderedReadme = window.DOMPurify.sanitize(raw);
           } catch (e) {
             console.warn("Failed rendering readme", e);

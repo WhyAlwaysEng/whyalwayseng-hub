@@ -171,7 +171,15 @@ async function main() {
       const old = prevBySlug[p.slug];
       if (old) {
         console.log(`    ↳ Reusing previous cached data for ${p.slug} (marked stale)`);
-        apps.push({ ...old, stale: true });
+        apps.push({
+          ...old,
+          icon: p.icon || old.icon,
+          screenshots: (p.screenshots && p.screenshots.length > 0) ? p.screenshots : (old.screenshots || []),
+          video: p.video ?? old.video ?? null,
+          sponsor: p.sponsor || old.sponsor || null,
+          website: p.website || old.website || null,
+          stale: true,
+        });
       } else {
         console.warn(`    ↳ No previous data for ${p.slug}. Adding fallback shell.`);
         apps.push({
