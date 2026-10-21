@@ -656,19 +656,21 @@ async function buildAppPage(app, catalog) {
         <span class="text-[11px] text-zinc-400">Click to expand in lightbox</span>
       </div>
       
-      <div class="flex items-center gap-3 overflow-x-auto pb-2 no-scrollbar rounded-xl">
+      <div class="flex items-center gap-4 overflow-x-auto pb-3 pt-1 no-scrollbar rounded-xl">
         ${app.video ? `
-        <div class="flex-shrink-0 w-80 h-48 rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-black">
+        <div class="flex-shrink-0 w-72 h-44 sm:w-80 sm:h-48 rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-black aspect-video shadow-xs"
+             style="width: 20rem; height: 12rem;">
           <iframe src="${escapeHtml(app.video)}" class="w-full h-full" frameborder="0" allowfullscreen></iframe>
         </div>
         ` : ""}
         ${(app.screenshots || []).map((img, idx) => `
         <button type="button"
                 @click="openLightbox('${escapeHtml(img)}')"
-                class="flex-shrink-0 group relative rounded-xl overflow-hidden border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-100 dark:bg-zinc-900/60 transition hover:border-zinc-400 dark:hover:border-zinc-600 focus:outline-none cursor-zoom-in">
+                class="flex-shrink-0 group relative w-72 h-44 sm:w-80 sm:h-48 rounded-xl overflow-hidden border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-950 transition-all duration-200 hover:border-zinc-400 dark:hover:border-zinc-500 focus:outline-none cursor-zoom-in shadow-xs aspect-video"
+                style="width: 20rem; height: 12rem;">
           <img src="${escapeHtml(img)}"
                alt="${escapeHtml(app.name)} preview ${idx + 1}"
-               class="h-44 sm:h-52 w-auto max-w-sm sm:max-w-md object-cover rounded-xl transition duration-200 group-hover:scale-[1.01]"
+               class="w-full h-full object-cover rounded-xl transition duration-300 group-hover:scale-105"
                loading="lazy"
                onerror="this.parentElement.style.display='none'">
           <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition rounded-xl"></div>
@@ -844,12 +846,15 @@ async function buildAppPage(app, catalog) {
   <div x-show="activeLightboxImg"
        x-transition.opacity
        @click="closeLightbox()"
-       class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 cursor-zoom-out"
+       class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 cursor-zoom-out"
        x-cloak>
-    <img :src="activeLightboxImg" class="max-w-full max-h-[90vh] rounded-xl shadow-2xl object-contain border border-zinc-800" @click.stop>
+    <img :src="activeLightboxImg"
+         class="max-w-[92vw] max-h-[88vh] w-auto h-auto rounded-2xl shadow-2xl object-contain border border-zinc-800"
+         @click.stop>
     <button type="button"
             @click="closeLightbox()"
-            class="absolute top-4 right-4 p-2 rounded-full bg-zinc-800/80 text-white hover:bg-zinc-700 focus:outline-none">
+            class="absolute top-5 right-5 p-2.5 rounded-full bg-zinc-900/90 text-white hover:bg-zinc-800 border border-zinc-700 focus:outline-none cursor-pointer shadow-lg"
+            title="Close Lightbox (Esc)">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M18 6L6 18M6 6l12 12"/>
       </svg>

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-21T23:25:05.970Z",
+  "generatedAt": "2026-10-21T23:44:01.026Z",
   "store": {
     "name": "GitHub Software Store Hub",
     "description": "Curated zero-backend software store powered by GitHub Releases",
@@ -55,7 +55,7 @@
           "tagline": "ใช้งาน GitHub บน Command Line ได้สะดวกและรวดเร็ว"
         }
       },
-      "stale": false,
+      "stale": true,
       "repo": {
         "stars": 46723,
         "forks": 9203,
@@ -4272,7 +4272,7 @@
           "tagline": "เครื่องมือค้นหาข้อความและ regex ในไฟล์ที่ทำงานได้เร็วเป็นพิเศษ"
         }
       },
-      "stale": false,
+      "stale": true,
       "repo": {
         "stars": 69317,
         "forks": 5455,
@@ -6472,7 +6472,7 @@
           "tagline": "Terminal UI สำหรับจัดการคำสั่ง Git ที่ง่ายและสะดวก"
         }
       },
-      "stale": false,
+      "stale": true,
       "repo": {
         "stars": 83343,
         "forks": 3115,
@@ -9232,7 +9232,7 @@
           "tagline": "คำสั่ง cat ที่มาพร้อม Syntax Highlighting และเชื่อมต่อกับ Git"
         }
       },
-      "stale": false,
+      "stale": true,
       "repo": {
         "stars": 60888,
         "forks": 4418,
@@ -12612,7 +12612,7 @@
           "tagline": "เครื่องมือแสดงข้อมูลระบบปฏิบัติการและฮาร์ดแวร์ที่ทำงานได้เร็วที่สุด"
         }
       },
-      "stale": false,
+      "stale": true,
       "repo": {
         "stars": 25093,
         "forks": 929,
@@ -23875,7 +23875,7 @@
           "tagline": "เท็กซ์เอดิเตอร์ยุคใหม่ พัฒนาต่อยอดจาก Vim เน้นประสิทธิภาพและความยืดหยุ่นสูง"
         }
       },
-      "stale": false,
+      "stale": true,
       "repo": {
         "stars": 103105,
         "forks": 7229,
@@ -25537,7 +25537,7 @@
           "tagline": "เครื่องมือ Fuzzy Finder สำหรับค้นหาไฟล์และคำสั่งบน Command-line ได้อย่างรวดเร็ว"
         }
       },
-      "stale": false,
+      "stale": true,
       "repo": {
         "stars": 83716,
         "forks": 5378,
@@ -29067,7 +29067,7 @@
           "tagline": "โปรแกรมจับภาพหน้าจอและอัดวิดีโอยอดนิยมสำหรับ Windows ครบเครื่องทุกฟังก์ชัน"
         }
       },
-      "stale": false,
+      "stale": true,
       "repo": {
         "stars": 40292,
         "forks": 3987,

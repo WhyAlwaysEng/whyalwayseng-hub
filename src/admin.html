@@ -17,49 +17,56 @@
   <script src="/vendor/alpine.min.js" defer></script>
 </head>
 <body class="bg-zinc-950 text-zinc-100 min-h-screen flex flex-col antialiased font-sans selection:bg-zinc-800"
+      style="background-color: #09090b; color: #f4f4f5; min-height: 100vh;"
       x-data="adminDashboard()">
 
   <!-- 1. Security Gate Modal (Production Lock Screen) -->
   <template x-if="isProduction && !isAuthenticated">
-    <div class="fixed inset-0 z-50 bg-zinc-950/90 backdrop-blur-md flex items-center justify-center p-6">
-      <div class="w-full max-w-lg p-8 sm:p-10 rounded-3xl border border-zinc-800 bg-zinc-900 shadow-2xl space-y-6">
-        <div class="flex items-center gap-4">
-          <div class="w-12 h-12 rounded-2xl bg-zinc-800 border border-zinc-700 flex items-center justify-center text-xl shadow-inner">
+    <div class="fixed inset-0 z-50 bg-zinc-950/90 backdrop-blur-md flex items-center justify-center p-6"
+         style="position: fixed; inset: 0; background: rgba(9, 9, 11, 0.95); display: flex; align-items: center; justify-content: center; z-index: 50; padding: 1.5rem;">
+      <div class="w-full max-w-lg p-8 sm:p-10 rounded-3xl border border-zinc-800 bg-zinc-900 shadow-2xl space-y-6"
+           style="background: #18181b; border: 1px solid #27272a; border-radius: 1.5rem; padding: 2.5rem; width: 100%; max-width: 32rem;">
+        <div class="flex items-center gap-4" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+          <div class="w-12 h-12 rounded-2xl bg-zinc-800 border border-zinc-700 flex items-center justify-center text-xl shadow-inner"
+               style="width: 3rem; height: 3rem; border-radius: 1rem; background: #27272a; display: flex; align-items: center; justify-content: center;">
             🔒
           </div>
           <div>
-            <h2 class="text-lg font-bold text-white tracking-tight">Admin Security Gate</h2>
-            <p class="text-xs text-zinc-400 mt-0.5">Authenticated GitHub Access Required</p>
+            <h2 class="text-lg font-bold text-white tracking-tight" style="font-size: 1.25rem; font-weight: 700; color: #fff;">Admin Security Gate</h2>
+            <p class="text-xs text-zinc-400 mt-0.5" style="font-size: 0.75rem; color: #a1a1aa;">Authenticated GitHub Access Required</p>
           </div>
         </div>
 
-        <p class="text-xs text-zinc-400 leading-relaxed">
+        <p class="text-xs text-zinc-400 leading-relaxed" style="font-size: 0.8125rem; color: #a1a1aa; line-height: 1.6; margin-bottom: 1.5rem;">
           This store is running on production. To prevent unauthorized modifications, please provide your 
-          <strong class="text-zinc-200">GitHub Personal Access Token</strong> (with repository write permission).
+          <strong class="text-zinc-200" style="color: #e4e4e7;">GitHub Personal Access Token</strong> (with repository write permission).
         </p>
 
-        <form @submit.prevent="authenticateToken()" class="space-y-5">
-          <div class="space-y-2">
-            <label class="block text-xs font-mono text-zinc-300">GitHub Token (Fine-grained or Classic PAT)</label>
+        <form @submit.prevent="authenticateToken()" class="space-y-5" style="display: flex; flex-direction: column; gap: 1.25rem;">
+          <div class="space-y-2" style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <label class="block text-xs font-mono text-zinc-300" style="font-size: 0.75rem; font-family: monospace; color: #d4d4d8;">GitHub Token (Fine-grained or Classic PAT)</label>
             <input type="password"
                    x-model="tokenInput"
                    placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
                    required
-                   class="w-full px-4 py-3 text-xs rounded-xl border border-zinc-700 bg-zinc-950 text-white placeholder-zinc-600 font-mono focus:outline-none focus:border-zinc-400 transition">
-            <span class="block text-[11px] text-zinc-500 leading-normal">
+                   class="w-full px-4 py-3 text-xs rounded-xl border border-zinc-700 bg-zinc-950 text-white placeholder-zinc-600 font-mono focus:outline-none focus:border-zinc-400 transition"
+                   style="width: 100%; padding: 0.75rem 1rem; border-radius: 0.75rem; border: 1px solid #3f3f46; background: #09090b; color: #fff; font-family: monospace;">
+            <span class="block text-[11px] text-zinc-500 leading-normal" style="font-size: 0.6875rem; color: #71717a;">
               Token is kept only in your current browser session. Never sent to any third party.
             </span>
           </div>
 
-          <div class="flex items-center justify-between pt-2">
+          <div class="flex items-center justify-between pt-2" style="display: flex; align-items: center; justify-content: space-between; padding-top: 0.5rem;">
             <a href="https://github.com/settings/tokens?type=beta"
                target="_blank" rel="noopener noreferrer"
-               class="text-xs text-zinc-400 hover:text-white underline transition">
+               class="text-xs text-zinc-400 hover:text-white underline transition"
+               style="font-size: 0.75rem; color: #a1a1aa; text-decoration: underline;">
               Create GitHub Token ↗
             </a>
             <button type="submit"
                     :disabled="verifyingToken || !tokenInput.trim()"
-                    class="px-5 py-2.5 text-xs font-semibold rounded-xl bg-white text-zinc-950 hover:bg-zinc-200 transition disabled:opacity-50 cursor-pointer">
+                    class="px-5 py-2.5 text-xs font-semibold rounded-xl bg-white text-zinc-950 hover:bg-zinc-200 transition disabled:opacity-50 cursor-pointer"
+                    style="padding: 0.625rem 1.25rem; border-radius: 0.75rem; background: #fff; color: #09090b; font-weight: 600; cursor: pointer;">
               <span x-show="!verifyingToken">Unlock Dashboard →</span>
               <span x-show="verifyingToken">Verifying...</span>
             </button>
@@ -70,40 +77,46 @@
   </template>
 
   <!-- 2. Top Navigation Bar -->
-  <header class="border-b border-zinc-800/80 bg-zinc-900/60 backdrop-blur-md sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+  <header class="border-b border-zinc-800/80 bg-zinc-900/60 backdrop-blur-md sticky top-0 z-40"
+          style="border-bottom: 1px solid #27272a; background: rgba(24, 24, 27, 0.7); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 40;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"
+         style="max-width: 80rem; margin: 0 auto; padding: 0 1.5rem; height: 4rem; display: flex; align-items: center; justify-content: space-between;">
       
       <!-- Left: Logo & Environment Pill -->
-      <div class="flex items-center gap-4">
-        <a href="/" class="flex items-center gap-2.5 hover:opacity-80 transition">
-          <div class="w-7 h-7 rounded-lg bg-white text-zinc-950 flex items-center justify-center font-bold text-xs shadow-xs">
+      <div class="flex items-center gap-4" style="display: flex; align-items: center; gap: 1rem;">
+        <a href="/" class="flex items-center gap-2.5 hover:opacity-80 transition" style="display: flex; align-items: center; gap: 0.625rem;">
+          <div class="w-7 h-7 rounded-lg bg-white text-zinc-950 flex items-center justify-center font-bold text-xs shadow-xs"
+               style="width: 1.75rem; height: 1.75rem; border-radius: 0.5rem; background: #fff; color: #09090b; display: flex; align-items: center; justify-content: center; font-weight: 700;">
             H
           </div>
-          <span class="font-bold text-sm text-white tracking-tight">Hub Command Center</span>
+          <span class="font-bold text-sm text-white tracking-tight" style="font-size: 0.875rem; font-weight: 700; color: #fff;">Hub Command Center</span>
         </a>
 
-        <div class="h-4 w-px bg-zinc-800"></div>
+        <div class="h-4 w-px bg-zinc-800" style="width: 1px; height: 1rem; background: #27272a;"></div>
 
         <!-- Mode Indicator Badge -->
         <div class="flex items-center gap-2 text-xs font-mono px-3 py-1 rounded-full border"
-             :class="isProduction ? 'bg-amber-950/40 border-amber-800/60 text-amber-300' : 'bg-emerald-950/40 border-emerald-800/60 text-emerald-300'">
+             style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; font-family: monospace; padding: 0.25rem 0.75rem; border-radius: 9999px; border: 1px solid #27272a; background: rgba(24, 24, 27, 0.5);">
           <span class="w-2 h-2 rounded-full"
-                :class="isProduction ? 'bg-amber-400' : 'bg-emerald-400'"></span>
+                style="width: 0.5rem; height: 0.5rem; border-radius: 9999px;"
+                :style="isProduction ? 'background: #fbbf24;' : 'background: #34d399;'"></span>
           <span x-text="isProduction ? 'Cloud Mode (GitHub API)' : 'Localhost Mode'"></span>
         </div>
       </div>
 
       <!-- Right: User info & Store Link -->
-      <div class="flex items-center gap-4 text-xs">
+      <div class="flex items-center gap-4 text-xs" style="display: flex; align-items: center; gap: 1rem; font-size: 0.75rem;">
         <template x-if="authUsername">
-          <div class="flex items-center gap-2 font-mono text-zinc-400 bg-zinc-800/70 px-3 py-1.5 rounded-lg border border-zinc-700/60">
+          <div class="flex items-center gap-2 font-mono text-zinc-400 bg-zinc-800/70 px-3 py-1.5 rounded-lg border border-zinc-700/60"
+               style="display: flex; align-items: center; gap: 0.5rem; padding: 0.375rem 0.75rem; border-radius: 0.5rem; background: #27272a; border: 1px solid #3f3f46;">
             <span>Signed in as</span>
-            <strong class="text-white" x-text="'@' + authUsername"></strong>
+            <strong class="text-white" style="color: #fff;" x-text="'@' + authUsername"></strong>
             <button type="button" @click="logout()" class="text-zinc-500 hover:text-red-400 ml-1.5 cursor-pointer" title="Log out">✕</button>
           </div>
         </template>
 
-        <a href="/" class="px-3.5 py-2 rounded-xl border border-zinc-800 hover:bg-zinc-800 text-zinc-300 hover:text-white transition font-medium flex items-center gap-1.5">
+        <a href="/" class="px-3.5 py-2 rounded-xl border border-zinc-800 hover:bg-zinc-800 text-zinc-300 hover:text-white transition font-medium flex items-center gap-1.5"
+           style="padding: 0.5rem 0.875rem; border-radius: 0.75rem; border: 1px solid #27272a; color: #d4d4d8; display: flex; align-items: center; gap: 0.375rem; text-decoration: none;">
           <span>View Live Store</span>
           <span>↗</span>
         </a>
@@ -113,68 +126,83 @@
   </header>
 
   <!-- 3. Main Dashboard Body -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full space-y-10">
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full space-y-10"
+        style="max-width: 80rem; margin: 0 auto; padding: 2.5rem 1.5rem; width: 100%;">
     
-    <!-- Top Summary Stat Cards (Spacious, balanced overview) -->
-    <section class="grid grid-cols-1 sm:grid-cols-3 gap-5">
-      <div class="p-5 sm:p-6 rounded-2xl border border-zinc-800/80 bg-zinc-900/30 flex items-center justify-between">
-        <div class="space-y-1">
-          <div class="text-xs font-medium text-zinc-400 uppercase tracking-wider font-mono">Total Software</div>
-          <div class="text-2xl sm:text-3xl font-extrabold text-white" x-text="apps.length">12</div>
+    <!-- Top Summary Stat Cards (Clean 3-column grid with guaranteed spacing) -->
+    <section class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10"
+             style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem;">
+      
+      <div class="p-6 rounded-2xl border border-zinc-800 bg-zinc-900/40 flex items-center justify-between shadow-xs"
+           style="padding: 1.5rem 1.75rem; border-radius: 1rem; border: 1px solid #27272a; background: rgba(24, 24, 27, 0.4); display: flex; align-items: center; justify-content: space-between;">
+        <div class="space-y-1" style="display: flex; flex-direction: column; gap: 0.25rem;">
+          <div class="text-xs font-semibold text-zinc-400 uppercase tracking-wider font-mono" style="font-size: 0.75rem; color: #a1a1aa; font-family: monospace; letter-spacing: 0.05em;">Total Software</div>
+          <div class="text-3xl font-extrabold text-white" style="font-size: 1.875rem; font-weight: 800; color: #fff;" x-text="apps.length">12</div>
         </div>
-        <div class="w-10 h-10 rounded-xl bg-zinc-800/70 border border-zinc-700/60 flex items-center justify-center text-lg">
+        <div class="w-12 h-12 rounded-xl bg-zinc-800/80 border border-zinc-700/60 flex items-center justify-center text-xl shadow-xs"
+             style="width: 3rem; height: 3rem; border-radius: 0.75rem; background: #27272a; border: 1px solid #3f3f46; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
           📦
         </div>
       </div>
 
-      <div class="p-5 sm:p-6 rounded-2xl border border-zinc-800/80 bg-zinc-900/30 flex items-center justify-between">
-        <div class="space-y-1">
-          <div class="text-xs font-medium text-zinc-400 uppercase tracking-wider font-mono">Active Categories</div>
-          <div class="text-2xl sm:text-3xl font-extrabold text-white" x-text="categoriesCount">4</div>
+      <div class="p-6 rounded-2xl border border-zinc-800 bg-zinc-900/40 flex items-center justify-between shadow-xs"
+           style="padding: 1.5rem 1.75rem; border-radius: 1rem; border: 1px solid #27272a; background: rgba(24, 24, 27, 0.4); display: flex; align-items: center; justify-content: space-between;">
+        <div class="space-y-1" style="display: flex; flex-direction: column; gap: 0.25rem;">
+          <div class="text-xs font-semibold text-zinc-400 uppercase tracking-wider font-mono" style="font-size: 0.75rem; color: #a1a1aa; font-family: monospace; letter-spacing: 0.05em;">Active Categories</div>
+          <div class="text-3xl font-extrabold text-white" style="font-size: 1.875rem; font-weight: 800; color: #fff;" x-text="categoriesCount">4</div>
         </div>
-        <div class="w-10 h-10 rounded-xl bg-zinc-800/70 border border-zinc-700/60 flex items-center justify-center text-lg">
+        <div class="w-12 h-12 rounded-xl bg-zinc-800/80 border border-zinc-700/60 flex items-center justify-center text-xl shadow-xs"
+             style="width: 3rem; height: 3rem; border-radius: 0.75rem; background: #27272a; border: 1px solid #3f3f46; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
           🏷️
         </div>
       </div>
 
-      <div class="p-5 sm:p-6 rounded-2xl border border-zinc-800/80 bg-zinc-900/30 flex items-center justify-between">
-        <div class="space-y-1">
-          <div class="text-xs font-medium text-zinc-400 uppercase tracking-wider font-mono">Supported OS</div>
-          <div class="text-xs font-mono text-emerald-400 font-semibold pt-1">Windows • macOS • Linux</div>
+      <div class="p-6 rounded-2xl border border-zinc-800 bg-zinc-900/40 flex items-center justify-between shadow-xs"
+           style="padding: 1.5rem 1.75rem; border-radius: 1rem; border: 1px solid #27272a; background: rgba(24, 24, 27, 0.4); display: flex; align-items: center; justify-content: space-between;">
+        <div class="space-y-1" style="display: flex; flex-direction: column; gap: 0.25rem;">
+          <div class="text-xs font-semibold text-zinc-400 uppercase tracking-wider font-mono" style="font-size: 0.75rem; color: #a1a1aa; font-family: monospace; letter-spacing: 0.05em;">Supported OS</div>
+          <div class="text-xs font-mono text-emerald-400 font-semibold pt-1" style="font-size: 0.8125rem; color: #34d399; font-family: monospace;">Windows • macOS • Linux</div>
         </div>
-        <div class="w-10 h-10 rounded-xl bg-zinc-800/70 border border-zinc-700/60 flex items-center justify-center text-lg">
+        <div class="w-12 h-12 rounded-xl bg-zinc-800/80 border border-zinc-700/60 flex items-center justify-center text-xl shadow-xs"
+             style="width: 3rem; height: 3rem; border-radius: 0.75rem; background: #27272a; border: 1px solid #3f3f46; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
           💻
         </div>
       </div>
     </section>
 
     <!-- Main Working Grid: Left (Add Software) vs Right (Catalog Inventory) -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start"
+         style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; align-items: start;">
       
       <!-- Left Column (5 Cols): Add Software & Live Card Preview -->
-      <div class="lg:col-span-5 space-y-6">
+      <div class="space-y-6" style="display: flex; flex-direction: column; gap: 2rem;">
         
         <!-- Add Software Card -->
-        <div class="p-7 sm:p-8 rounded-3xl border border-zinc-800/90 bg-zinc-900/40 space-y-6">
-          <div class="space-y-1.5 pb-2 border-b border-zinc-800/80">
-            <div class="flex items-center justify-between">
-              <h2 class="text-sm font-bold text-white uppercase tracking-wider font-mono">Import Software</h2>
-              <span class="text-[11px] text-zinc-400 font-mono px-2 py-0.5 rounded bg-zinc-800">GitHub API</span>
+        <div class="p-7 sm:p-8 rounded-3xl border border-zinc-800 bg-zinc-900/40 space-y-6"
+             style="padding: 2rem; border-radius: 1.25rem; border: 1px solid #27272a; background: rgba(24, 24, 27, 0.4); display: flex; flex-direction: column; gap: 1.5rem;">
+          
+          <div class="space-y-1.5 pb-3 border-b border-zinc-800"
+               style="padding-bottom: 1rem; border-bottom: 1px solid #27272a; display: flex; flex-direction: column; gap: 0.375rem;">
+            <div class="flex items-center justify-between" style="display: flex; align-items: center; justify-content: space-between;">
+              <h2 class="text-sm font-bold text-white uppercase tracking-wider font-mono" style="font-size: 0.875rem; font-weight: 700; color: #fff; font-family: monospace; letter-spacing: 0.05em;">Import Software</h2>
+              <span class="text-[11px] text-zinc-400 font-mono px-2 py-0.5 rounded bg-zinc-800" style="font-size: 0.6875rem; padding: 0.125rem 0.5rem; border-radius: 0.375rem; background: #27272a; color: #a1a1aa;">GitHub API</span>
             </div>
-            <p class="text-xs text-zinc-400 leading-relaxed">
-              Enter GitHub repository format <code class="text-zinc-200 bg-zinc-800/70 px-1.5 py-0.5 rounded">owner/repo</code> or full URL.
+            <p class="text-xs text-zinc-400 leading-relaxed" style="font-size: 0.8125rem; color: #a1a1aa; line-height: 1.5;">
+              Enter GitHub repository format <code class="text-zinc-200 bg-zinc-800 px-1.5 py-0.5 rounded" style="color: #e4e4e7; background: #27272a; padding: 0.125rem 0.375rem; border-radius: 0.25rem;">owner/repo</code> or full URL.
             </p>
           </div>
 
-          <form @submit.prevent="analyzeRepo()" class="space-y-3">
-            <div class="flex flex-col sm:flex-row gap-2.5">
+          <form @submit.prevent="analyzeRepo()" class="space-y-3" style="display: flex; flex-direction: column; gap: 0.75rem;">
+            <div class="flex flex-col sm:flex-row gap-3" style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
               <input type="text"
                      x-model="repoInput"
                      placeholder="e.g. microsoft/terminal"
-                     class="flex-grow px-4 py-3 text-xs rounded-xl border border-zinc-700/80 bg-zinc-950 text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-400 font-mono transition">
+                     class="flex-grow px-4 py-3 text-xs rounded-xl border border-zinc-700 bg-zinc-950 text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-400 font-mono transition"
+                     style="flex: 1 1 200px; padding: 0.75rem 1rem; border-radius: 0.75rem; border: 1px solid #3f3f46; background: #09090b; color: #fff; font-family: monospace; font-size: 0.8125rem;">
               <button type="submit"
                       :disabled="analyzing || !repoInput.trim()"
-                      class="px-5 py-3 rounded-xl bg-white text-zinc-950 hover:bg-zinc-200 text-xs font-bold transition disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2 flex-shrink-0">
+                      class="px-6 py-3 rounded-xl bg-white text-zinc-950 hover:bg-zinc-200 text-xs font-bold transition disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2 flex-shrink-0"
+                      style="padding: 0.75rem 1.5rem; border-radius: 0.75rem; background: #fff; color: #09090b; font-weight: 700; font-size: 0.8125rem; cursor: pointer; border: none;">
                 <span x-show="!analyzing">Analyze</span>
                 <span x-show="analyzing" class="animate-spin">⏳</span>
                 <span x-show="analyzing">Inspecting...</span>
@@ -184,86 +212,95 @@
 
           <!-- Interactive Live Preview Card (Cleanly spaced and bordered) -->
           <template x-if="analysisResult">
-            <div class="space-y-5 pt-6 border-t border-zinc-800/90">
-              <div class="flex items-center justify-between text-xs font-mono">
-                <span class="text-zinc-400">Card Preview:</span>
-                <span class="text-emerald-400 flex items-center gap-1 font-semibold">
+            <div class="space-y-5 pt-6 border-t border-zinc-800" style="padding-top: 1.5rem; border-top: 1px solid #27272a; display: flex; flex-direction: column; gap: 1.25rem;">
+              <div class="flex items-center justify-between text-xs font-mono" style="display: flex; align-items: center; justify-content: space-between; font-size: 0.75rem; font-family: monospace;">
+                <span class="text-zinc-400" style="color: #a1a1aa;">Card Preview:</span>
+                <span class="text-emerald-400 flex items-center gap-1 font-semibold" style="color: #34d399; font-weight: 600;">
                   <span>●</span> Ready to Save
                 </span>
               </div>
 
-              <!-- Preview Bento Box with generous padding and clean gaps -->
-              <div class="p-5 rounded-2xl border border-zinc-700 bg-zinc-950/90 shadow-lg space-y-4">
-                <div class="flex items-start justify-between gap-3">
-                  <div class="flex items-center gap-3.5 min-w-0">
+              <!-- Preview Bento Box with uniform fixed image thumbnail -->
+              <div class="p-5 rounded-2xl border border-zinc-700 bg-zinc-950/90 shadow-lg space-y-4"
+                   style="padding: 1.25rem; border-radius: 1rem; border: 1px solid #3f3f46; background: rgba(9, 9, 11, 0.9); display: flex; flex-direction: column; gap: 1rem;">
+                <div class="flex items-start justify-between gap-3" style="display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem;">
+                  <div class="flex items-center gap-3.5 min-w-0" style="display: flex; align-items: center; gap: 0.875rem;">
+                    <!-- Fixed icon dimensions: 3rem x 3rem (48px) -->
                     <img :src="analysisResult.appConfig.icon"
-                         class="w-11 h-11 rounded-xl object-cover bg-zinc-800 border border-zinc-700 p-0.5 flex-shrink-0">
+                         class="w-12 h-12 rounded-xl object-cover bg-zinc-800 border border-zinc-700 p-0.5 flex-shrink-0"
+                         style="width: 3rem; height: 3rem; border-radius: 0.75rem; object-fit: cover; flex-shrink: 0; border: 1px solid #3f3f46; background: #27272a;">
                     <div class="min-w-0">
-                      <div class="flex items-center gap-1.5">
-                        <span class="font-bold text-sm text-white truncate" x-text="analysisResult.appConfig.name"></span>
+                      <div class="flex items-center gap-1.5" style="display: flex; align-items: center; gap: 0.375rem;">
+                        <span class="font-bold text-sm text-white truncate" style="font-size: 0.875rem; font-weight: 700; color: #fff;" x-text="analysisResult.appConfig.name"></span>
                         <span class="text-blue-400 text-xs" title="Verified">✓</span>
                       </div>
-                      <div class="text-[11px] font-mono text-zinc-400 truncate mt-0.5" x-text="analysisResult.appConfig.owner + '/' + analysisResult.appConfig.repo"></div>
+                      <div class="text-[11px] font-mono text-zinc-400 truncate mt-0.5" style="font-size: 0.6875rem; font-family: monospace; color: #a1a1aa;" x-text="analysisResult.appConfig.owner + '/' + analysisResult.appConfig.repo"></div>
                     </div>
                   </div>
-                  <span class="text-[10px] font-mono px-2.5 py-1 rounded-md bg-zinc-800 text-zinc-200 font-semibold flex-shrink-0" x-text="analysisResult.appConfig.category"></span>
+                  <span class="text-[10px] font-mono px-2.5 py-1 rounded-md bg-zinc-800 text-zinc-200 font-semibold flex-shrink-0"
+                        style="font-size: 0.625rem; font-family: monospace; padding: 0.25rem 0.625rem; border-radius: 0.375rem; background: #27272a; color: #e4e4e7; font-weight: 600;"
+                        x-text="analysisResult.appConfig.category"></span>
                 </div>
 
-                <p class="text-xs text-zinc-400 line-clamp-2 leading-relaxed" x-text="analysisResult.appConfig.tagline"></p>
+                <p class="text-xs text-zinc-400 line-clamp-2 leading-relaxed" style="font-size: 0.75rem; color: #a1a1aa; line-height: 1.5;" x-text="analysisResult.appConfig.tagline"></p>
 
                 <!-- Quick Metadata Row -->
-                <div class="flex items-center justify-between text-[11px] font-mono text-zinc-400 pt-3 border-t border-zinc-800/80">
-                  <div class="flex items-center gap-2.5">
-                    <span>⭐ <span class="text-zinc-200 font-bold" x-text="analysisResult.stats.stars.toLocaleString()"></span></span>
+                <div class="flex items-center justify-between text-[11px] font-mono text-zinc-400 pt-3 border-t border-zinc-800/80"
+                     style="display: flex; align-items: center; justify-content: space-between; font-size: 0.6875rem; font-family: monospace; color: #a1a1aa; padding-top: 0.75rem; border-top: 1px solid #27272a;">
+                  <div class="flex items-center gap-2.5" style="display: flex; align-items: center; gap: 0.625rem;">
+                    <span>⭐ <span class="text-zinc-200 font-bold" style="color: #e4e4e7; font-weight: 700;" x-text="analysisResult.stats.stars.toLocaleString()"></span></span>
                     <span>•</span>
-                    <span class="text-emerald-400 font-semibold" x-text="analysisResult.stats.latestReleaseTag"></span>
+                    <span class="text-emerald-400 font-semibold" style="color: #34d399; font-weight: 600;" x-text="analysisResult.stats.latestReleaseTag"></span>
                   </div>
-                  <div class="uppercase tracking-wider text-[10px] text-zinc-400">
+                  <div class="uppercase tracking-wider text-[10px] text-zinc-400" style="font-size: 0.625rem; text-transform: uppercase;">
                     <span x-text="analysisResult.appConfig.platforms.join(' / ')"></span>
                   </div>
                 </div>
               </div>
 
               <!-- Editable Overrides Form Fields -->
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs pt-1">
-                <div class="space-y-1.5">
-                  <label class="block font-mono text-[11px] text-zinc-300">Category</label>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs pt-1" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem;">
+                <div class="space-y-1.5" style="display: flex; flex-direction: column; gap: 0.375rem;">
+                  <label class="block font-mono text-[11px] text-zinc-300" style="font-size: 0.6875rem; font-family: monospace; color: #d4d4d8;">Category</label>
                   <select x-model="analysisResult.appConfig.category"
-                          class="w-full px-3 py-2 rounded-xl border border-zinc-700 bg-zinc-900 text-xs text-white focus:outline-none focus:border-zinc-400">
+                          class="w-full px-3 py-2 rounded-xl border border-zinc-700 bg-zinc-900 text-xs text-white focus:outline-none"
+                          style="width: 100%; padding: 0.5rem 0.75rem; border-radius: 0.75rem; border: 1px solid #3f3f46; background: #18181b; color: #fff; font-size: 0.75rem;">
                     <option value="CLI Tool">CLI Tool</option>
                     <option value="Developer Tool">Developer Tool</option>
                     <option value="Utility">Utility</option>
                     <option value="Desktop App">Desktop App</option>
                   </select>
                 </div>
-                <div class="space-y-1.5">
-                  <label class="block font-mono text-[11px] text-zinc-300">Platforms</label>
-                  <div class="flex items-center gap-3 pt-2 text-xs font-mono">
+                <div class="space-y-1.5" style="display: flex; flex-direction: column; gap: 0.375rem;">
+                  <label class="block font-mono text-[11px] text-zinc-300" style="font-size: 0.6875rem; font-family: monospace; color: #d4d4d8;">Platforms</label>
+                  <div class="flex items-center gap-3 pt-2 text-xs font-mono" style="display: flex; align-items: center; gap: 0.75rem; padding-top: 0.5rem; font-size: 0.75rem; font-family: monospace;">
                     <label class="inline-flex items-center gap-1.5 cursor-pointer">
-                      <input type="checkbox" value="windows" x-model="analysisResult.appConfig.platforms" class="rounded"> Win
+                      <input type="checkbox" value="windows" x-model="analysisResult.appConfig.platforms"> Win
                     </label>
                     <label class="inline-flex items-center gap-1.5 cursor-pointer">
-                      <input type="checkbox" value="macos" x-model="analysisResult.appConfig.platforms" class="rounded"> Mac
+                      <input type="checkbox" value="macos" x-model="analysisResult.appConfig.platforms"> Mac
                     </label>
                     <label class="inline-flex items-center gap-1.5 cursor-pointer">
-                      <input type="checkbox" value="linux" x-model="analysisResult.appConfig.platforms" class="rounded"> Linux
+                      <input type="checkbox" value="linux" x-model="analysisResult.appConfig.platforms"> Linux
                     </label>
                   </div>
                 </div>
               </div>
 
               <!-- Save Actions Button Group -->
-              <div class="flex items-center gap-3 pt-3">
+              <div class="flex items-center gap-3 pt-3" style="display: flex; align-items: center; gap: 0.75rem; padding-top: 0.75rem;">
                 <button type="button"
                         @click="saveApp()"
                         :disabled="saving"
-                        class="flex-1 py-3 px-5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-xs transition flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50">
+                        class="flex-1 py-3 px-5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-xs transition flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                        style="flex: 1; padding: 0.75rem 1.25rem; border-radius: 0.75rem; background: #10b981; color: #09090b; font-weight: 700; font-size: 0.8125rem; cursor: pointer; border: none;">
                   <span x-show="!saving">✓ Save to Store</span>
                   <span x-show="saving">Saving to Catalog...</span>
                 </button>
                 <button type="button"
                         @click="analysisResult = null"
-                        class="px-4 py-3 rounded-xl border border-zinc-700 text-zinc-400 hover:text-white text-xs transition cursor-pointer">
+                        class="px-4 py-3 rounded-xl border border-zinc-700 text-zinc-400 hover:text-white text-xs transition cursor-pointer"
+                        style="padding: 0.75rem 1rem; border-radius: 0.75rem; border: 1px solid #3f3f46; background: transparent; color: #a1a1aa; font-size: 0.75rem; cursor: pointer;">
                   Cancel
                 </button>
               </div>
@@ -274,21 +311,22 @@
         </div>
 
         <!-- Help & Operational Notes -->
-        <div class="p-6 rounded-3xl border border-zinc-800/60 bg-zinc-900/20 text-xs text-zinc-400 space-y-3">
-          <div class="font-bold text-zinc-300 font-mono text-[11px] uppercase tracking-wider flex items-center gap-1.5">
+        <div class="p-6 rounded-3xl border border-zinc-800 bg-zinc-900/20 text-xs text-zinc-400 space-y-3"
+             style="padding: 1.75rem; border-radius: 1.25rem; border: 1px solid #27272a; background: rgba(24, 24, 27, 0.2); display: flex; flex-direction: column; gap: 0.75rem;">
+          <div class="font-bold text-zinc-300 font-mono text-[11px] uppercase tracking-wider flex items-center gap-1.5" style="font-weight: 700; color: #d4d4d8; font-family: monospace; font-size: 0.6875rem; letter-spacing: 0.05em; display: flex; align-items: center; gap: 0.375rem;">
             <span>💡</span>
             <span>How Sync Works</span>
           </div>
-          <p class="leading-relaxed">
-            Changes are saved directly to <code class="text-zinc-200 bg-zinc-800/80 px-1 rounded">projects.json</code>.
+          <p class="leading-relaxed" style="line-height: 1.6; font-size: 0.75rem; color: #a1a1aa;">
+            Changes are saved directly to <code class="text-zinc-200 bg-zinc-800 px-1.5 py-0.5 rounded" style="color: #e4e4e7; background: #27272a; padding: 0.125rem 0.375rem; border-radius: 0.25rem;">projects.json</code>.
           </p>
-          <ul class="space-y-2 text-zinc-400 font-mono text-[11px] pt-1">
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-400">•</span>
+          <ul class="space-y-2 text-zinc-400 font-mono text-[11px] pt-1" style="display: flex; flex-direction: column; gap: 0.5rem; font-family: monospace; font-size: 0.6875rem; color: #a1a1aa;">
+            <li class="flex items-start gap-2" style="display: flex; align-items: flex-start; gap: 0.5rem;">
+              <span class="text-emerald-400" style="color: #34d399;">•</span>
               <span><strong>Localhost:</strong> Writes directly to disk on your computer.</span>
             </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-400">•</span>
+            <li class="flex items-start gap-2" style="display: flex; align-items: flex-start; gap: 0.5rem;">
+              <span class="text-emerald-400" style="color: #34d399;">•</span>
               <span><strong>Production:</strong> Commits to GitHub repository via Git API to trigger automated Cloud Build.</span>
             </li>
           </ul>
@@ -297,32 +335,38 @@
       </div>
 
       <!-- Right Column (7 Cols): Store Inventory Catalog -->
-      <div class="lg:col-span-7 space-y-5">
+      <div class="space-y-5" style="display: flex; flex-direction: column; gap: 1.5rem;">
         
         <!-- Inventory Header & Search Bar -->
-        <div class="p-6 rounded-3xl border border-zinc-800/90 bg-zinc-900/40 space-y-5">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-zinc-800/80">
+        <div class="p-7 sm:p-8 rounded-3xl border border-zinc-800 bg-zinc-900/40 space-y-6"
+             style="padding: 2rem; border-radius: 1.25rem; border: 1px solid #27272a; background: rgba(24, 24, 27, 0.4); display: flex; flex-direction: column; gap: 1.5rem;">
+          
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-zinc-800"
+               style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #27272a;">
             <div>
-              <div class="flex items-center gap-2.5">
-                <h2 class="text-sm font-bold text-white uppercase tracking-wider font-mono">Store Inventory</h2>
+              <div class="flex items-center gap-2.5" style="display: flex; align-items: center; gap: 0.625rem;">
+                <h2 class="text-sm font-bold text-white uppercase tracking-wider font-mono" style="font-size: 0.875rem; font-weight: 700; color: #fff; font-family: monospace; letter-spacing: 0.05em;">Store Inventory</h2>
                 <span class="text-xs font-mono font-bold px-2.5 py-0.5 rounded-full bg-zinc-800 text-zinc-300"
+                      style="font-size: 0.75rem; font-family: monospace; font-weight: 700; padding: 0.125rem 0.625rem; border-radius: 9999px; background: #27272a; color: #d4d4d8;"
                       x-text="apps.length + ' apps'"></span>
               </div>
-              <p class="text-xs text-zinc-400 mt-1">Manage and remove software currently listed.</p>
+              <p class="text-xs text-zinc-400 mt-1" style="font-size: 0.8125rem; color: #a1a1aa; margin-top: 0.25rem;">Manage and remove software currently listed.</p>
             </div>
 
-            <div class="flex items-center gap-2.5">
+            <div class="flex items-center gap-2.5" style="display: flex; align-items: center; gap: 0.625rem;">
               <input type="text"
                      x-model="searchQuery"
                      placeholder="Search software..."
-                     class="px-3.5 py-2 text-xs rounded-xl border border-zinc-700/80 bg-zinc-950 text-white placeholder-zinc-500 w-44 sm:w-52 focus:outline-none focus:border-zinc-400 transition font-mono">
+                     class="px-3.5 py-2 text-xs rounded-xl border border-zinc-700 bg-zinc-950 text-white placeholder-zinc-500 w-48 sm:w-56 focus:outline-none focus:border-zinc-400 transition font-mono"
+                     style="padding: 0.5rem 0.875rem; border-radius: 0.75rem; border: 1px solid #3f3f46; background: #09090b; color: #fff; font-family: monospace; font-size: 0.75rem; width: 14rem;">
               
               <template x-if="!isProduction">
                 <button type="button"
                         @click="triggerBuild()"
                         :disabled="building"
                         title="Compile HTML pages with latest data"
-                        class="px-3.5 py-2 rounded-xl border border-zinc-700 bg-zinc-800 hover:bg-zinc-700 text-xs font-semibold text-white transition flex items-center gap-1.5 cursor-pointer disabled:opacity-50 flex-shrink-0">
+                        class="px-4 py-2 rounded-xl border border-zinc-700 bg-zinc-800 hover:bg-zinc-700 text-xs font-semibold text-white transition flex items-center gap-1.5 cursor-pointer disabled:opacity-50 flex-shrink-0"
+                        style="padding: 0.5rem 1rem; border-radius: 0.75rem; border: 1px solid #3f3f46; background: #27272a; color: #fff; font-size: 0.75rem; font-weight: 600; cursor: pointer;">
                   <span x-show="!building">⚡ Rebuild</span>
                   <span x-show="building" class="animate-spin">⏳</span>
                 </button>
@@ -331,38 +375,48 @@
           </div>
 
           <!-- Inventory List (Spacious, elegant cards with generous gaps) -->
-          <div class="space-y-3">
+          <div class="space-y-3.5" style="display: flex; flex-direction: column; gap: 0.875rem;">
             <template x-for="app in filteredApps" :key="app.slug">
-              <div class="group p-4 sm:p-5 rounded-2xl border border-zinc-800/80 bg-zinc-950 hover:bg-zinc-900/60 hover:border-zinc-700 transition flex items-center justify-between gap-4">
+              <div class="group p-4 sm:p-5 rounded-2xl border border-zinc-800 bg-zinc-950 hover:bg-zinc-900/60 hover:border-zinc-700 transition flex items-center justify-between gap-4"
+                   style="padding: 1.25rem 1.5rem; border-radius: 1rem; border: 1px solid #27272a; background: #09090b; display: flex; align-items: center; justify-content: space-between; gap: 1rem;">
                 
                 <!-- Left: App Icon & Details -->
-                <div class="flex items-center gap-4 min-w-0">
+                <div class="flex items-center gap-4 min-w-0" style="display: flex; align-items: center; gap: 1rem; min-width: 0;">
+                  <!-- Guaranteed fixed icon size: 2.75rem x 2.75rem (44px) -->
                   <img :src="app.icon"
-                       class="w-11 h-11 rounded-xl object-cover bg-zinc-800 border border-zinc-700/80 p-0.5 flex-shrink-0">
-                  <div class="min-w-0 space-y-1">
-                    <div class="flex items-center gap-2 flex-wrap">
-                      <span class="font-bold text-xs sm:text-sm text-white truncate" x-text="app.name"></span>
-                      <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-400" x-text="app.category"></span>
+                       class="w-11 h-11 rounded-xl object-cover bg-zinc-800 border border-zinc-700/80 p-0.5 flex-shrink-0"
+                       style="width: 2.75rem; height: 2.75rem; border-radius: 0.75rem; object-fit: cover; flex-shrink: 0; border: 1px solid #3f3f46; background: #27272a;">
+                  <div class="min-w-0 space-y-1" style="min-width: 0; display: flex; flex-direction: column; gap: 0.25rem;">
+                    <div class="flex items-center gap-2 flex-wrap" style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                      <span class="font-bold text-xs sm:text-sm text-white truncate" style="font-size: 0.875rem; font-weight: 700; color: #fff;" x-text="app.name"></span>
+                      <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-400"
+                            style="font-size: 0.625rem; font-family: monospace; padding: 0.125rem 0.5rem; border-radius: 0.25rem; background: #27272a; color: #a1a1aa;"
+                            x-text="app.category"></span>
                       <template x-if="app.featured">
-                        <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-950/60 text-amber-300 border border-amber-800/60">Featured</span>
+                        <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-950/60 text-amber-300 border border-amber-800/60"
+                              style="font-size: 0.625rem; font-family: monospace; padding: 0.125rem 0.5rem; border-radius: 0.25rem; background: rgba(69, 26, 3, 0.6); color: #fcd34d; border: 1px solid rgba(146, 64, 14, 0.6);">Featured</span>
                       </template>
                     </div>
-                    <div class="text-[11px] font-mono text-zinc-500 truncate" x-text="app.owner + '/' + app.repo"></div>
+                    <div class="text-[11px] font-mono text-zinc-500 truncate" style="font-size: 0.6875rem; font-family: monospace; color: #71717a;" x-text="app.owner + '/' + app.repo"></div>
                   </div>
                 </div>
 
                 <!-- Right: Supported Platforms & Delete Button -->
-                <div class="flex items-center gap-4 flex-shrink-0">
-                  <div class="hidden sm:flex items-center gap-1.5 font-mono text-[10px] text-zinc-400 uppercase">
+                <div class="flex items-center gap-4 flex-shrink-0" style="display: flex; align-items: center; gap: 1rem; flex-shrink: 0;">
+                  <div class="hidden sm:flex items-center gap-1.5 font-mono text-[10px] text-zinc-400 uppercase"
+                       style="display: flex; align-items: center; gap: 0.375rem; font-family: monospace; font-size: 0.625rem; color: #a1a1aa; text-transform: uppercase;">
                     <template x-for="plat in app.platforms" :key="plat">
-                      <span class="px-2 py-0.5 rounded-md bg-zinc-900 border border-zinc-800" x-text="plat.slice(0,3)"></span>
+                      <span class="px-2 py-0.5 rounded-md bg-zinc-900 border border-zinc-800"
+                            style="padding: 0.125rem 0.5rem; border-radius: 0.375rem; background: #18181b; border: 1px solid #27272a;"
+                            x-text="plat.slice(0,3)"></span>
                     </template>
                   </div>
 
                   <button type="button"
                           @click="deleteApp(app)"
                           :disabled="deletingSlug === app.slug"
-                          class="px-3 py-1.5 text-xs text-red-400 hover:text-red-300 hover:bg-red-950/50 border border-red-900/40 rounded-xl transition cursor-pointer disabled:opacity-50">
+                          class="px-3 py-1.5 text-xs text-red-400 hover:text-red-300 hover:bg-red-950/50 border border-red-900/40 rounded-xl transition cursor-pointer disabled:opacity-50"
+                          style="padding: 0.375rem 0.75rem; border-radius: 0.75rem; border: 1px solid rgba(127, 29, 29, 0.4); background: transparent; color: #f87171; font-size: 0.75rem; cursor: pointer;">
                     <span x-show="deletingSlug !== app.slug">Delete</span>
                     <span x-show="deletingSlug === app.slug">...</span>
                   </button>
@@ -372,7 +426,8 @@
             </template>
 
             <template x-if="filteredApps.length === 0">
-              <div class="text-center py-16 border border-dashed border-zinc-800 rounded-2xl text-zinc-500 text-xs font-mono">
+              <div class="text-center py-16 border border-dashed border-zinc-800 rounded-2xl text-zinc-500 text-xs font-mono"
+                   style="text-align: center; padding: 4rem 1rem; border: 1px dashed #27272a; border-radius: 1rem; color: #71717a; font-family: monospace; font-size: 0.75rem;">
                 No software matching search query.
               </div>
             </template>
@@ -390,8 +445,9 @@
   <div x-show="toast.show"
        x-transition
        class="fixed bottom-6 right-6 z-50 bg-zinc-900 border border-zinc-700 text-white rounded-full px-5 py-2.5 text-xs font-medium shadow-2xl flex items-center gap-2.5"
+       style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 50; background: #18181b; border: 1px solid #3f3f46; color: #fff; border-radius: 9999px; padding: 0.625rem 1.25rem; font-size: 0.75rem; display: flex; align-items: center; gap: 0.625rem;"
        x-cloak>
-    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+    <span class="w-2 h-2 rounded-full bg-emerald-400" style="width: 0.5rem; height: 0.5rem; border-radius: 9999px; background: #34d399;"></span>
     <span x-text="toast.message"></span>
   </div>
 
