@@ -37,11 +37,11 @@ function escapeHtml(str) {
 
 function renderHeader(rootPath = "./") {
   return `
-  <!-- Minimalist Navbar (Linear / Vercel style - No version badge) -->
+  <!-- Minimalist Navbar (Linear / Vercel style) -->
   <header class="sticky top-0 z-30 w-full border-b border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/80 dark:bg-zinc-950/80 backdrop-blur-md transition-colors">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
       
-      <!-- Brand Logo (Clean, no version label) -->
+      <!-- Brand Logo -->
       <a href="${rootPath}" class="flex items-center gap-2.5 group focus:outline-none">
         <div class="w-7 h-7 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 flex items-center justify-center font-black text-xs shadow-xs group-hover:scale-105 transition-transform">
           ⬡
@@ -51,12 +51,12 @@ function renderHeader(rootPath = "./") {
         </span>
       </a>
 
-      <!-- Right Header Actions (Icons + Visible Fallback Labels) -->
+      <!-- Right Header Actions -->
       <div class="flex items-center gap-2">
         
         <!-- Favorites Counter Button -->
         <a href="${rootPath}?favorites=1"
-           class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 transition"
+           class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 transition cursor-pointer"
            title="Saved Favorites">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" class="text-amber-500 flex-shrink-0">
             <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
@@ -71,7 +71,7 @@ function renderHeader(rootPath = "./") {
         <!-- Language Switcher -->
         <button type="button"
                 @click="$store.app.toggleLang()"
-                class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold font-mono border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 transition"
+                class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold font-mono border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 transition cursor-pointer"
                 aria-label="Switch Language">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-500">
             <circle cx="12" cy="12" r="10"></circle>
@@ -84,8 +84,9 @@ function renderHeader(rootPath = "./") {
         <!-- Theme Toggle (Moon / Sun) -->
         <button type="button"
                 @click="$store.app.toggleTheme()"
-                class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 transition"
-                aria-label="Toggle Theme Mode">
+                class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 transition cursor-pointer"
+                aria-label="Toggle Theme Mode"
+                title="Toggle Dark / Light Mode">
           <!-- Sun icon when dark mode is on -->
           <svg x-show="$store.app.theme === 'dark'" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-amber-400">
             <circle cx="12" cy="12" r="5"></circle>
@@ -102,12 +103,12 @@ function renderHeader(rootPath = "./") {
           <svg x-show="$store.app.theme !== 'dark'" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-700">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
           </svg>
-          <span class="hidden sm:inline text-xs font-mono" x-text="$store.app.theme === 'dark' ? 'Light' : 'Dark'">Theme</span>
+          <span class="hidden sm:inline text-xs font-mono" x-text="$store.app.theme === 'dark' ? 'Light' : 'Dark'">Light</span>
         </button>
 
         <!-- Submit App Button -->
         <a href="https://github.com" target="_blank" rel="noopener noreferrer"
-           class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-white text-xs font-semibold shadow-xs transition"
+           class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-white text-xs font-semibold shadow-xs transition cursor-pointer"
            title="Submit App to Store">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -166,7 +167,7 @@ async function buildIndex(catalog) {
   const totalDownloads = catalog.apps.reduce((sum, a) => sum + (a.totalDownloads || 0), 0);
 
   const html = `<!DOCTYPE html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -183,10 +184,22 @@ async function buildIndex(catalog) {
              connect-src 'self';
              base-uri 'self'; form-action 'none'">
 
+  <!-- Immediate Theme Initialization (prevents flash) -->
+  <script>
+    (function() {
+      const theme = localStorage.getItem('theme') || 'dark';
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+
   <link rel="stylesheet" href="./styles.css">
   <link rel="manifest" href="./manifest.webmanifest">
 
-  <!-- Core App Scripts (app.js registered first so alpine:init always hooks) -->
+  <!-- Core App Scripts -->
   <script src="./vendor/marked.min.js"></script>
   <script src="./vendor/purify.min.js"></script>
   <script src="./vendor/fuse.min.js"></script>
@@ -271,14 +284,14 @@ async function buildIndex(catalog) {
           <button type="button"
                   @click="setCategory('all')"
                   :class="selectedCategory === 'all' ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-950 font-semibold' : 'bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200'"
-                  class="px-2.5 py-1 rounded-md transition whitespace-nowrap text-xs">
+                  class="px-2.5 py-1 rounded-md transition whitespace-nowrap text-xs cursor-pointer">
             All
           </button>
           <template x-for="cat in categories" :key="cat">
             <button type="button"
                     @click="setCategory(cat)"
                     :class="selectedCategory === cat ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-950 font-semibold' : 'bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200'"
-                    class="px-2.5 py-1 rounded-md transition whitespace-nowrap text-xs"
+                    class="px-2.5 py-1 rounded-md transition whitespace-nowrap text-xs cursor-pointer"
                     x-text="cat">
             </button>
           </template>
@@ -289,22 +302,22 @@ async function buildIndex(catalog) {
           <button type="button"
                   @click="setPlatform('all')"
                   :class="selectedPlatform === 'all' ? 'text-zinc-950 dark:text-white font-bold border-b border-zinc-950 dark:border-white' : 'text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300'"
-                  class="px-1.5 pb-0.5 transition">ALL</button>
+                  class="px-1.5 pb-0.5 transition cursor-pointer">ALL</button>
           <span class="text-zinc-300 dark:text-zinc-700">/</span>
           <button type="button"
                   @click="setPlatform('windows')"
                   :class="selectedPlatform === 'windows' ? 'text-zinc-950 dark:text-white font-bold border-b border-zinc-950 dark:border-white' : 'text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300'"
-                  class="px-1.5 pb-0.5 transition">WIN</button>
+                  class="px-1.5 pb-0.5 transition cursor-pointer">WIN</button>
           <span class="text-zinc-300 dark:text-zinc-700">/</span>
           <button type="button"
                   @click="setPlatform('macos')"
                   :class="selectedPlatform === 'macos' ? 'text-zinc-950 dark:text-white font-bold border-b border-zinc-950 dark:border-white' : 'text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300'"
-                  class="px-1.5 pb-0.5 transition">MAC</button>
+                  class="px-1.5 pb-0.5 transition cursor-pointer">MAC</button>
           <span class="text-zinc-300 dark:text-zinc-700">/</span>
           <button type="button"
                   @click="setPlatform('linux')"
                   :class="selectedPlatform === 'linux' ? 'text-zinc-950 dark:text-white font-bold border-b border-zinc-950 dark:border-white' : 'text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300'"
-                  class="px-1.5 pb-0.5 transition">LINUX</button>
+                  class="px-1.5 pb-0.5 transition cursor-pointer">LINUX</button>
         </div>
 
       </div>
@@ -320,7 +333,7 @@ async function buildIndex(catalog) {
       </div>
       <button type="button"
               @click="resetFilters()"
-              class="font-medium text-red-500 hover:underline">
+              class="font-medium text-red-500 hover:underline cursor-pointer">
         Reset
       </button>
     </div>
@@ -333,7 +346,7 @@ async function buildIndex(catalog) {
       </p>
       <button type="button"
               @click="resetFilters()"
-              class="mt-3 px-3 py-1.5 text-xs font-semibold rounded-md border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition">
+              class="mt-3 px-3 py-1.5 text-xs font-semibold rounded-md border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition cursor-pointer">
         Clear filters
       </button>
     </div>
@@ -373,7 +386,7 @@ async function buildIndex(catalog) {
               <!-- Favorite Button -->
               <button type="button"
                       @click.stop.prevent="$store.app.toggleFavorite(app.slug)"
-                      class="p-1 rounded text-zinc-400 hover:text-amber-500 transition focus:outline-none"
+                      class="p-1 rounded text-zinc-400 hover:text-amber-500 transition focus:outline-none cursor-pointer"
                       :class="$store.app.isFavorite(app.slug) ? 'text-amber-500' : 'text-zinc-300 dark:text-zinc-700'"
                       aria-label="Favorite">
                 <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
@@ -443,7 +456,7 @@ async function buildAppPage(app, catalog) {
   const primaryInstallCommand = Object.values(app.install || {})[0] || null;
 
   const html = `<!DOCTYPE html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -474,9 +487,21 @@ async function buildAppPage(app, catalog) {
              connect-src 'self';
              base-uri 'self'; form-action 'none'">
 
+  <!-- Immediate Theme Initialization (prevents flash) -->
+  <script>
+    (function() {
+      const theme = localStorage.getItem('theme') || 'dark';
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+
   <link rel="stylesheet" href="${rootPath}styles.css">
 
-  <!-- Core App Scripts (app.js registered first so alpine:init always hooks) -->
+  <!-- Core App Scripts -->
   <script src="${rootPath}vendor/marked.min.js"></script>
   <script src="${rootPath}vendor/purify.min.js"></script>
   <script src="${rootPath}app.js"></script>
@@ -490,7 +515,7 @@ async function buildAppPage(app, catalog) {
   <!-- Top Breadcrumb -->
   <div class="max-w-5xl mx-auto px-4 sm:px-6 pt-6 w-full">
     <a href="${rootPath}"
-       class="inline-flex items-center gap-1.5 text-xs font-medium text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition">
+       class="inline-flex items-center gap-1.5 text-xs font-medium text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition cursor-pointer">
       <span>←</span>
       <span x-text="$store.app.t('detail.back', 'Back to Store')">Back to Store</span>
     </a>
@@ -543,7 +568,7 @@ async function buildAppPage(app, catalog) {
         
         <template x-if="primaryAsset">
           <a :href="primaryAsset.url"
-             class="px-5 py-3 rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-white text-xs font-bold text-center flex items-center justify-center gap-2 transition shadow-xs">
+             class="px-5 py-3 rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-white text-xs font-bold text-center flex items-center justify-center gap-2 transition shadow-xs cursor-pointer">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
               <polyline points="7 10 12 15 17 10"></polyline>
@@ -557,7 +582,7 @@ async function buildAppPage(app, catalog) {
         </template>
 
         <a href="#downloads-table"
-           class="text-[11px] font-mono text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 text-center transition">
+           class="text-[11px] font-mono text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 text-center transition cursor-pointer">
           View all release assets ↓
         </a>
 
@@ -579,7 +604,7 @@ async function buildAppPage(app, catalog) {
         </div>
         <button type="button"
                 @click="copy('${escapeHtml(primaryInstallCommand)}', 'cli')"
-                class="ml-2 text-zinc-400 hover:text-zinc-100 transition focus:outline-none"
+                class="ml-2 text-zinc-400 hover:text-zinc-100 transition focus:outline-none cursor-pointer"
                 title="Copy Command">
           <span x-show="copiedKey === 'cli'" class="text-emerald-400 font-bold">✓</span>
           <span x-show="copiedKey !== 'cli'">copy</span>
@@ -601,7 +626,7 @@ async function buildAppPage(app, catalog) {
         <template x-if="primaryAsset?.sha256">
           <button type="button"
                   @click="copy(primaryAsset.sha256, 'sha')"
-                  class="ml-2 text-zinc-400 hover:text-zinc-100 transition focus:outline-none"
+                  class="ml-2 text-zinc-400 hover:text-zinc-100 transition focus:outline-none cursor-pointer"
                   title="Copy SHA-256">
             <span x-show="copiedKey === 'sha'" class="text-emerald-400 font-bold">✓</span>
             <span x-show="copiedKey !== 'sha'">copy</span>
@@ -620,25 +645,25 @@ async function buildAppPage(app, catalog) {
       <button type="button"
               @click="setTab('overview')"
               :class="activeTab === 'overview' ? 'border-b-2 border-zinc-900 dark:border-zinc-100 text-zinc-900 dark:text-zinc-100 font-bold pb-2.5 -mb-px' : 'text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 pb-2.5'"
-              class="transition">
+              class="transition cursor-pointer">
         Overview
       </button>
       <button type="button"
               @click="setTab('changelog')"
               :class="activeTab === 'changelog' ? 'border-b-2 border-zinc-900 dark:border-zinc-100 text-zinc-900 dark:text-zinc-100 font-bold pb-2.5 -mb-px' : 'text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 pb-2.5'"
-              class="transition">
+              class="transition cursor-pointer">
         Changelog
       </button>
       <button type="button"
               @click="setTab('history')"
               :class="activeTab === 'history' ? 'border-b-2 border-zinc-900 dark:border-zinc-100 text-zinc-900 dark:text-zinc-100 font-bold pb-2.5 -mb-px' : 'text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 pb-2.5'"
-              class="transition">
+              class="transition cursor-pointer">
         Releases (${app.releases.length})
       </button>
       <button type="button"
               @click="setTab('downloads')"
               :class="activeTab === 'downloads' ? 'border-b-2 border-zinc-900 dark:border-zinc-100 text-zinc-900 dark:text-zinc-100 font-bold pb-2.5 -mb-px' : 'text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 pb-2.5'"
-              class="transition">
+              class="transition cursor-pointer">
         Downloads (${(app.latest?.assets || []).length})
       </button>
     </div>
@@ -719,7 +744,7 @@ async function buildAppPage(app, catalog) {
                   <template x-if="asset.sha256">
                     <button type="button"
                             @click="copy(asset.sha256, asset.name)"
-                            class="text-blue-500 hover:underline">
+                            class="text-blue-500 hover:underline cursor-pointer">
                       <span x-text="copiedKey === asset.name ? '✓ Copied' : asset.sha256.slice(0, 8) + '...'"></span>
                     </button>
                   </template>
@@ -729,7 +754,7 @@ async function buildAppPage(app, catalog) {
                 </td>
                 <td class="py-2.5 px-3 text-right whitespace-nowrap">
                   <a :href="asset.url"
-                     class="px-2.5 py-1 rounded bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-950 font-bold text-[11px] hover:opacity-90 transition">
+                     class="px-2.5 py-1 rounded bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-950 font-bold text-[11px] hover:opacity-90 transition cursor-pointer">
                     Download
                   </a>
                 </td>
@@ -800,7 +825,7 @@ async function buildSitemapAndFeed(catalog) {
 }
 
 async function main() {
-  console.log("⚡ Building Ultra-Minimalist Pages (Linear/Vercel Aesthetic)...");
+  console.log("⚡ Building Ultra-Minimalist Pages with Class-based Dark Mode...");
 
   // Load catalog
   const catalogRaw = await fs.readFile("dist/data/catalog.json", "utf8");
@@ -829,7 +854,7 @@ async function main() {
   console.log("  🗺️ Generating sitemap.xml and feed.xml...");
   await buildSitemapAndFeed(catalog);
 
-  console.log("✅ Ultra-minimalist site generation complete!");
+  console.log("✅ Site generation complete!");
 }
 
 main().catch((err) => {
