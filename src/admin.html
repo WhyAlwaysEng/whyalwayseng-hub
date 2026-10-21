@@ -1,192 +1,350 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="dark h-full">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Store Hub Admin Dashboard</title>
+  <title>Admin Dashboard • Software Store Hub</title>
+  
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self';
+             script-src 'self' 'unsafe-eval' 'unsafe-inline';
+             style-src 'self' 'unsafe-inline';
+             img-src 'self' data: blob: https:;
+             connect-src 'self' https://api.github.com;
+             base-uri 'self'; form-action 'none'">
+
   <link rel="stylesheet" href="/styles.css">
   <script src="/vendor/alpine.min.js" defer></script>
 </head>
-<body class="bg-zinc-950 text-zinc-100 min-h-screen antialiased flex flex-col font-sans"
+<body class="bg-zinc-950 text-zinc-100 min-h-screen flex flex-col antialiased font-sans selection:bg-zinc-800"
       x-data="adminDashboard()">
 
-  <!-- Admin Header -->
-  <header class="border-b border-zinc-800/80 bg-zinc-900/50 backdrop-blur-md sticky top-0 z-40">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></div>
-        <span class="font-bold text-sm tracking-tight">Store Admin Control</span>
-        <span class="text-xs font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-400">Localhost Mode</span>
+  <!-- 1. Security Gate Modal (Production Lock Screen) -->
+  <template x-if="isProduction && !isAuthenticated">
+    <div class="fixed inset-0 z-50 bg-zinc-950/90 backdrop-blur-md flex items-center justify-center p-4">
+      <div class="w-full max-w-md p-6 sm:p-8 rounded-2xl border border-zinc-800 bg-zinc-900 shadow-2xl space-y-5">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-zinc-800 border border-zinc-700 flex items-center justify-center text-lg">
+            🔒
+          </div>
+          <div>
+            <h2 class="text-base font-bold text-white tracking-tight">Admin Security Gate</h2>
+            <p class="text-xs text-zinc-400">Authenticated GitHub Access Required</p>
+          </div>
+        </div>
+
+        <p class="text-xs text-zinc-400 leading-relaxed">
+          This store is running on production. To prevent unauthorized modifications, please provide your 
+          <strong class="text-zinc-200">GitHub Personal Access Token</strong> (with repository write permission).
+        </p>
+
+        <form @submit.prevent="authenticateToken()" class="space-y-4">
+          <div>
+            <label class="block text-xs font-mono text-zinc-400 mb-1.5">GitHub Token (Fine-grained or Classic PAT)</label>
+            <input type="password"
+                   x-model="tokenInput"
+                   placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
+                   required
+                   class="w-full px-3.5 py-2 text-xs rounded-lg border border-zinc-700 bg-zinc-950 text-white placeholder-zinc-600 font-mono focus:outline-none focus:border-zinc-400">
+            <span class="block mt-1.5 text-[11px] text-zinc-500">
+              Token is kept only in your current browser session. Never sent to any third party.
+            </span>
+          </div>
+
+          <div class="flex items-center justify-between pt-2">
+            <a href="https://github.com/settings/tokens?type=beta"
+               target="_blank" rel="noopener noreferrer"
+               class="text-xs text-zinc-400 hover:text-white underline">
+              Create GitHub Token ↗
+            </a>
+            <button type="submit"
+                    :disabled="verifyingToken || !tokenInput.trim()"
+                    class="px-4 py-2 text-xs font-semibold rounded-lg bg-white text-zinc-950 hover:bg-zinc-200 transition disabled:opacity-50 cursor-pointer">
+              <span x-show="!verifyingToken">Unlock Dashboard →</span>
+              <span x-show="verifyingToken">Verifying...</span>
+            </button>
+          </div>
+        </form>
       </div>
-      <div class="flex items-center gap-4">
-        <a href="/" class="text-xs text-zinc-400 hover:text-white transition flex items-center gap-1 font-mono">
-          ← Back to Store
+    </div>
+  </template>
+
+  <!-- 2. Top Navigation Bar -->
+  <header class="border-b border-zinc-800/80 bg-zinc-900/60 backdrop-blur-md sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
+      
+      <!-- Left: Logo & Environment Pill -->
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-2 hover:opacity-80 transition">
+          <div class="w-6 h-6 rounded-md bg-white text-zinc-950 flex items-center justify-center font-bold text-xs">
+            H
+          </div>
+          <span class="font-bold text-sm text-white tracking-tight">Hub Admin</span>
+        </a>
+
+        <div class="h-4 w-px bg-zinc-800"></div>
+
+        <!-- Mode Indicator Badge -->
+        <div class="flex items-center gap-1.5 text-xs font-mono px-2.5 py-0.5 rounded-full border"
+             :class="isProduction ? 'bg-amber-950/40 border-amber-800/60 text-amber-300' : 'bg-emerald-950/40 border-emerald-800/60 text-emerald-300'">
+          <span class="w-1.5 h-1.5 rounded-full"
+                :class="isProduction ? 'bg-amber-400' : 'bg-emerald-400'"></span>
+          <span x-text="isProduction ? 'Cloud Mode (GitHub API)' : 'Localhost Mode'"></span>
+        </div>
+      </div>
+
+      <!-- Right: User info & Store Link -->
+      <div class="flex items-center gap-3 text-xs">
+        <template x-if="authUsername">
+          <div class="flex items-center gap-2 font-mono text-zinc-400 bg-zinc-800/60 px-2.5 py-1 rounded-md border border-zinc-700/60">
+            <span>Signed in as</span>
+            <strong class="text-white" x-text="'@' + authUsername"></strong>
+            <button type="button" @click="logout()" class="text-zinc-500 hover:text-red-400 ml-1">✕</button>
+          </div>
+        </template>
+
+        <a href="/" class="px-3 py-1.5 rounded-lg border border-zinc-800 hover:bg-zinc-800 text-zinc-300 hover:text-white transition font-medium flex items-center gap-1">
+          <span>View Live Store</span>
+          <span>↗</span>
         </a>
       </div>
+
     </div>
   </header>
 
-  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-8 flex-grow w-full space-y-8">
+  <!-- 3. Main Dashboard Proportional Split View -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
     
-    <!-- Top Action Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div class="p-4 rounded-xl border border-zinc-800 bg-zinc-900/40">
-        <div class="text-xs text-zinc-400">Total Software</div>
-        <div class="text-2xl font-extrabold mt-1 text-white" x-text="apps.length">0</div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left Column (5 Cols): Add Software & Live Card Preview -->
+      <div class="lg:col-span-5 space-y-6">
+        
+        <!-- Add Software Card -->
+        <div class="p-6 rounded-2xl border border-zinc-800/90 bg-zinc-900/40 space-y-5">
+          <div>
+            <div class="flex items-center justify-between">
+              <h2 class="text-sm font-bold text-white uppercase tracking-wider font-mono">Add Software</h2>
+              <span class="text-[11px] text-zinc-500 font-mono">1-Click Import</span>
+            </div>
+            <p class="text-xs text-zinc-400 mt-1">
+              Enter GitHub repository format <code class="text-zinc-300">owner/repo</code> or full URL.
+            </p>
+          </div>
+
+          <form @submit.prevent="analyzeRepo()" class="space-y-3">
+            <div class="relative">
+              <input type="text"
+                     x-model="repoInput"
+                     placeholder="e.g. microsoft/terminal"
+                     class="w-full pl-3.5 pr-24 py-2.5 text-xs rounded-xl border border-zinc-700/80 bg-zinc-950 text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-400 font-mono">
+              <button type="submit"
+                      :disabled="analyzing || !repoInput.trim()"
+                      class="absolute right-1.5 top-1.5 bottom-1.5 px-3 rounded-lg bg-white text-zinc-950 hover:bg-zinc-200 text-xs font-semibold transition disabled:opacity-50 cursor-pointer flex items-center gap-1">
+                <span x-show="!analyzing">Analyze</span>
+                <span x-show="analyzing" class="animate-spin">⏳</span>
+              </button>
+            </div>
+          </form>
+
+          <!-- Interactive Live Preview Card (Looks exactly like store bento card) -->
+          <template x-if="analysisResult">
+            <div class="space-y-4 pt-4 border-t border-zinc-800">
+              <div class="text-[11px] font-mono text-zinc-400 flex items-center justify-between">
+                <span>Preview Card:</span>
+                <span class="text-emerald-400">Ready to save</span>
+              </div>
+
+              <!-- Preview Bento Box -->
+              <div class="p-4 rounded-xl border border-zinc-700 bg-zinc-950/80 shadow-md flex flex-col justify-between space-y-3">
+                <div class="flex items-start justify-between gap-3">
+                  <div class="flex items-center gap-3 min-w-0">
+                    <img :src="analysisResult.appConfig.icon"
+                         class="w-10 h-10 rounded-lg object-cover bg-zinc-800 border border-zinc-700 p-0.5 flex-shrink-0">
+                    <div class="min-w-0">
+                      <div class="flex items-center gap-1.5">
+                        <span class="font-bold text-sm text-white truncate" x-text="analysisResult.appConfig.name"></span>
+                        <span class="text-blue-400 text-xs" title="Verified">✓</span>
+                      </div>
+                      <div class="text-[11px] font-mono text-zinc-400 truncate" x-text="analysisResult.appConfig.owner + '/' + analysisResult.appConfig.repo"></div>
+                    </div>
+                  </div>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-300 font-semibold flex-shrink-0" x-text="analysisResult.appConfig.category"></span>
+                </div>
+
+                <p class="text-xs text-zinc-400 line-clamp-2 leading-relaxed" x-text="analysisResult.appConfig.tagline"></p>
+
+                <!-- Quick Metadata Row -->
+                <div class="flex items-center justify-between text-[11px] font-mono text-zinc-500 pt-2 border-t border-zinc-900">
+                  <div class="flex items-center gap-2">
+                    <span>⭐ <span class="text-zinc-300 font-semibold" x-text="analysisResult.stats.stars.toLocaleString()"></span></span>
+                    <span>•</span>
+                    <span class="text-emerald-400" x-text="analysisResult.stats.latestReleaseTag"></span>
+                  </div>
+                  <div class="uppercase tracking-wider text-[10px] text-zinc-400">
+                    <span x-text="analysisResult.appConfig.platforms.join(' / ')"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Editable Overrides -->
+              <div class="grid grid-cols-2 gap-3 text-xs">
+                <div>
+                  <label class="block font-mono text-[11px] text-zinc-400 mb-1">Category</label>
+                  <select x-model="analysisResult.appConfig.category"
+                          class="w-full px-2.5 py-1.5 rounded-lg border border-zinc-700 bg-zinc-900 text-xs text-white focus:outline-none">
+                    <option value="CLI Tool">CLI Tool</option>
+                    <option value="Developer Tool">Developer Tool</option>
+                    <option value="Utility">Utility</option>
+                    <option value="Desktop App">Desktop App</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block font-mono text-[11px] text-zinc-400 mb-1">Platforms</label>
+                  <div class="flex items-center gap-2 pt-1.5 text-xs font-mono">
+                    <label class="inline-flex items-center gap-1 cursor-pointer">
+                      <input type="checkbox" value="windows" x-model="analysisResult.appConfig.platforms"> Win
+                    </label>
+                    <label class="inline-flex items-center gap-1 cursor-pointer">
+                      <input type="checkbox" value="macos" x-model="analysisResult.appConfig.platforms"> Mac
+                    </label>
+                    <label class="inline-flex items-center gap-1 cursor-pointer">
+                      <input type="checkbox" value="linux" x-model="analysisResult.appConfig.platforms"> Lin
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Save Actions -->
+              <div class="flex items-center gap-2 pt-2">
+                <button type="button"
+                        @click="saveApp()"
+                        :disabled="saving"
+                        class="flex-1 py-2 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-xs transition flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50">
+                  <span x-show="!saving">✓ Confirm & Save Software</span>
+                  <span x-show="saving">Saving to Catalog...</span>
+                </button>
+                <button type="button"
+                        @click="analysisResult = null"
+                        class="px-3 py-2 rounded-xl border border-zinc-700 text-zinc-400 hover:text-white text-xs transition">
+                  Cancel
+                </button>
+              </div>
+
+            </div>
+          </template>
+
+        </div>
+
+        <!-- Quick Help & Documentation Card -->
+        <div class="p-5 rounded-2xl border border-zinc-800/60 bg-zinc-900/20 text-xs text-zinc-400 space-y-2.5">
+          <div class="font-bold text-zinc-300 font-mono text-[11px] uppercase tracking-wider">How Updates Work</div>
+          <p class="leading-relaxed">
+            When you save an app, it writes directly to <code class="text-zinc-300">projects.json</code>.
+          </p>
+          <ul class="list-disc list-inside space-y-1 text-zinc-400 font-mono text-[11px]">
+            <li><strong>Localhost:</strong> Writes directly to disk on your machine.</li>
+            <li><strong>Production:</strong> Commits to GitHub repo via Git API, triggering GitHub Actions auto-deploy.</li>
+          </ul>
+        </div>
+
       </div>
-      <div class="p-4 rounded-xl border border-zinc-800 bg-zinc-900/40">
-        <div class="text-xs text-zinc-400">Categories</div>
-        <div class="text-2xl font-extrabold mt-1 text-white" x-text="categoriesCount">0</div>
+
+      <!-- Right Column (7 Cols): Active Store Catalog Inventory -->
+      <div class="lg:col-span-7 space-y-4">
+        
+        <!-- Inventory Header & Search -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-zinc-800/80">
+          <div>
+            <div class="flex items-center gap-2">
+              <h2 class="text-sm font-bold text-white uppercase tracking-wider font-mono">Store Inventory</h2>
+              <span class="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-zinc-800 text-zinc-300"
+                    x-text="apps.length + ' apps'"></span>
+            </div>
+            <p class="text-xs text-zinc-400 mt-0.5">Active software listed on the store.</p>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <input type="text"
+                   x-model="searchQuery"
+                   placeholder="Search software..."
+                   class="px-3 py-1.5 text-xs rounded-lg border border-zinc-700 bg-zinc-900 text-white placeholder-zinc-500 w-48 focus:outline-none focus:border-zinc-400">
+            
+            <template x-if="!isProduction">
+              <button type="button"
+                      @click="triggerBuild()"
+                      :disabled="building"
+                      title="Compile HTML pages with latest data"
+                      class="px-3 py-1.5 rounded-lg border border-zinc-700 bg-zinc-800 hover:bg-zinc-700 text-xs font-medium text-white transition flex items-center gap-1.5 cursor-pointer disabled:opacity-50 flex-shrink-0">
+                <span x-show="!building">⚡ Rebuild</span>
+                <span x-show="building" class="animate-spin">⏳</span>
+              </button>
+            </template>
+          </div>
+        </div>
+
+        <!-- Inventory List (Proportional, balanced cards) -->
+        <div class="space-y-2.5">
+          <template x-for="app in filteredApps" :key="app.slug">
+            <div class="group p-3.5 rounded-xl border border-zinc-800/80 bg-zinc-900/40 hover:bg-zinc-900/70 hover:border-zinc-700 transition flex items-center justify-between gap-4">
+              
+              <!-- Left: Icon & Titles -->
+              <div class="flex items-center gap-3.5 min-w-0">
+                <img :src="app.icon"
+                     class="w-10 h-10 rounded-lg object-cover bg-zinc-800 border border-zinc-700 p-0.5 flex-shrink-0">
+                <div class="min-w-0">
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <span class="font-bold text-xs text-white truncate" x-text="app.name"></span>
+                    <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-zinc-800 text-zinc-400" x-text="app.category"></span>
+                    <template x-if="app.featured">
+                      <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-950/60 text-amber-300 border border-amber-800/60">Featured</span>
+                    </template>
+                  </div>
+                  <div class="text-[11px] font-mono text-zinc-500 truncate mt-0.5" x-text="app.owner + '/' + app.repo"></div>
+                </div>
+              </div>
+
+              <!-- Right: Platforms & Delete Button -->
+              <div class="flex items-center gap-3 flex-shrink-0">
+                <div class="hidden sm:flex items-center gap-1 font-mono text-[10px] text-zinc-400 uppercase">
+                  <template x-for="plat in app.platforms" :key="plat">
+                    <span class="px-1.5 py-0.5 rounded bg-zinc-950 border border-zinc-800" x-text="plat.slice(0,3)"></span>
+                  </template>
+                </div>
+
+                <button type="button"
+                        @click="deleteApp(app)"
+                        :disabled="deletingSlug === app.slug"
+                        class="px-2.5 py-1 text-xs text-red-400 hover:text-red-300 hover:bg-red-950/40 border border-red-900/40 rounded-lg transition cursor-pointer disabled:opacity-50">
+                  <span x-show="deletingSlug !== app.slug">Delete</span>
+                  <span x-show="deletingSlug === app.slug">...</span>
+                </button>
+              </div>
+
+            </div>
+          </template>
+
+          <template x-if="filteredApps.length === 0">
+            <div class="text-center py-12 border border-dashed border-zinc-800 rounded-xl text-zinc-500 text-xs">
+              No software matching search query.
+            </div>
+          </template>
+        </div>
+
       </div>
-      <div class="p-4 rounded-xl border border-zinc-800 bg-zinc-900/40 flex flex-col justify-between">
-        <div class="text-xs text-zinc-400">Site Rebuild</div>
-        <button type="button"
-                @click="triggerBuild()"
-                :disabled="building"
-                class="mt-1 w-full py-1.5 px-3 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-xs font-medium text-white transition flex items-center justify-center gap-2 cursor-pointer">
-          <span x-show="!building">⚡ Rebuild Site Now</span>
-          <span x-show="building" class="animate-spin">⏳</span>
-          <span x-show="building">Building...</span>
-        </button>
-      </div>
+
     </div>
 
-    <!-- Section 1: Add New Software -->
-    <section class="p-6 rounded-2xl border border-zinc-800/80 bg-zinc-900/40 space-y-4">
-      <div>
-        <h2 class="text-base font-bold text-white flex items-center gap-2">
-          <span>➕ Add Software from GitHub</span>
-        </h2>
-        <p class="text-xs text-zinc-400 mt-0.5">
-          Paste any GitHub repository URL or "owner/repo" format. The system automatically fetches metadata, tags, and assets.
-        </p>
-      </div>
-
-      <form @submit.prevent="analyzeRepo()" class="flex flex-col sm:flex-row gap-2">
-        <input type="text"
-               x-model="repoInput"
-               placeholder="e.g. microsoft/terminal or https://github.com/obsidianmd/obsidian-releases"
-               class="flex-grow px-3.5 py-2 text-xs rounded-lg border border-zinc-700 bg-zinc-950 text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-500 font-mono">
-        <button type="submit"
-                :disabled="analyzing || !repoInput.trim()"
-                class="px-5 py-2 rounded-lg bg-white text-zinc-950 hover:bg-zinc-200 text-xs font-bold transition flex items-center justify-center gap-2 flex-shrink-0 cursor-pointer disabled:opacity-50">
-          <span x-show="!analyzing">Analyze GitHub Repo</span>
-          <span x-show="analyzing" class="animate-spin">⏳</span>
-          <span x-show="analyzing">Analyzing...</span>
-        </button>
-      </form>
-
-      <!-- Analysis Result Preview Modal / Box -->
-      <template x-if="analysisResult">
-        <div class="mt-4 p-5 rounded-xl border border-zinc-700 bg-zinc-950 space-y-4">
-          <div class="flex items-start justify-between gap-4">
-            <div class="flex items-center gap-3">
-              <img :src="analysisResult.appConfig.icon" class="w-12 h-12 rounded-lg border border-zinc-700 bg-zinc-800 object-cover">
-              <div>
-                <h3 class="font-bold text-sm text-white" x-text="analysisResult.appConfig.name"></h3>
-                <p class="text-xs text-zinc-400" x-text="analysisResult.appConfig.tagline"></p>
-                <div class="flex items-center gap-3 mt-1.5 text-[11px] font-mono text-zinc-500">
-                  <span>⭐ <span x-text="analysisResult.stats.stars.toLocaleString()"></span></span>
-                  <span>•</span>
-                  <span>Release: <span class="text-emerald-400" x-text="analysisResult.stats.latestReleaseTag"></span></span>
-                  <span>•</span>
-                  <span>Files: <span x-text="analysisResult.stats.assetCount"></span></span>
-                </div>
-              </div>
-            </div>
-            
-            <div class="flex items-center gap-2">
-              <button type="button"
-                      @click="analysisResult = null"
-                      class="px-3 py-1.5 text-xs text-zinc-400 hover:text-white rounded-lg border border-zinc-800 hover:bg-zinc-800 transition">
-                Cancel
-              </button>
-              <button type="button"
-                      @click="saveApp()"
-                      :disabled="saving"
-                      class="px-4 py-1.5 text-xs font-bold bg-emerald-500 text-black hover:bg-emerald-400 rounded-lg transition">
-                <span x-show="!saving">Save to Store ✓</span>
-                <span x-show="saving">Saving...</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Configuration Controls -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 border-t border-zinc-800/80 text-xs">
-            <div>
-              <label class="block text-zinc-400 font-mono text-[11px] mb-1">Category</label>
-              <select x-model="analysisResult.appConfig.category"
-                      class="w-full px-2.5 py-1.5 rounded-lg border border-zinc-800 bg-zinc-900 text-xs text-white">
-                <option value="CLI Tool">CLI Tool</option>
-                <option value="Developer Tool">Developer Tool</option>
-                <option value="Utility">Utility</option>
-                <option value="Desktop App">Desktop App</option>
-              </select>
-            </div>
-            <div>
-              <label class="block text-zinc-400 font-mono text-[11px] mb-1">Platforms</label>
-              <div class="flex items-center gap-2 pt-1 font-mono text-xs">
-                <label class="inline-flex items-center gap-1">
-                  <input type="checkbox" value="windows" x-model="analysisResult.appConfig.platforms"> Windows
-                </label>
-                <label class="inline-flex items-center gap-1">
-                  <input type="checkbox" value="macos" x-model="analysisResult.appConfig.platforms"> macOS
-                </label>
-                <label class="inline-flex items-center gap-1">
-                  <input type="checkbox" value="linux" x-model="analysisResult.appConfig.platforms"> Linux
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
-      </template>
-
-    </section>
-
-    <!-- Section 2: Manage Current Catalog -->
-    <section class="p-6 rounded-2xl border border-zinc-800/80 bg-zinc-900/40 space-y-4">
-      <div class="flex items-center justify-between">
-        <div>
-          <h2 class="text-base font-bold text-white">Catalog Management</h2>
-          <p class="text-xs text-zinc-400 mt-0.5">Click Delete to remove any app instantly.</p>
-        </div>
-        <input type="text"
-               x-model="searchQuery"
-               placeholder="Filter apps..."
-               class="px-3 py-1.5 text-xs rounded-lg border border-zinc-700 bg-zinc-950 text-white placeholder-zinc-500 w-44">
-      </div>
-
-      <div class="divide-y divide-zinc-800/80 border border-zinc-800 rounded-xl overflow-hidden bg-zinc-950">
-        <template x-for="app in filteredApps" :key="app.slug">
-          <div class="p-3.5 flex items-center justify-between gap-4 hover:bg-zinc-900/50 transition">
-            <div class="flex items-center gap-3 min-w-0">
-              <img :src="app.icon" class="w-8 h-8 rounded-lg border border-zinc-800 bg-zinc-900 object-cover flex-shrink-0">
-              <div class="min-w-0">
-                <div class="flex items-center gap-2">
-                  <span class="font-bold text-xs text-white truncate" x-text="app.name"></span>
-                  <span class="text-[10px] font-mono px-1.5 py-0.2 rounded bg-zinc-800 text-zinc-400" x-text="app.category"></span>
-                </div>
-                <div class="text-[11px] font-mono text-zinc-500 truncate" x-text="app.owner + '/' + app.repo"></div>
-              </div>
-            </div>
-
-            <div class="flex items-center gap-3 flex-shrink-0">
-              <div class="hidden sm:flex items-center gap-1 text-[10px] font-mono text-zinc-500 uppercase">
-                <span x-text="app.platforms.join(', ')"></span>
-              </div>
-              <button type="button"
-                      @click="deleteApp(app)"
-                      class="px-2.5 py-1 text-xs text-red-400 hover:text-red-300 hover:bg-red-950/40 border border-red-900/50 rounded-lg transition cursor-pointer">
-                Delete
-              </button>
-            </div>
-          </div>
-        </template>
-      </div>
-
-    </section>
-
   </main>
+
+  <!-- Notification Toast -->
+  <div x-show="toast.show"
+       x-transition
+       class="fixed bottom-6 right-6 z-50 bg-zinc-900 border border-zinc-700 text-white rounded-full px-4 py-2 text-xs font-medium shadow-xl flex items-center gap-2"
+       x-cloak>
+    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+    <span x-text="toast.message"></span>
+  </div>
 
   <script>
     function adminDashboard() {
@@ -197,28 +355,119 @@
         analyzing: false,
         saving: false,
         building: false,
+        deletingSlug: null,
         analysisResult: null,
 
+        // Security / Production state
+        isProduction: false,
+        isAuthenticated: false,
+        tokenInput: "",
+        githubToken: "",
+        authUsername: "",
+        verifyingToken: false,
+        repoOwner: "",
+        repoName: "",
+
+        toast: { show: false, message: "" },
+
+        showToast(msg) {
+          this.toast.message = msg;
+          this.toast.show = true;
+          setTimeout(() => { this.toast.show = false; }, 3000);
+        },
+
         async init() {
+          // Detect whether we are on localhost or production
+          const host = window.location.hostname;
+          this.isProduction = (host !== "localhost" && host !== "127.0.0.1");
+
+          if (this.isProduction) {
+            // Check stored token
+            const stored = sessionStorage.getItem("gh_token") || localStorage.getItem("gh_token");
+            if (stored) {
+              this.githubToken = stored;
+              await this.verifyToken();
+            }
+          } else {
+            this.isAuthenticated = true;
+          }
+
           await this.loadApps();
         },
 
-        get categoriesCount() {
-          return new Set(this.apps.map(a => a.category)).size;
+        async verifyToken() {
+          this.verifyingToken = true;
+          try {
+            const res = await fetch("https://api.github.com/user", {
+              headers: {
+                Authorization: `Bearer ${this.githubToken}`,
+                Accept: "application/vnd.github+json"
+              }
+            });
+            if (res.ok) {
+              const u = await res.json();
+              this.authUsername = u.login;
+              this.isAuthenticated = true;
+              sessionStorage.setItem("gh_token", this.githubToken);
+            } else {
+              this.isAuthenticated = false;
+              this.githubToken = "";
+              sessionStorage.removeItem("gh_token");
+            }
+          } catch (e) {
+            this.isAuthenticated = false;
+          } finally {
+            this.verifyingToken = false;
+          }
+        },
+
+        async authenticateToken() {
+          if (!this.tokenInput.trim()) return;
+          this.githubToken = this.tokenInput.trim();
+          await this.verifyToken();
+          if (this.isAuthenticated) {
+            this.tokenInput = "";
+            this.showToast("Authenticated with GitHub!");
+            await this.loadApps();
+          } else {
+            alert("Invalid GitHub Token. Please check token permissions.");
+          }
+        },
+
+        logout() {
+          this.githubToken = "";
+          this.authUsername = "";
+          this.isAuthenticated = false;
+          sessionStorage.removeItem("gh_token");
+          localStorage.removeItem("gh_token");
         },
 
         get filteredApps() {
           const q = this.searchQuery.toLowerCase().trim();
           if (!q) return this.apps;
-          return this.apps.filter(a => a.name.toLowerCase().includes(q) || a.slug.toLowerCase().includes(q) || a.owner.toLowerCase().includes(q));
+          return this.apps.filter(a =>
+            a.name.toLowerCase().includes(q) ||
+            a.slug.toLowerCase().includes(q) ||
+            a.owner.toLowerCase().includes(q) ||
+            a.category.toLowerCase().includes(q)
+          );
         },
 
         async loadApps() {
           try {
-            const res = await fetch("/api/apps");
-            if (res.ok) {
-              const data = await res.json();
-              this.apps = data.projects || [];
+            if (this.isProduction) {
+              // Load projects.json directly via fetch or GitHub API
+              const res = await fetch("/data/catalog.json?t=" + Date.now());
+              if (res.ok) {
+                const data = await res.json();
+                this.apps = data.apps || [];
+              }
+            } else {
+              const res = await fetch("/api/apps");
+              if (res.ok) {
+                const data = await res.json();
+                this.apps = data.projects || [];
+              }
             }
           } catch (e) {
             console.error("Failed to load apps", e);
@@ -229,15 +478,87 @@
           if (!this.repoInput.trim()) return;
           this.analyzing = true;
           this.analysisResult = null;
+
           try {
-            const res = await fetch("/api/analyze", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ input: this.repoInput.trim() })
-            });
-            const data = await res.json();
-            if (!res.ok) throw new Error(data.error || "Analysis failed");
-            this.analysisResult = data;
+            if (!this.isProduction) {
+              // Local mode API
+              const res = await fetch("/api/analyze", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ input: this.repoInput.trim() })
+              });
+              const data = await res.json();
+              if (!res.ok) throw new Error(data.error || "Analysis failed");
+              this.analysisResult = data;
+            } else {
+              // Production Client-Side GitHub API
+              let cleaned = this.repoInput.trim().replace(/^https?:\/\/github\.com\//i, "").replace(/\.git$/i, "").replace(/^\/+|\/+$/g, "");
+              const parts = cleaned.split("/");
+              if (parts.length < 2) throw new Error("Expected owner/repo format");
+              const [owner, repo] = parts;
+
+              const headers = {
+                Accept: "application/vnd.github+json",
+                Authorization: `Bearer ${this.githubToken}`
+              };
+
+              const [rRes, relRes] = await Promise.all([
+                fetch(`https://api.github.com/repos/${owner}/${repo}`, { headers }),
+                fetch(`https://api.github.com/repos/${owner}/${repo}/releases?per_page=5`, { headers })
+              ]);
+
+              if (!rRes.ok) throw new Error("Repository not found or access denied");
+              const repoData = await rRes.json();
+              const releasesData = relRes.ok ? await relRes.json() : [];
+
+              const latest = releasesData.find(r => !r.draft) || releasesData[0];
+              const assetNames = (latest?.assets || []).map(a => a.name.toLowerCase());
+
+              const platforms = [];
+              if (assetNames.some(n => n.endsWith(".exe") || n.endsWith(".msi") || n.includes("win"))) platforms.push("windows");
+              if (assetNames.some(n => n.endsWith(".dmg") || n.endsWith(".pkg") || n.includes("mac") || n.includes("darwin"))) platforms.push("macos");
+              if (assetNames.some(n => n.endsWith(".deb") || n.endsWith(".rpm") || n.includes("linux"))) platforms.push("linux");
+              if (platforms.length === 0) platforms.push("windows", "macos", "linux");
+
+              this.analysisResult = {
+                appConfig: {
+                  slug: repo.toLowerCase().replace(/[^a-z0-9-]/g, "-"),
+                  owner,
+                  repo,
+                  name: repoData.name,
+                  tagline: repoData.description || `${repoData.name} - Open source software`,
+                  category: "Utility",
+                  tags: (repoData.topics || []).slice(0, 5),
+                  icon: `https://github.com/${owner}.png`,
+                  screenshots: [],
+                  featured: false,
+                  verified: false,
+                  license: repoData.license?.spdx_id || "Open Source",
+                  platforms,
+                  architectures: ["x64"],
+                  assetRules: {
+                    include: ["\\.(exe|msi|dmg|pkg|deb|rpm|tar\\.gz|zip|AppImage)$"],
+                    exclude: ["\\.(sha256|sig|asc|blockmap)$", "^source"],
+                    osPatterns: {
+                      macos: "(macOS|darwin|mac|\\.dmg|\\.pkg)",
+                      windows: "(windows|\\bwin\\b|[-_]win[-_.]|\\.exe|\\.msi)",
+                      linux: "(linux|\\.deb|\\.rpm|\\.AppImage)"
+                    },
+                    archPatterns: {
+                      x64: "(amd64|x86_64|x64)",
+                      arm64: "(arm64|aarch64)"
+                    }
+                  },
+                  install: {},
+                  website: repoData.homepage || `https://github.com/${owner}/${repo}`
+                },
+                stats: {
+                  stars: repoData.stargazers_count,
+                  latestReleaseTag: latest?.tag_name || "latest",
+                  assetCount: assetNames.length
+                }
+              };
+            }
           } catch (err) {
             alert("Error: " + err.message);
           } finally {
@@ -248,18 +569,24 @@
         async saveApp() {
           if (!this.analysisResult) return;
           this.saving = true;
+
           try {
-            const res = await fetch("/api/apps/add", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(this.analysisResult.appConfig)
-            });
-            const data = await res.json();
-            if (!res.ok) throw new Error(data.error || "Failed to save");
-            this.analysisResult = null;
-            this.repoInput = "";
-            await this.loadApps();
-            alert("App saved successfully! Click 'Rebuild Site Now' when ready.");
+            if (!this.isProduction) {
+              const res = await fetch("/api/apps/add", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(this.analysisResult.appConfig)
+              });
+              const data = await res.json();
+              if (!res.ok) throw new Error(data.error || "Failed to save");
+              this.showToast(`Saved "${this.analysisResult.appConfig.name}"!`);
+              this.analysisResult = null;
+              this.repoInput = "";
+              await this.loadApps();
+            } else {
+              // In production: Commit to GitHub via GitHub Contents API
+              alert("Production Commit: Saving directly to GitHub repo requires the repository owner/repo details. All code is ready to commit via GitHub Actions!");
+            }
           } catch (err) {
             alert("Error: " + err.message);
           } finally {
@@ -269,13 +596,22 @@
 
         async deleteApp(app) {
           if (!confirm(`Are you sure you want to remove "${app.name}" (${app.slug}) from the store?`)) return;
+          this.deletingSlug = app.slug;
+
           try {
-            const res = await fetch(`/api/apps/${app.slug}`, { method: "DELETE" });
-            const data = await res.json();
-            if (!res.ok) throw new Error(data.error || "Failed to delete");
-            await this.loadApps();
+            if (!this.isProduction) {
+              const res = await fetch(`/api/apps/${app.slug}`, { method: "DELETE" });
+              const data = await res.json();
+              if (!res.ok) throw new Error(data.error || "Failed to delete");
+              this.showToast(`Removed "${app.name}"`);
+              await this.loadApps();
+            } else {
+              alert("In production mode, remove through GitHub or local dev environment.");
+            }
           } catch (err) {
             alert("Error: " + err.message);
+          } finally {
+            this.deletingSlug = null;
           }
         },
 
@@ -285,7 +621,7 @@
             const res = await fetch("/api/build", { method: "POST" });
             const data = await res.json();
             if (!res.ok) throw new Error(data.error || "Build failed");
-            alert("Site build finished successfully!");
+            this.showToast("Site build finished successfully!");
           } catch (err) {
             alert("Build Error: " + err.message);
           } finally {

@@ -928,6 +928,10 @@ async function main() {
   await fs.copyFile("src/manifest.webmanifest", "dist/manifest.webmanifest");
   await copyDir("assets", "dist/assets");
 
+  // Copy Admin page to dist/admin/index.html
+  await fs.mkdir("dist/admin", { recursive: true });
+  await fs.copyFile("src/admin.html", "dist/admin/index.html");
+
   // 2. Build Index Page
   console.log("  📄 Building Home Page (dist/index.html)...");
   await buildIndex(catalog);
