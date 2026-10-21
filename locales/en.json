@@ -1,0 +1,55 @@
+{
+  "store": {
+    "title": "GitHub Software Store Hub",
+    "tagline": "Discover, verify, and download open-source apps directly from GitHub Releases with zero tracking and full privacy.",
+    "curated": "Curated Apps",
+    "freeOpenSource": "Free & Open Source"
+  },
+  "nav": {
+    "all": "All Apps",
+    "favorites": "Favorites",
+    "submit": "Submit App",
+    "about": "About"
+  },
+  "search": {
+    "placeholder": "Search apps, categories, tags, developers...",
+    "noResults": "No software found matching your search.",
+    "resetFilters": "Reset Filters",
+    "clear": "Clear search",
+    "showingFavs": "Showing your favorited apps only",
+    "showAll": "Show all apps"
+  },
+  "filters": {
+    "category": "Category",
+    "platform": "Platform",
+    "sort": "Sort By",
+    "allCategories": "All Categories",
+    "allPlatforms": "All OS",
+    "popular": "Popular (Stars & Downloads)",
+    "recent": "Recently Updated",
+    "az": "Name (A-Z)",
+    "newest": "Newly Added"
+  },
+  "card": {
+    "stars": "Stars",
+    "downloads": "Downloads",
+    "verified": "Verified",
+    "stale": "Stale Data",
+    "details": "View Details",
+    "quickDownload": "Download"
+  },
+  "detail": {
+    "back": "Back to Software Store",
+    "downloadFor": "Download for",
+    "allDownloads": "All Files & Checksums",
+    "overview": "Overview & README",
+    "changelog": "Changelog",
+    "history": "Release History",
+    "packages": "Package Managers",
+    "info": "Information",
+    "report": "Report an Issue",
+    "addedFav": "Added to your favorites!",
+    "removedFav": "Removed from your favorites.",
+    "copied": "Copied to clipboard!"
+  }
+}

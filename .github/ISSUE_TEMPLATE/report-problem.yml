@@ -1,0 +1,29 @@
+name: Report a Problem
+description: Report an issue with an app listing, broken download link, or store bug
+title: "[Bug]: <Brief description>"
+labels: ["bug"]
+body:
+  - type: input
+    id: app_slug
+    attributes:
+      label: App Name or Slug
+      placeholder: "e.g. ripgrep"
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: Problem Type
+      options:
+        - "Broken Download Link"
+        - "Wrong Platform/Architecture Detected"
+        - "Outdated Release or Metadata"
+        - "Security Concern"
+        - "Storefront UI/UX Bug"
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Description of the Problem
+      placeholder: "Provide as much detail as possible (OS, browser, error messages)"
+    validations:
+      required: true

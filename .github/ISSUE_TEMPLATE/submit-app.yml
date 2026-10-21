@@ -1,0 +1,44 @@
+name: Submit an App
+description: Request to add a new open-source software project to the store
+title: "[App]: <Name of the application>"
+labels: ["app-submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for submitting an application to GitHub Software Store Hub!
+        Please fill out the form below. If you can, creating a Pull Request directly on `projects.json` is the fastest way to get listed.
+  - type: input
+    id: app_name
+    attributes:
+      label: Application Name
+      placeholder: "e.g. Ripgrep"
+    validations:
+      required: true
+  - type: input
+    id: repo_url
+    attributes:
+      label: GitHub Repository URL
+      placeholder: "https://github.com/owner/repo"
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - "CLI Tool"
+        - "Desktop App"
+        - "Developer Tool"
+        - "Utility"
+        - "Productivity"
+        - "Web Extension"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Short Description / Tagline
+      placeholder: "Brief explanation of what the app does"
+    validations:
+      required: true

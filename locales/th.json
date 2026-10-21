@@ -1,0 +1,55 @@
+{
+  "store": {
+    "title": "GitHub Software Store Hub",
+    "tagline": "ค้นหา ตรวจสอบความปลอดภัย และดาวน์โหลดซอฟต์แวร์ Open Source ส่งตรงจาก GitHub Releases ปลอดภัย ไร้การติดตาม",
+    "curated": "แอปที่คัดสรรแล้ว",
+    "freeOpenSource": "ฟรี & โอเพนซอร์ส"
+  },
+  "nav": {
+    "all": "แอปทั้งหมด",
+    "favorites": "รายการโปรด",
+    "submit": "ส่งแอปขึ้นสโตร์",
+    "about": "เกี่ยวกับเรา"
+  },
+  "search": {
+    "placeholder": "ค้นหาชื่อแอป, หมวดหมู่, แท็ก, หรือนักพัฒนา...",
+    "noResults": "ไม่พบซอฟต์แวร์ที่ตรงกับการค้นหา",
+    "resetFilters": "ล้างตัวกรองทั้งหมด",
+    "clear": "ล้างคำค้นหา",
+    "showingFavs": "กำลังแสดงเฉพาะแอปในรายการโปรด",
+    "showAll": "แสดงแอปทั้งหมด"
+  },
+  "filters": {
+    "category": "หมวดหมู่",
+    "platform": "ระบบปฏิบัติการ",
+    "sort": "เรียงตาม",
+    "allCategories": "ทุกหมวดหมู่",
+    "allPlatforms": "ทุก OS",
+    "popular": "ยอดนิยม (Stars & Downloads)",
+    "recent": "อัปเดตล่าสุด",
+    "az": "ชื่อ (A-Z)",
+    "newest": "เพิ่มใหม่ล่าสุด"
+  },
+  "card": {
+    "stars": "ดาว",
+    "downloads": "ยอดดาวน์โหลด",
+    "verified": "ยืนยันแล้ว",
+    "stale": "ข้อมูลอาจไม่อัปเดต",
+    "details": "ดูรายละเอียด",
+    "quickDownload": "ดาวน์โหลด"
+  },
+  "detail": {
+    "back": "กลับไปหน้าร้านค้า",
+    "downloadFor": "ดาวน์โหลดสำหรับ",
+    "allDownloads": "ไฟล์ทั้งหมด & Checksum",
+    "overview": "ภาพรวม & README",
+    "changelog": "บันทึกการเปลี่ยนแปลง",
+    "history": "ประวัติเวอร์ชัน",
+    "packages": "Package Managers",
+    "info": "ข้อมูลทางเทคนิค",
+    "report": "รายงานปัญหา",
+    "addedFav": "เพิ่มลงในรายการโปรดแล้ว!",
+    "removedFav": "นำออกจากรายการโปรดแล้ว",
+    "copied": "คัดลอกลงคลิปบอร์ดแล้ว!"
+  }
+}

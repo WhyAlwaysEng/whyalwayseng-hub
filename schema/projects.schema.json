@@ -1,0 +1,111 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ProjectsConfig",
+  "type": "object",
+  "required": ["store", "projects"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "store": {
+      "type": "object",
+      "required": ["name"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "defaultLanguage": { "type": "string", "default": "en" },
+        "includePrereleaseByDefault": { "type": "boolean", "default": false },
+        "description": { "type": "string" },
+        "url": { "type": "string" }
+      }
+    },
+    "projects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["slug", "owner", "repo", "name", "category"],
+        "additionalProperties": false,
+        "properties": {
+          "slug": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "owner": { "type": "string", "minLength": 1 },
+          "repo": { "type": "string", "minLength": 1 },
+          "name": { "type": "string", "minLength": 1 },
+          "category": { "type": "string", "minLength": 1 },
+          "tagline": { "type": "string" },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "icon": { "type": "string" },
+          "screenshots": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "video": { "type": "string" },
+          "featured": { "type": "boolean", "default": false },
+          "verified": { "type": "boolean", "default": false },
+          "license": { "type": "string" },
+          "platforms": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["windows", "macos", "linux", "web", "android", "ios"]
+            }
+          },
+          "architectures": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["x64", "arm64", "x86", "universal"]
+            }
+          },
+          "minOS": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          },
+          "assetRules": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "include": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "exclude": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "osPatterns": {
+                "type": "object",
+                "additionalProperties": { "type": "string" }
+              },
+              "archPatterns": {
+                "type": "object",
+                "additionalProperties": { "type": "string" }
+              }
+            }
+          },
+          "install": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          },
+          "checksumFile": { "type": "string" },
+          "sponsor": { "type": "string" },
+          "website": { "type": "string" },
+          "i18n": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "tagline": { "type": "string" },
+                "description": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
