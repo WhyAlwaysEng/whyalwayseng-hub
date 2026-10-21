@@ -37,71 +37,69 @@ function escapeHtml(str) {
 
 function renderHeader(rootPath = "./") {
   return `
-  <!-- Rainbow Top Light Bar -->
-  <div class="h-1.5 w-full bg-gradient-to-r from-pink-500 via-purple-500 via-cyan-400 via-emerald-400 to-amber-400 animate-rainbow-flow"></div>
-
-  <!-- Header -->
-  <header class="sticky top-0 z-40 w-full border-b border-slate-200/90 bg-white/90 backdrop-blur-xl transition-all shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4">
+  <!-- Minimalist Navbar (Linear / Vercel style) -->
+  <header class="sticky top-0 z-30 w-full border-b border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/80 dark:bg-zinc-950/80 backdrop-blur-md transition-colors">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
       
-      <!-- Brand Logo with Rainbow Aura -->
-      <a href="${rootPath}" class="flex items-center gap-3 group focus:outline-none rounded-2xl p-1">
-        <div class="relative">
-          <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 opacity-70 blur-sm group-hover:opacity-100 group-hover:blur animate-rainbow-flow transition duration-300"></div>
-          <div class="relative w-11 h-11 rounded-2xl bg-white flex items-center justify-center text-xl shadow-md border border-slate-100">
-            <span class="animate-float">🌈</span>
-          </div>
+      <!-- Brand Logo -->
+      <a href="${rootPath}" class="flex items-center gap-2.5 group focus:outline-none">
+        <div class="w-7 h-7 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 flex items-center justify-center font-black text-xs shadow-sm group-hover:scale-105 transition-transform">
+          ⬡
         </div>
-        <div class="flex flex-col">
-          <span class="font-black text-xl tracking-tight rainbow-text">
+        <div class="flex items-center gap-2">
+          <span class="font-bold text-sm tracking-tight text-zinc-900 dark:text-zinc-100">
             Software Hub
           </span>
-          <span class="text-[10px] font-extrabold tracking-widest text-slate-400 uppercase -mt-0.5">
-            GitHub Release Store
+          <span class="hidden sm:inline-block text-[10px] font-mono px-1.5 py-0.5 rounded bg-zinc-200/60 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
+            v2
           </span>
         </div>
       </a>
 
-      <!-- Right Header Actions (Every button has permanent visible icon + text) -->
-      <div class="flex items-center gap-2 sm:gap-3">
+      <!-- Right Header Actions -->
+      <div class="flex items-center gap-1.5 sm:gap-2">
         
-        <!-- Favorites Counter Button -->
+        <!-- Favorites Counter Badge -->
         <a href="${rootPath}?favorites=1"
-           class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold border border-amber-200 bg-amber-50/80 hover:bg-amber-100 text-amber-900 transition shadow-sm focus:outline-none"
-           title="View your saved favorites">
-          <span class="text-amber-500">⭐</span>
+           class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 transition"
+           title="Saved Favorites">
+          <svg class="w-3.5 h-3.5 text-amber-500 fill-current" viewBox="0 0 20 20">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+          </svg>
           <span class="hidden sm:inline" x-text="$store.app.t('nav.favorites', 'Favorites')">Favorites</span>
-          <span class="px-2 py-0.5 rounded-full text-xs font-black bg-amber-500 text-white shadow-sm"
+          <span class="font-mono text-[11px] font-bold text-amber-600 dark:text-amber-400"
                 x-text="$store.app.favorites.length"
                 x-show="$store.app.favorites.length > 0">
-            0
           </span>
         </a>
 
-        <!-- Language Switcher (Always shows icon and language label) -->
+        <!-- Language Switcher -->
         <button type="button"
                 @click="$store.app.toggleLang()"
-                class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold border border-slate-200 hover:border-purple-300 bg-slate-50 hover:bg-purple-50 text-slate-700 hover:text-purple-700 transition shadow-sm focus:outline-none"
+                class="px-2.5 py-1.5 rounded-lg text-xs font-semibold font-mono border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 transition"
                 aria-label="Switch Language">
-          <span class="text-sm">🌐</span>
-          <span class="font-bold" x-text="$store.app.lang === 'en' ? 'TH (ไทย)' : 'EN (English)'">TH (ไทย)</span>
+          <span x-text="$store.app.lang === 'en' ? 'TH' : 'EN'">TH</span>
         </button>
 
-        <!-- Theme Toggle (Explicitly shows Sun/Moon icon and label) -->
+        <!-- Theme Toggle -->
         <button type="button"
                 @click="$store.app.toggleTheme()"
-                class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 hover:border-blue-300 bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-700 transition shadow-sm focus:outline-none"
-                aria-label="Toggle Theme Mode">
-          <span class="text-base" x-show="$store.app.theme === 'dark'">☀️</span>
-          <span class="text-base" x-show="$store.app.theme !== 'dark'">🌙</span>
-          <span class="hidden sm:inline text-xs font-bold" x-text="$store.app.theme === 'dark' ? 'Light' : 'Dark'">Mode</span>
+                class="p-2 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 transition"
+                aria-label="Toggle Dark/Light Mode">
+          <svg x-show="$store.app.theme === 'dark'" class="w-3.5 h-3.5 text-zinc-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+          <svg x-show="$store.app.theme !== 'dark'" class="w-3.5 h-3.5 text-zinc-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
         </button>
 
-        <!-- Submit App Button -->
+        <!-- GitHub / Submit -->
         <a href="https://github.com" target="_blank" rel="noopener noreferrer"
-           class="hidden md:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl rainbow-button text-white text-xs font-bold shadow-md">
-          <span>+</span>
-          <span x-text="$store.app.t('nav.submit', 'Submit App')">Submit App</span>
+           class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-white text-xs font-semibold shadow-xs transition"
+           title="Submit software to repository">
+          <span class="text-xs">+</span>
+          <span class="hidden sm:inline" x-text="$store.app.t('nav.submit', 'Submit')">Submit</span>
         </a>
 
       </div>
@@ -111,29 +109,18 @@ function renderHeader(rootPath = "./") {
 
 function renderFooter() {
   return `
-  <!-- Footer with Rainbow Accent -->
-  <footer class="border-t border-slate-200 bg-white py-12 mt-20 text-slate-500 text-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-      <div class="flex items-center gap-3">
-        <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-pink-500 via-purple-500 to-cyan-400 text-white flex items-center justify-center font-black text-sm shadow-md animate-rainbow-flow">
-          ⚡
-        </div>
-        <div>
-          <span class="font-bold text-slate-800">GitHub Software Store Hub</span>
-          <p class="text-xs text-slate-400 mt-0.5">Zero-backend software store. Real verified GitHub Releases.</p>
-        </div>
-      </div>
-
-      <div class="text-xs text-center text-slate-400">
-        Direct binary downloads powered by GitHub Releases. No mock data.
-      </div>
-
-      <div class="flex items-center gap-5 text-xs font-bold">
-        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-purple-600 transition">GitHub</a>
+  <!-- Minimalist Footer -->
+  <footer class="border-t border-zinc-200/80 dark:border-zinc-800/80 py-10 mt-20 text-xs text-zinc-500">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="font-semibold text-zinc-800 dark:text-zinc-200">GitHub Software Store Hub</span>
         <span>•</span>
-        <a href="./feed.xml" class="hover:text-purple-600 transition">RSS Feed</a>
-        <span>•</span>
-        <a href="./sitemap.xml" class="hover:text-purple-600 transition">Sitemap</a>
+        <span>Zero-Backend</span>
+      </div>
+      <div class="flex items-center gap-4 text-zinc-500">
+        <a href="./feed.xml" class="hover:text-zinc-800 dark:hover:text-zinc-200 transition">RSS</a>
+        <a href="./sitemap.xml" class="hover:text-zinc-800 dark:hover:text-zinc-200 transition">Sitemap</a>
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-800 dark:hover:text-zinc-200 transition">GitHub</a>
       </div>
     </div>
   </footer>`;
@@ -141,34 +128,31 @@ function renderFooter() {
 
 function renderToast() {
   return `
-  <!-- Rainbow Toast Notification -->
+  <!-- Minimal Pill Toast -->
   <div x-show="$store.app.toast.show"
-       x-transition:enter="transition ease-out duration-300"
-       x-transition:enter-start="opacity-0 translate-y-4 scale-95"
+       x-transition:enter="transition ease-out duration-200"
+       x-transition:enter-start="opacity-0 translate-y-2 scale-95"
        x-transition:enter-end="opacity-100 translate-y-0 scale-100"
-       x-transition:leave="transition ease-in duration-200"
+       x-transition:leave="transition ease-in duration-150"
        x-transition:leave-start="opacity-100 translate-y-0 scale-100"
-       x-transition:leave-end="opacity-0 translate-y-4 scale-95"
+       x-transition:leave-end="opacity-0 translate-y-2 scale-95"
        x-cloak
-       class="fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 text-sm font-bold border-2 border-purple-500/50"
+       class="fixed bottom-6 right-6 z-50 bg-zinc-900 border border-zinc-800 text-zinc-100 rounded-full px-4 py-2 text-xs font-medium shadow-lg flex items-center gap-2"
        role="alert"
        aria-live="polite">
-    <div class="w-7 h-7 rounded-full bg-gradient-to-r from-pink-500 to-cyan-400 text-white flex items-center justify-center font-bold text-xs animate-rainbow-flow shadow-sm">
-      ✓
-    </div>
-    <span x-text="$store.app.toast.message">Notification</span>
+    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+    <span x-text="$store.app.toast.message"></span>
   </div>`;
 }
 
 async function buildIndex(catalog) {
-  // Calculate 100% REAL statistics from actual GitHub data (NO MOCK DATA)
+  // Compute real statistics from actual GitHub data
   const totalApps = catalog.apps.length;
   const totalStars = catalog.apps.reduce((sum, a) => sum + (a.repo?.stars || 0), 0);
   const totalDownloads = catalog.apps.reduce((sum, a) => sum + (a.totalDownloads || 0), 0);
-  const totalReleases = catalog.apps.reduce((sum, a) => sum + (a.releases?.length || 0), 0);
 
   const html = `<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -194,295 +178,214 @@ async function buildIndex(catalog) {
   <script src="./vendor/fuse.min.js" defer></script>
   <script src="./app.js" defer></script>
 </head>
-<body class="bg-white text-slate-900 min-h-screen flex flex-col antialiased selection:bg-pink-500 selection:text-white"
+<body class="bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 min-h-screen flex flex-col antialiased transition-colors"
       x-data="storefront">
 
   ${renderHeader("./")}
 
-  <!-- Hero Section with Glowing Rainbow Aura -->
-  <section class="relative overflow-hidden pt-12 pb-8 sm:pt-16 sm:pb-12 bg-white">
-    
-    <!-- Background Animated Rainbow Aura Gradients -->
-    <div class="absolute -top-36 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-r from-pink-400/25 via-purple-400/25 via-cyan-400/25 to-amber-300/25 rounded-full blur-3xl pointer-events-none animate-pulse-glow"></div>
-    <div class="absolute top-10 right-10 w-72 h-72 bg-gradient-to-br from-cyan-400/20 to-pink-400/20 rounded-full blur-2xl pointer-events-none animate-rainbow-hue"></div>
-
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- Compact Hero & Stats Header -->
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 pt-10 pb-6 w-full">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-6 border-b border-zinc-200/80 dark:border-zinc-800/80">
       
-      <div class="max-w-3xl text-center sm:text-left">
-        <!-- Floating Rainbow Pill -->
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold rainbow-badge shadow-md shadow-purple-500/20 mb-5 animate-float">
-          <span>✨</span>
-          <span>Zero-Backend • Direct GitHub Releases</span>
-        </div>
-
-        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 leading-tight">
-          Discover &amp; Download <span class="rainbow-text">Top Open Source</span> Apps
+      <div>
+        <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50"
+            x-text="$store.app.t('store.title', '${escapeHtml(catalog.store.name)}')">
+          ${escapeHtml(catalog.store.name)}
         </h1>
-
-        <p class="mt-4 text-base sm:text-lg text-slate-600 font-medium leading-relaxed"
+        <p class="mt-1.5 text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 max-w-xl"
            x-text="$store.app.t('store.tagline', '${escapeHtml(catalog.store.description)}')">
           ${escapeHtml(catalog.store.description)}
         </p>
       </div>
 
-      <!-- Real Live Stats Bar (100% Real data from GitHub API, NO MOCK DATA) -->
-      <div class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4">
-        
-        <div class="bg-white border-2 border-slate-100 hover:border-pink-300 rounded-3xl p-5 shadow-sm hover:shadow-md transition duration-300">
-          <div class="text-2xl sm:text-4xl font-black text-pink-600">${totalApps}</div>
-          <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mt-1">Verified Apps</div>
+      <!-- Compact Inline Stats Pills (100% Real Data) -->
+      <div class="flex items-center gap-2 flex-wrap text-xs font-mono">
+        <div class="px-2.5 py-1 rounded-md bg-zinc-200/50 dark:bg-zinc-900 border border-zinc-300/60 dark:border-zinc-800/80 text-zinc-700 dark:text-zinc-300">
+          <span class="font-bold text-zinc-900 dark:text-zinc-100">${totalApps}</span> apps
         </div>
-
-        <div class="bg-white border-2 border-slate-100 hover:border-purple-300 rounded-3xl p-5 shadow-sm hover:shadow-md transition duration-300">
-          <div class="text-2xl sm:text-4xl font-black text-purple-600">${totalStars.toLocaleString()}</div>
-          <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mt-1">Total GitHub Stars</div>
+        <div class="px-2.5 py-1 rounded-md bg-zinc-200/50 dark:bg-zinc-900 border border-zinc-300/60 dark:border-zinc-800/80 text-zinc-700 dark:text-zinc-300">
+          ⭐ <span class="font-bold text-zinc-900 dark:text-zinc-100">${totalStars.toLocaleString()}</span> stars
         </div>
-
-        <div class="bg-white border-2 border-slate-100 hover:border-cyan-300 rounded-3xl p-5 shadow-sm hover:shadow-md transition duration-300">
-          <div class="text-2xl sm:text-4xl font-black text-cyan-600">${totalDownloads.toLocaleString()}</div>
-          <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mt-1">Binary Downloads</div>
+        <div class="px-2.5 py-1 rounded-md bg-zinc-200/50 dark:bg-zinc-900 border border-zinc-300/60 dark:border-zinc-800/80 text-zinc-700 dark:text-zinc-300">
+          📥 <span class="font-bold text-zinc-900 dark:text-zinc-100">${totalDownloads.toLocaleString()}</span> downloads
         </div>
-
-        <div class="bg-white border-2 border-slate-100 hover:border-amber-300 rounded-3xl p-5 shadow-sm hover:shadow-md transition duration-300">
-          <div class="text-2xl sm:text-4xl font-black text-amber-500">${totalReleases}</div>
-          <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mt-1">Releases Indexed</div>
-        </div>
-
       </div>
 
     </div>
   </section>
 
-  <!-- Main Storefront App Directory -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full">
+  <!-- Unified Command & Filter Bar -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 flex-grow w-full space-y-6">
     
-    <!-- Search & Filter Rainbow Control Box -->
-    <div class="bg-white border-2 border-slate-100 rounded-3xl p-5 sm:p-7 shadow-sm mb-10 space-y-6">
+    <div class="space-y-3">
       
-      <!-- Top Row: Search Input + Sort Selection -->
-      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-        
-        <!-- Search bar with Rainbow Focus Ring -->
+      <!-- Spotlight Command Search Bar -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
         <div class="relative flex-grow">
-          <svg class="w-5 h-5 absolute left-4 top-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          <svg class="w-4 h-4 absolute left-3.5 top-3 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
           </svg>
           <input type="text"
+                 id="search-input"
                  x-model="searchQuery"
-                 class="w-full pl-12 pr-10 py-3.5 rounded-2xl border-2 border-slate-200 bg-white focus:outline-none focus:border-purple-500 focus:ring-4 focus:ring-purple-500/15 text-sm font-medium text-slate-900 placeholder-slate-400 transition"
-                 placeholder="Search software by name, description, tags, developer..."
-                 :placeholder="$store.app.t('search.placeholder', 'Search apps, categories, tags, developers...')">
+                 class="w-full pl-9 pr-14 py-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 focus:bg-white dark:focus:bg-zinc-900 focus:outline-none focus:border-zinc-400 dark:focus:border-zinc-600 text-xs sm:text-sm text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 transition"
+                 placeholder="Search software (name, tag, author)..."
+                 :placeholder="$store.app.t('search.placeholder', 'Search software (name, tag, author)...')">
           
-          <!-- Instant Clear Button -->
-          <button type="button"
-                  x-show="searchQuery.length > 0"
-                  @click="searchQuery = ''"
-                  class="absolute right-3.5 top-3.5 p-1 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-500"
-                  aria-label="Clear search input">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/>
-            </svg>
-          </button>
+          <!-- Shortcut Hint Badge "/" -->
+          <kbd class="pointer-events-none absolute right-3 top-2 px-1.5 py-0.5 rounded text-[10px] font-mono font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-500 border border-zinc-300 dark:border-zinc-700">
+            /
+          </kbd>
         </div>
 
-        <!-- Sort Select Dropdown -->
-        <div class="flex items-center gap-2">
-          <select x-model="sortBy"
-                  class="w-full sm:w-auto px-4 py-3.5 rounded-2xl border-2 border-slate-200 bg-white text-sm font-bold text-slate-700 focus:outline-none focus:border-purple-500 cursor-pointer shadow-sm">
-            <option value="popular">🔥 Most Popular (Stars &amp; Downloads)</option>
-            <option value="recent">⚡ Recently Updated</option>
-            <option value="az">🔤 Name (A - Z)</option>
-            <option value="newest">✨ Newly Added</option>
-          </select>
-        </div>
+        <!-- Sort Select (Segmented style) -->
+        <select x-model="sortBy"
+                class="px-3 py-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 text-xs font-medium text-zinc-700 dark:text-zinc-300 focus:outline-none focus:border-zinc-400 dark:focus:border-zinc-600 cursor-pointer">
+          <option value="popular">Popular (Stars/Downloads)</option>
+          <option value="recent">Recently Updated</option>
+          <option value="az">Alphabetical (A - Z)</option>
+          <option value="newest">Newly Added</option>
+        </select>
       </div>
 
-      <!-- Categories Pills Bar -->
-      <div class="flex items-center gap-2 overflow-x-auto pb-1 pt-1 no-scrollbar text-sm">
-        <button type="button"
-                @click="setCategory('all')"
-                :class="selectedCategory === 'all' ? 'rainbow-button text-white font-extrabold shadow-md' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold'"
-                class="px-4 py-2 rounded-xl transition whitespace-nowrap text-xs sm:text-sm">
-          All Categories
-        </button>
-        <template x-for="cat in categories" :key="cat">
-          <button type="button"
-                  @click="setCategory(cat)"
-                  :class="selectedCategory === cat ? 'rainbow-button text-white font-extrabold shadow-md' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold'"
-                  class="px-4 py-2 rounded-xl transition whitespace-nowrap text-xs sm:text-sm"
-                  x-text="cat">
-          </button>
-        </template>
-      </div>
-
-      <!-- OS Filters Bar -->
-      <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-100 text-xs">
+      <!-- Segmented Filters Row: Categories & Platforms -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs">
         
-        <div class="flex items-center gap-2 flex-wrap">
-          <span class="text-slate-400 font-black uppercase tracking-wider text-[11px] mr-1">Filter by OS:</span>
-          
+        <!-- Category Filter Chips -->
+        <div class="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
+          <button type="button"
+                  @click="setCategory('all')"
+                  :class="selectedCategory === 'all' ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-950 font-semibold' : 'bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200'"
+                  class="px-2.5 py-1 rounded-md transition whitespace-nowrap text-xs">
+            All
+          </button>
+          <template x-for="cat in categories" :key="cat">
+            <button type="button"
+                    @click="setCategory(cat)"
+                    :class="selectedCategory === cat ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-950 font-semibold' : 'bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200'"
+                    class="px-2.5 py-1 rounded-md transition whitespace-nowrap text-xs"
+                    x-text="cat">
+            </button>
+          </template>
+        </div>
+
+        <!-- OS Filter Buttons -->
+        <div class="flex items-center gap-1 font-mono text-[11px] flex-shrink-0">
           <button type="button"
                   @click="setPlatform('all')"
-                  :class="selectedPlatform === 'all' ? 'bg-slate-900 text-white font-bold' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'"
-                  class="px-3 py-1.5 rounded-xl transition font-semibold">
-            All Platforms
-          </button>
-
+                  :class="selectedPlatform === 'all' ? 'text-zinc-950 dark:text-white font-bold border-b border-zinc-950 dark:border-white' : 'text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300'"
+                  class="px-1.5 pb-0.5 transition">ALL</button>
+          <span class="text-zinc-300 dark:text-zinc-700">/</span>
           <button type="button"
                   @click="setPlatform('windows')"
-                  :class="selectedPlatform === 'windows' ? 'bg-blue-600 text-white font-bold' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'"
-                  class="px-3 py-1.5 rounded-xl transition font-semibold">
-            Windows
-          </button>
-
+                  :class="selectedPlatform === 'windows' ? 'text-zinc-950 dark:text-white font-bold border-b border-zinc-950 dark:border-white' : 'text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300'"
+                  class="px-1.5 pb-0.5 transition">WIN</button>
+          <span class="text-zinc-300 dark:text-zinc-700">/</span>
           <button type="button"
                   @click="setPlatform('macos')"
-                  :class="selectedPlatform === 'macos' ? 'bg-purple-600 text-white font-bold' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'"
-                  class="px-3 py-1.5 rounded-xl transition font-semibold">
-            macOS
-          </button>
-
+                  :class="selectedPlatform === 'macos' ? 'text-zinc-950 dark:text-white font-bold border-b border-zinc-950 dark:border-white' : 'text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300'"
+                  class="px-1.5 pb-0.5 transition">MAC</button>
+          <span class="text-zinc-300 dark:text-zinc-700">/</span>
           <button type="button"
                   @click="setPlatform('linux')"
-                  :class="selectedPlatform === 'linux' ? 'bg-amber-600 text-white font-bold' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'"
-                  class="px-3 py-1.5 rounded-xl transition font-semibold">
-            Linux
-          </button>
-        </div>
-
-        <!-- Filter Reset Option -->
-        <div x-show="activeFiltersCount > 0" class="flex items-center gap-2">
-          <span class="text-slate-400 font-medium">Active filters: <strong class="text-purple-600" x-text="activeFiltersCount"></strong></span>
-          <button type="button"
-                  @click="resetFilters()"
-                  class="text-xs font-bold text-red-500 hover:underline">
-            Reset all
-          </button>
+                  :class="selectedPlatform === 'linux' ? 'text-zinc-950 dark:text-white font-bold border-b border-zinc-950 dark:border-white' : 'text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300'"
+                  class="px-1.5 pb-0.5 transition">LINUX</button>
         </div>
 
       </div>
 
     </div>
 
-    <!-- Active Favorites Banner -->
-    <div x-show="onlyFavorites"
-         class="mb-6 flex items-center justify-between bg-amber-50 border-2 border-amber-200 px-5 py-3 rounded-2xl text-amber-900 text-sm shadow-sm">
-      <div class="flex items-center gap-2 font-bold">
-        <span>⭐</span>
-        <span x-text="$store.app.t('search.showingFavs', 'Showing your favorited apps only')">Showing your favorited apps only</span>
+    <!-- Active Filter Reset Banner -->
+    <div x-show="activeFiltersCount > 0"
+         class="flex items-center justify-between text-xs py-1.5 px-3 rounded-md bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400">
+      <div class="flex items-center gap-1.5">
+        <span>Active filters:</span>
+        <span class="font-mono font-bold text-zinc-900 dark:text-zinc-100" x-text="activeFiltersCount"></span>
       </div>
       <button type="button"
-              @click="onlyFavorites = false"
-              class="text-xs font-bold underline hover:no-underline text-amber-950">
-        Show all apps
+              @click="resetFilters()"
+              class="font-medium text-red-500 hover:underline">
+        Reset
       </button>
     </div>
 
     <!-- Empty State -->
     <div x-show="!loading && filteredApps.length === 0"
-         class="text-center py-20 bg-white border-2 border-slate-100 rounded-3xl p-8 shadow-sm">
-      <div class="w-16 h-16 mx-auto mb-4 rounded-3xl bg-purple-50 flex items-center justify-center text-3xl">
-        🔍
-      </div>
-      <h3 class="text-xl font-bold text-slate-800"
-          x-text="$store.app.t('search.noResults', 'No software found matching your search.')">
-        No software found matching your search.
-      </h3>
-      <p class="text-slate-500 text-sm mt-1 max-w-sm mx-auto">
-        Try adjusting your keywords or clearing your active filters.
+         class="text-center py-16 border border-zinc-200/80 dark:border-zinc-800/80 rounded-xl bg-white dark:bg-zinc-900/30 p-8">
+      <p class="text-sm font-medium text-zinc-500 dark:text-zinc-400">
+        No software found matching query.
       </p>
       <button type="button"
               @click="resetFilters()"
-              class="mt-5 px-5 py-2.5 rainbow-button text-white rounded-xl text-sm font-bold shadow-md">
-        Reset All Filters
+              class="mt-3 px-3 py-1.5 text-xs font-semibold rounded-md border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition">
+        Clear filters
       </button>
     </div>
 
-    <!-- Apps Grid (Rainbow Card with Glowing Borders) -->
+    <!-- Redesigned Minimal Bento Cards Grid -->
     <div x-show="!loading && filteredApps.length > 0"
-         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
       <template x-for="app in filteredApps" :key="app.slug">
-        <div class="rainbow-card p-6 border-2 border-slate-100 flex flex-col justify-between group">
+        <a :href="'./apps/' + app.slug + '/'"
+           class="group block p-4 rounded-xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/40 hover:border-zinc-400 dark:hover:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-900/70 transition-all duration-150 flex flex-col justify-between">
           
           <div>
-            <!-- Card Top: Icon, Name, Verified Badge, Favorite Button -->
-            <div class="flex items-start justify-between gap-3">
-              <a :href="'./apps/' + app.slug + '/'" class="flex items-center gap-3.5 flex-grow focus:outline-none">
+            <!-- Card Header: Icon, Name, Favorite Star -->
+            <div class="flex items-start justify-between gap-2.5">
+              <div class="flex items-center gap-3 min-w-0">
                 <img :src="app.icon"
                      :alt="app.name"
-                     class="w-14 h-14 rounded-2xl object-cover bg-slate-100 border border-slate-200 shadow-sm group-hover:scale-105 transition-transform duration-200"
+                     class="w-10 h-10 rounded-lg object-cover bg-zinc-100 dark:bg-zinc-800 border border-zinc-200/80 dark:border-zinc-800 p-0.5 flex-shrink-0"
                      loading="lazy">
                 <div class="min-w-0">
-                  <div class="flex items-center gap-1.5 flex-wrap">
-                    <h3 class="font-extrabold text-base text-slate-900 group-hover:text-purple-600 transition-colors truncate"
+                  <div class="flex items-center gap-1.5">
+                    <h3 class="font-bold text-sm text-zinc-900 dark:text-zinc-100 truncate group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors"
                         x-text="app.name">
                     </h3>
                     <template x-if="app.verified">
-                      <span class="inline-flex text-blue-500" title="Verified Repository">
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                      <span class="text-blue-500 flex-shrink-0" title="Verified">
+                        <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20">
                           <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                         </svg>
                       </span>
                     </template>
                   </div>
-                  <span class="text-xs font-bold text-slate-400 uppercase tracking-wider" x-text="app.category"></span>
+                  <span class="text-[11px] text-zinc-500 font-mono" x-text="app.category"></span>
                 </div>
-              </a>
+              </div>
 
               <!-- Favorite Button -->
               <button type="button"
                       @click.stop.prevent="$store.app.toggleFavorite(app.slug)"
-                      class="p-2 rounded-xl hover:bg-amber-50 transition-colors focus:outline-none"
-                      :class="$store.app.isFavorite(app.slug) ? 'text-amber-500 scale-110' : 'text-slate-300 hover:text-amber-500'"
-                      aria-label="Toggle favorite">
-                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                      class="p-1 rounded text-zinc-400 hover:text-amber-500 transition focus:outline-none"
+                      :class="$store.app.isFavorite(app.slug) ? 'text-amber-500' : 'text-zinc-300 dark:text-zinc-700'"
+                      aria-label="Favorite">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
                 </svg>
               </button>
             </div>
 
             <!-- Description -->
-            <p class="text-sm text-slate-600 mt-3.5 line-clamp-2 leading-relaxed"
+            <p class="text-xs text-zinc-600 dark:text-zinc-400 mt-2.5 line-clamp-2 leading-relaxed"
                x-text="getAppTagline(app)">
             </p>
-
-            <!-- Tags -->
-            <div class="flex items-center gap-1.5 mt-4 flex-wrap">
-              <template x-for="tag in (app.tags || []).slice(0, 3)" :key="tag">
-                <span class="text-[11px] font-bold bg-slate-100 text-slate-600 px-2 py-0.5 rounded-lg"
-                      x-text="'#' + tag">
-                </span>
-              </template>
-            </div>
           </div>
 
-          <!-- Card Bottom Stats & Details Button -->
-          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-            <div class="flex items-center gap-3 text-xs font-bold text-slate-500">
-              <!-- Stars -->
-              <span class="flex items-center gap-1">
-                <span class="text-amber-500">⭐</span>
+          <!-- Card Footer: Version, Platforms, Stars -->
+          <div class="pt-3 mt-3 border-t border-zinc-100 dark:border-zinc-800/60 flex items-center justify-between text-[11px] font-mono text-zinc-500">
+            <span class="text-zinc-400 dark:text-zinc-500" x-text="app.latest?.tag || 'latest'"></span>
+            
+            <div class="flex items-center gap-2">
+              <span class="flex items-center gap-1 text-zinc-600 dark:text-zinc-400">
+                <span class="text-amber-500">★</span>
                 <span x-text="formatNumber(app.repo?.stars || 0)"></span>
               </span>
-
-              <!-- Downloads -->
-              <span class="flex items-center gap-1" x-show="app.totalDownloads > 0">
-                <span class="text-blue-500">📥</span>
-                <span x-text="formatNumber(app.totalDownloads)"></span>
-              </span>
-
-              <!-- Version Tag -->
-              <span class="font-mono text-slate-400" x-text="app.latest?.tag || 'v1.0'"></span>
             </div>
-
-            <!-- Detail link button -->
-            <a :href="'./apps/' + app.slug + '/'"
-               class="px-4 py-1.5 rounded-xl rainbow-button text-white text-xs font-extrabold shadow-sm">
-              Details →
-            </a>
           </div>
 
-        </div>
+        </a>
       </template>
     </div>
 
@@ -522,28 +425,27 @@ async function buildAppPage(app, catalog) {
     }
   };
 
+  const primaryInstallCommand = Object.values(app.install || {})[0] || null;
+
   const html = `<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="site-root" content="${rootPath}">
-  <title>${escapeHtml(app.name)} - Download Free Open Source</title>
+  <title>${escapeHtml(app.name)} - Software Hub</title>
   <meta name="description" content="${escapeHtml(app.tagline || app.name)}">
   
-  <!-- Open Graph -->
   <meta property="og:title" content="${escapeHtml(app.name)}">
   <meta property="og:description" content="${escapeHtml(app.tagline || app.name)}">
   <meta property="og:image" content="${escapeHtml(app.icon)}">
   <meta property="og:type" content="website">
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="${escapeHtml(app.name)}">
   <meta name="twitter:description" content="${escapeHtml(app.tagline || app.name)}">
   <meta name="twitter:image" content="${escapeHtml(app.icon)}">
 
-  <!-- JSON-LD -->
   <script type="application/ld+json">
     ${JSON.stringify(jsonLd)}
   </script>
@@ -564,357 +466,259 @@ async function buildAppPage(app, catalog) {
   <script src="${rootPath}vendor/purify.min.js" defer></script>
   <script src="${rootPath}app.js" defer></script>
 </head>
-<body class="bg-white text-slate-900 min-h-screen flex flex-col antialiased selection:bg-pink-500 selection:text-white"
+<body class="bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 min-h-screen flex flex-col antialiased transition-colors"
       x-data="appDetail(${escapeHtml(appJson)})">
 
   ${renderHeader(rootPath)}
 
   <!-- Top Breadcrumb -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 w-full">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 pt-6 w-full">
     <a href="${rootPath}"
-       class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-500 hover:text-purple-600 transition-colors">
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/>
-      </svg>
-      <span x-text="$store.app.t('detail.back', 'Back to Software Store')">Back to Software Store</span>
+       class="inline-flex items-center gap-1.5 text-xs font-medium text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition">
+      <span>←</span>
+      <span x-text="$store.app.t('detail.back', 'Back to Store')">Back to Store</span>
     </a>
   </div>
 
-  <!-- App Hero Banner with Glowing Rainbow Effect -->
-  <header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full">
-    <div class="relative bg-white border-2 border-slate-100 rounded-3xl p-6 sm:p-10 shadow-sm flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 overflow-hidden">
+  <!-- App Header Box (Linear / Vercel style split header) -->
+  <header class="max-w-5xl mx-auto px-4 sm:px-6 py-6 w-full">
+    <div class="p-6 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/40 flex flex-col md:flex-row md:items-center justify-between gap-6">
       
-      <!-- Rainbow ambient aura in header -->
-      <div class="absolute -top-20 -right-20 w-80 h-80 bg-gradient-to-br from-pink-400/20 via-purple-400/20 to-cyan-400/20 rounded-full blur-3xl pointer-events-none"></div>
-
-      <!-- App Info -->
-      <div class="relative flex items-start sm:items-center gap-6">
+      <!-- Left: Icon, Titles, Badges, Author -->
+      <div class="flex items-start gap-4">
         <img src="${escapeHtml(app.icon)}"
              alt="${escapeHtml(app.name)}"
-             class="w-20 h-20 sm:w-26 sm:h-26 rounded-3xl object-cover bg-slate-50 border-2 border-slate-100 shadow-md flex-shrink-0">
+             class="w-16 h-16 sm:w-20 sm:h-20 rounded-xl object-cover bg-zinc-100 dark:bg-zinc-800 border border-zinc-200/80 dark:border-zinc-800 p-1 flex-shrink-0">
         
         <div>
-          <div class="flex items-center gap-2.5 flex-wrap">
-            <h1 class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
+          <div class="flex items-center gap-2 flex-wrap">
+            <h1 class="text-xl sm:text-2xl font-extrabold text-zinc-900 dark:text-zinc-50 tracking-tight">
               ${escapeHtml(app.name)}
             </h1>
             
             ${app.verified ? `
-              <span class="inline-flex items-center gap-1 text-xs font-bold rainbow-badge px-3 py-1 rounded-full shadow-sm">
-                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                </svg>
+              <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2 py-0.5 rounded border border-blue-200 dark:border-blue-900">
                 Verified
               </span>
             ` : ""}
             
-            ${app.stale ? `
-              <span class="inline-flex text-xs font-bold bg-amber-100 text-amber-800 px-2.5 py-1 rounded-full border border-amber-200">
-                Stale Data
-              </span>
-            ` : ""}
+            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
+              ${escapeHtml(app.latest?.tag || "latest")}
+            </span>
           </div>
 
-          <p class="text-sm sm:text-base text-slate-600 mt-2 max-w-2xl leading-relaxed font-medium"
+          <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 mt-1 max-w-xl leading-relaxed"
              x-text="getAppTagline()">
             ${escapeHtml(app.tagline)}
           </p>
 
-          <div class="flex items-center gap-4 mt-4 text-xs font-bold text-slate-500 flex-wrap">
-            <span>By <a href="${escapeHtml(app.repo.htmlUrl)}" target="_blank" rel="noopener noreferrer" class="text-purple-600 hover:underline">@${escapeHtml(app.owner)}</a></span>
+          <div class="flex items-center gap-3 mt-3 text-xs text-zinc-500 font-mono flex-wrap">
+            <span>By <a href="${escapeHtml(app.repo.htmlUrl)}" target="_blank" rel="noopener noreferrer" class="hover:underline text-zinc-700 dark:text-zinc-300">@${escapeHtml(app.owner)}</a></span>
             <span>•</span>
-            <span class="flex items-center gap-1">⭐ ${app.repo.stars.toLocaleString()} Stars</span>
+            <span>⭐ ${app.repo.stars.toLocaleString()}</span>
             <span>•</span>
-            <span>License: <strong class="text-slate-800">${escapeHtml(app.repo.license || "Open Source")}</strong></span>
-            <span>•</span>
-            <span class="font-mono bg-slate-100 px-2 py-0.5 rounded-lg text-slate-700">${escapeHtml(app.latest?.tag || "Latest")}</span>
+            <span>${escapeHtml(app.repo.license || "Open Source")}</span>
           </div>
         </div>
       </div>
 
-      <!-- Action Buttons -->
-      <div class="relative flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full lg:w-auto">
+      <!-- Right: Smart 1-Click Download Box -->
+      <div class="flex flex-col sm:flex-row md:flex-col items-stretch md:items-end gap-2 w-full md:w-auto">
         
-        <!-- Primary 1-Click Smart Download Button with Rainbow Glow -->
         <template x-if="primaryAsset">
           <a :href="primaryAsset.url"
-             class="px-7 py-4 rounded-2xl rainbow-button text-white font-extrabold text-sm shadow-xl flex items-center justify-center gap-3 transition transform active:scale-95 text-center">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+             class="px-5 py-3 rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-white text-xs font-bold text-center flex items-center justify-center gap-2 transition shadow-xs">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
             </svg>
             <div>
-              <div class="text-sm">Download for <span class="capitalize" x-text="userOS"></span></div>
-              <div class="text-[11px] opacity-90 font-mono font-normal" x-text="formatBytes(primaryAsset.size)"></div>
+              <span>Download for <span class="capitalize" x-text="userOS"></span></span>
+              <span class="opacity-70 font-mono font-normal ml-1" x-text="'(' + formatBytes(primaryAsset.size) + ')'"></span>
             </div>
           </a>
         </template>
 
-        <a href="#downloads-section"
-           class="px-5 py-4 rounded-2xl border-2 border-slate-200 hover:border-purple-300 hover:bg-purple-50 text-slate-700 font-bold text-sm text-center transition">
-          All Files
+        <a href="#downloads-table"
+           class="text-[11px] font-mono text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 text-center transition">
+          View all release assets ↓
         </a>
-
-        <!-- Favorite Button -->
-        <button type="button"
-                @click="$store.app.toggleFavorite(app.slug)"
-                class="p-4 rounded-2xl border-2 border-slate-200 hover:border-amber-300 hover:bg-amber-50 transition-colors focus:outline-none flex items-center justify-center"
-                :class="$store.app.isFavorite(app.slug) ? 'text-amber-500 bg-amber-50' : 'text-slate-400'"
-                aria-label="Add to favorites">
-          <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-          </svg>
-        </button>
 
       </div>
 
     </div>
   </header>
 
-  <!-- Main Body Content Grid -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex-grow w-full grid grid-cols-1 lg:grid-cols-3 gap-8">
-    
-    <!-- Left 2 Columns: Tabs (README, Changelog, Releases, Downloads) -->
-    <div class="lg:col-span-2 space-y-6">
+  <!-- Quick CLI & SHA-256 Bar -->
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 w-full">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono">
       
-      <!-- Tabs Bar -->
-      <div class="flex items-center gap-3 border-b-2 border-slate-100 text-sm font-black overflow-x-auto no-scrollbar">
+      <!-- CLI Install Command Snippet -->
+      ${primaryInstallCommand ? `
+      <div class="flex items-center justify-between bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg px-3.5 py-2">
+        <div class="flex items-center gap-2 min-w-0">
+          <span class="text-zinc-400">$</span>
+          <code class="truncate text-zinc-800 dark:text-zinc-200 select-all">${escapeHtml(primaryInstallCommand)}</code>
+        </div>
         <button type="button"
-                @click="setTab('overview')"
-                :class="activeTab === 'overview' ? 'border-b-2 border-purple-600 text-purple-600 pb-3' : 'text-slate-500 hover:text-slate-800 pb-3'"
-                class="transition whitespace-nowrap px-2">
-          Overview &amp; README
-        </button>
-        <button type="button"
-                @click="setTab('changelog')"
-                :class="activeTab === 'changelog' ? 'border-b-2 border-purple-600 text-purple-600 pb-3' : 'text-slate-500 hover:text-slate-800 pb-3'"
-                class="transition whitespace-nowrap px-2">
-          Changelog (${escapeHtml(app.latest?.tag || "")})
-        </button>
-        <button type="button"
-                @click="setTab('history')"
-                :class="activeTab === 'history' ? 'border-b-2 border-purple-600 text-purple-600 pb-3' : 'text-slate-500 hover:text-slate-800 pb-3'"
-                class="transition whitespace-nowrap px-2">
-          Releases (${app.releases.length})
+                @click="copy('${escapeHtml(primaryInstallCommand)}', 'cli')"
+                class="ml-2 text-zinc-400 hover:text-zinc-100 transition focus:outline-none"
+                title="Copy Command">
+          <span x-show="copiedKey === 'cli'" class="text-emerald-400 font-bold">✓</span>
+          <span x-show="copiedKey !== 'cli'">copy</span>
         </button>
       </div>
-
-      <!-- Tab Content: Overview -->
-      <div x-show="activeTab === 'overview'" class="bg-white border-2 border-slate-100 rounded-3xl p-6 sm:p-8 shadow-sm">
-        <div class="prose max-w-none text-slate-700 text-sm leading-relaxed overflow-x-auto"
-             x-html="renderedReadme || '<p class=\\'text-slate-400 italic\\'>No README available.</p>'">
-        </div>
+      ` : `
+      <div class="flex items-center justify-between bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg px-3.5 py-2 text-zinc-500">
+        <span>Repository:</span>
+        <a href="${escapeHtml(app.repo.htmlUrl)}" target="_blank" rel="noopener noreferrer" class="hover:underline">${escapeHtml(app.owner)}/${escapeHtml(app.repoName)}</a>
       </div>
+      `}
 
-      <!-- Tab Content: Changelog -->
-      <div x-show="activeTab === 'changelog'" class="bg-white border-2 border-slate-100 rounded-3xl p-6 sm:p-8 shadow-sm">
-        <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
-          <div>
-            <h3 class="font-bold text-lg text-slate-900">${escapeHtml(app.latest?.name || app.latest?.tag || "Release")}</h3>
-            <span class="text-xs text-slate-500">Published on ${escapeHtml(app.latest?.publishedAt ? new Date(app.latest.publishedAt).toLocaleDateString() : "-")}</span>
-          </div>
-          <span class="px-3 py-1 rainbow-badge font-mono text-xs font-bold rounded-lg shadow-sm">
-            ${escapeHtml(app.latest?.tag || "")}
-          </span>
+      <!-- Quick SHA-256 Box -->
+      <div class="flex items-center justify-between bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg px-3.5 py-2">
+        <div class="flex items-center gap-2 min-w-0">
+          <span class="text-zinc-400">SHA256:</span>
+          <span class="truncate text-zinc-600 dark:text-zinc-400" x-text="primaryAsset?.sha256 ? primaryAsset.sha256.slice(0, 16) + '...' : 'Available in release'"></span>
         </div>
-        <div class="prose max-w-none text-slate-700 text-sm leading-relaxed overflow-x-auto"
-             x-html="renderedChangelog || '<p class=\\'text-slate-400 italic\\'>No release notes provided for this version.</p>'">
-        </div>
-      </div>
-
-      <!-- Tab Content: History -->
-      <div x-show="activeTab === 'history'" class="bg-white border-2 border-slate-100 rounded-3xl p-6 sm:p-8 shadow-sm space-y-4">
-        <template x-for="rel in app.releases" :key="rel.tag">
-          <div class="border-2 border-slate-100 hover:border-purple-300 rounded-2xl p-4 flex items-center justify-between gap-4 transition">
-            <div>
-              <div class="flex items-center gap-2">
-                <span class="font-mono font-bold text-sm text-slate-900" x-text="rel.tag"></span>
-                <span x-show="rel.prerelease" class="text-[10px] bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded font-semibold">Pre-release</span>
-              </div>
-              <span class="text-xs text-slate-400" x-text="formatDate(rel.publishedAt)"></span>
-            </div>
-            <a :href="'https://github.com/' + app.owner + '/' + app.repoName + '/releases/tag/' + rel.tag"
-               target="_blank" rel="noopener noreferrer"
-               class="text-xs font-bold text-purple-600 hover:underline">
-              GitHub Release →
-            </a>
-          </div>
+        <template x-if="primaryAsset?.sha256">
+          <button type="button"
+                  @click="copy(primaryAsset.sha256, 'sha')"
+                  class="ml-2 text-zinc-400 hover:text-zinc-100 transition focus:outline-none"
+                  title="Copy SHA-256">
+            <span x-show="copiedKey === 'sha'" class="text-emerald-400 font-bold">✓</span>
+            <span x-show="copiedKey !== 'sha'">copy</span>
+          </button>
         </template>
       </div>
 
-      <!-- Downloads & Assets Section -->
-      <div id="downloads-section" class="bg-white border-2 border-slate-100 rounded-3xl p-6 sm:p-8 shadow-sm">
-        <div class="flex items-center justify-between mb-2">
-          <h3 class="font-black text-lg text-slate-900">All Downloadable Files</h3>
-          <span class="text-xs font-mono font-bold text-purple-600" x-text="(app.latest?.assets || []).length + ' files'"></span>
-        </div>
-        <p class="text-xs text-slate-500 mb-6">Direct binary downloads from GitHub for ${escapeHtml(app.latest?.tag || "")}.</p>
+    </div>
+  </section>
 
-        <!-- Desktop Asset Table -->
-        <div class="hidden sm:block overflow-x-auto">
-          <table class="w-full text-left text-sm">
-            <thead class="text-[11px] uppercase tracking-wider text-slate-400 border-b border-slate-100">
-              <tr>
-                <th class="py-3 px-3 font-bold">File Name</th>
-                <th class="py-3 px-2 font-bold">OS / Arch</th>
-                <th class="py-3 px-2 font-bold">Size</th>
-                <th class="py-3 px-2 font-bold">Checksum</th>
-                <th class="py-3 px-3 font-bold text-right">Download</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-100">
-              <template x-for="asset in app.latest?.assets || []" :key="asset.name">
-                <tr class="hover:bg-slate-50 transition">
-                  <td class="py-3.5 px-3 font-mono font-semibold text-xs text-slate-800 break-all" x-text="asset.name"></td>
-                  <td class="py-3.5 px-2 text-xs">
-                    <span class="inline-block px-2.5 py-1 rounded-lg font-bold text-[11px]"
-                          :class="{
-                            'bg-blue-100 text-blue-800': asset.os === 'windows',
-                            'bg-purple-100 text-purple-800': asset.os === 'macos',
-                            'bg-amber-100 text-amber-800': asset.os === 'linux',
-                            'bg-slate-100 text-slate-600': !asset.os
-                          }"
-                          x-text="(asset.os || 'other') + (asset.arch ? ' (' + asset.arch + ')' : '')">
-                    </span>
-                  </td>
-                  <td class="py-3.5 px-2 text-xs text-slate-500 whitespace-nowrap" x-text="formatBytes(asset.size)"></td>
-                  <td class="py-3.5 px-2 text-xs">
-                    <template x-if="asset.sha256">
-                      <button type="button"
-                              @click="copy(asset.sha256, asset.name)"
-                              class="font-mono text-[11px] text-purple-600 hover:underline flex items-center gap-1 font-bold">
-                        <span x-text="asset.sha256.slice(0, 8) + '...'"></span>
-                        <span class="text-[10px]" x-show="copiedKey === asset.name">✓</span>
-                      </button>
-                    </template>
-                    <template x-if="!asset.sha256">
-                      <span class="text-slate-400 text-xs italic">N/A</span>
-                    </template>
-                  </td>
-                  <td class="py-3.5 px-3 text-right whitespace-nowrap">
-                    <a :href="asset.url"
-                       class="px-4 py-2 rounded-xl rainbow-button text-white font-bold text-xs inline-flex items-center gap-1.5 shadow-sm">
-                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-                      </svg>
-                      Download
-                    </a>
-                  </td>
-                </tr>
-              </template>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Mobile Asset Cards -->
-        <div class="sm:hidden space-y-3">
-          <template x-for="asset in app.latest?.assets || []" :key="asset.name">
-            <div class="border-2 border-slate-100 rounded-2xl p-4 space-y-2">
-              <div class="font-mono text-xs font-bold text-slate-800 break-all" x-text="asset.name"></div>
-              <div class="flex items-center justify-between text-xs">
-                <span class="font-bold uppercase tracking-wider text-slate-500" x-text="asset.os || 'Universal'"></span>
-                <span class="text-slate-400 font-semibold" x-text="formatBytes(asset.size)"></span>
-              </div>
-              <div class="pt-2 flex items-center justify-between gap-2">
-                <template x-if="asset.sha256">
-                  <button type="button"
-                          @click="copy(asset.sha256, asset.name)"
-                          class="text-xs font-bold text-purple-600 hover:underline">
-                    Copy SHA-256
-                  </button>
-                </template>
-                <a :href="asset.url"
-                   class="px-4 py-2 rounded-xl rainbow-button text-white font-bold text-xs inline-flex items-center gap-1 shadow-sm">
-                  Download
-                </a>
-              </div>
-            </div>
-          </template>
-        </div>
-
-      </div>
-
+  <!-- Clean Interactive Tabs (Vercel Style border-b) -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-6 flex-grow w-full space-y-6">
+    
+    <!-- Tab Navigation Bar -->
+    <div class="flex items-center gap-6 border-b border-zinc-200 dark:border-zinc-800 text-xs font-medium">
+      <button type="button"
+              @click="setTab('overview')"
+              :class="activeTab === 'overview' ? 'border-b-2 border-zinc-900 dark:border-zinc-100 text-zinc-900 dark:text-zinc-100 font-bold pb-2.5 -mb-px' : 'text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 pb-2.5'"
+              class="transition">
+        Overview
+      </button>
+      <button type="button"
+              @click="setTab('changelog')"
+              :class="activeTab === 'changelog' ? 'border-b-2 border-zinc-900 dark:border-zinc-100 text-zinc-900 dark:text-zinc-100 font-bold pb-2.5 -mb-px' : 'text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 pb-2.5'"
+              class="transition">
+        Changelog
+      </button>
+      <button type="button"
+              @click="setTab('history')"
+              :class="activeTab === 'history' ? 'border-b-2 border-zinc-900 dark:border-zinc-100 text-zinc-900 dark:text-zinc-100 font-bold pb-2.5 -mb-px' : 'text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 pb-2.5'"
+              class="transition">
+        Releases (${app.releases.length})
+      </button>
+      <button type="button"
+              @click="setTab('downloads')"
+              :class="activeTab === 'downloads' ? 'border-b-2 border-zinc-900 dark:border-zinc-100 text-zinc-900 dark:text-zinc-100 font-bold pb-2.5 -mb-px' : 'text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 pb-2.5'"
+              class="transition">
+        Downloads (${(app.latest?.assets || []).length})
+      </button>
     </div>
 
-    <!-- Right Column Sidebar (Package Managers & Info) -->
-    <div class="space-y-6">
-      
-      <!-- Package Manager Installation Commands -->
-      <div class="bg-white border-2 border-slate-100 rounded-3xl p-6 shadow-sm">
-        <h3 class="font-black text-sm text-slate-900 uppercase tracking-wider mb-4 flex items-center gap-2">
-          <span>📦</span>
-          <span>Package Managers</span>
-        </h3>
-
-        <div class="space-y-3">
-          ${Object.entries(app.install || {}).map(([pm, cmd]) => `
-            <div class="space-y-1">
-              <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">${escapeHtml(pm)}</span>
-              <div class="flex items-center justify-between bg-slate-50 rounded-xl px-3 py-2 border border-slate-200">
-                <code class="text-xs font-mono text-slate-800 truncate select-all mr-2">${escapeHtml(cmd)}</code>
-                <button type="button"
-                        @click="copy('${escapeHtml(cmd)}', '${escapeHtml(pm)}')"
-                        class="p-1.5 rounded-lg text-slate-400 hover:text-purple-600 transition"
-                        title="Copy command">
-                  <template x-if="copiedKey === '${escapeHtml(pm)}'">
-                    <span class="text-xs font-bold text-emerald-500">✓</span>
-                  </template>
-                  <template x-if="copiedKey !== '${escapeHtml(pm)}'">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
-                    </svg>
-                  </template>
-                </button>
-              </div>
-            </div>
-          `).join("")}
-
-          ${Object.keys(app.install || {}).length === 0 ? `
-            <p class="text-xs text-slate-400 italic">No package manager commands provided.</p>
-          ` : ""}
-        </div>
+    <!-- Tab 1: Overview (Documentation Grade Markdown) -->
+    <div x-show="activeTab === 'overview'" class="p-6 rounded-xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/30">
+      <div class="markdown-body"
+           x-html="renderedReadme || '<p class=\\'text-zinc-500 italic\\'>No README available for this project.</p>'">
       </div>
+    </div>
 
-      <!-- Repository Information Card -->
-      <div class="bg-white border-2 border-slate-100 rounded-3xl p-6 shadow-sm space-y-4">
-        <h3 class="font-black text-sm text-slate-900 uppercase tracking-wider mb-2">
-          Repository Details
-        </h3>
-
-        <div class="divide-y divide-slate-100 text-xs">
-          <div class="py-2.5 flex items-center justify-between">
-            <span class="text-slate-500">GitHub</span>
-            <a href="${escapeHtml(app.repo.htmlUrl)}" target="_blank" rel="noopener noreferrer" class="font-bold text-purple-600 hover:underline">
-              ${escapeHtml(app.owner)}/${escapeHtml(app.repoName)}
-            </a>
-          </div>
-          <div class="py-2.5 flex items-center justify-between">
-            <span class="text-slate-500">License</span>
-            <span class="font-bold text-slate-800">${escapeHtml(app.repo.license || "Open Source")}</span>
-          </div>
-          <div class="py-2.5 flex items-center justify-between">
-            <span class="text-slate-500">Total Downloads</span>
-            <span class="font-bold text-slate-800" x-text="formatNumber(app.totalDownloads)"></span>
-          </div>
-          <div class="py-2.5 flex items-center justify-between">
-            <span class="text-slate-500">Forks</span>
-            <span class="font-bold text-slate-800">${app.repo.forks.toLocaleString()}</span>
-          </div>
-          <div class="py-2.5 flex items-center justify-between">
-            <span class="text-slate-500">Open Issues</span>
-            <span class="font-bold text-slate-800">${app.repo.openIssues.toLocaleString()}</span>
-          </div>
+    <!-- Tab 2: Changelog -->
+    <div x-show="activeTab === 'changelog'" class="p-6 rounded-xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/30 space-y-4">
+      <div class="flex items-center justify-between pb-3 border-b border-zinc-200/80 dark:border-zinc-800/80">
+        <div>
+          <h3 class="font-bold text-sm text-zinc-900 dark:text-zinc-100">${escapeHtml(app.latest?.name || app.latest?.tag || "Release")}</h3>
+          <span class="text-xs font-mono text-zinc-500">Released on ${escapeHtml(app.latest?.publishedAt ? new Date(app.latest.publishedAt).toLocaleDateString() : "-")}</span>
         </div>
+        <span class="font-mono text-xs px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">
+          ${escapeHtml(app.latest?.tag || "")}
+        </span>
+      </div>
+      <div class="markdown-body"
+           x-html="renderedChangelog || '<p class=\\'text-zinc-500 italic\\'>No changelog provided for this release.</p>'">
+      </div>
+    </div>
 
-        <div class="pt-2">
-          <a href="${escapeHtml(app.repo.htmlUrl)}/issues/new"
+    <!-- Tab 3: History (Clean Vertical Timeline) -->
+    <div x-show="activeTab === 'history'" class="p-6 rounded-xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/30 space-y-3 font-mono text-xs">
+      <template x-for="rel in app.releases" :key="rel.tag">
+        <div class="p-3 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 flex items-center justify-between hover:bg-zinc-50 dark:hover:bg-zinc-900/60 transition">
+          <div class="flex items-center gap-3">
+            <span class="font-bold text-zinc-900 dark:text-zinc-100" x-text="rel.tag"></span>
+            <span x-show="rel.prerelease" class="text-[10px] text-amber-500 border border-amber-500/30 px-1 rounded">pre-release</span>
+            <span class="text-zinc-400" x-text="formatDate(rel.publishedAt)"></span>
+          </div>
+          <a :href="'https://github.com/' + app.owner + '/' + app.repoName + '/releases/tag/' + rel.tag"
              target="_blank" rel="noopener noreferrer"
-             class="w-full py-3 rounded-2xl border-2 border-red-200 text-red-600 hover:bg-red-50 text-xs font-bold flex items-center justify-center gap-2 transition">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-            </svg>
-            Report an Issue on GitHub
+             class="text-blue-500 hover:underline">
+            GitHub →
           </a>
         </div>
+      </template>
+    </div>
+
+    <!-- Tab 4 & Downloads Anchor: Asset Matrix Table -->
+    <div id="downloads-table"
+         x-show="activeTab === 'downloads' || true"
+         class="p-6 rounded-xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/30 space-y-4">
+      
+      <div class="flex items-center justify-between">
+        <h3 class="font-bold text-sm text-zinc-900 dark:text-zinc-100">Release Assets (${escapeHtml(app.latest?.tag || "")})</h3>
+        <span class="text-xs font-mono text-zinc-500" x-text="(app.latest?.assets || []).length + ' files'"></span>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left font-mono text-xs">
+          <thead class="text-zinc-400 uppercase text-[10px] tracking-wider border-b border-zinc-200 dark:border-zinc-800">
+            <tr>
+              <th class="py-2.5 px-3">Filename</th>
+              <th class="py-2.5 px-2">Platform</th>
+              <th class="py-2.5 px-2">Size</th>
+              <th class="py-2.5 px-2">Checksum</th>
+              <th class="py-2.5 px-3 text-right">Download</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-zinc-200/60 dark:divide-zinc-800/60">
+            <template x-for="asset in app.latest?.assets || []" :key="asset.name">
+              <tr class="hover:bg-zinc-100/50 dark:hover:bg-zinc-900/50 transition">
+                <td class="py-2.5 px-3 text-zinc-800 dark:text-zinc-200 break-all font-semibold" x-text="asset.name"></td>
+                <td class="py-2.5 px-2 text-zinc-500">
+                  <span class="uppercase text-[10px] px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800"
+                        x-text="(asset.os || 'other') + (asset.arch ? ' ' + asset.arch : '')">
+                  </span>
+                </td>
+                <td class="py-2.5 px-2 text-zinc-400 whitespace-nowrap" x-text="formatBytes(asset.size)"></td>
+                <td class="py-2.5 px-2">
+                  <template x-if="asset.sha256">
+                    <button type="button"
+                            @click="copy(asset.sha256, asset.name)"
+                            class="text-blue-500 hover:underline">
+                      <span x-text="copiedKey === asset.name ? '✓ Copied' : asset.sha256.slice(0, 8) + '...'"></span>
+                    </button>
+                  </template>
+                  <template x-if="!asset.sha256">
+                    <span class="text-zinc-500 italic">-</span>
+                  </template>
+                </td>
+                <td class="py-2.5 px-3 text-right whitespace-nowrap">
+                  <a :href="asset.url"
+                     class="px-2.5 py-1 rounded bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-950 font-bold text-[11px] hover:opacity-90 transition">
+                    Download
+                  </a>
+                </td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
       </div>
 
     </div>
@@ -978,7 +782,7 @@ async function buildSitemapAndFeed(catalog) {
 }
 
 async function main() {
-  console.log("🌈 Building Bright White Rainbow-Themed Pages...");
+  console.log("⚡ Building Ultra-Minimalist Pages (Linear/Vercel Aesthetic)...");
 
   // Load catalog
   const catalogRaw = await fs.readFile("dist/data/catalog.json", "utf8");
@@ -1007,7 +811,7 @@ async function main() {
   console.log("  🗺️ Generating sitemap.xml and feed.xml...");
   await buildSitemapAndFeed(catalog);
 
-  console.log("✅ Rainbow white theme site generation complete!");
+  console.log("✅ Ultra-minimalist site generation complete!");
 }
 
 main().catch((err) => {

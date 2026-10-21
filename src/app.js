@@ -1,16 +1,15 @@
-// GitHub Software Store Hub - Reactive Store & Components
+// GitHub Software Store Hub - Minimalist Alpine.js Store & Components
 
 document.addEventListener("alpine:init", () => {
-  // Global Store for Theme, Language, Favorites, Toast
+  // Global Store: Theme, Locale, Favorites, Minimal Toast
   Alpine.store("app", {
-    theme: localStorage.getItem("theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"),
+    theme: localStorage.getItem("theme") || "dark",
     lang: localStorage.getItem("lang") || (navigator.language?.startsWith("th") ? "th" : "en"),
     translations: {},
     favorites: JSON.parse(localStorage.getItem("favorites") || "[]"),
     recent: JSON.parse(localStorage.getItem("recent") || "[]"),
-    toast: { show: false, message: "", type: "success" },
+    toast: { show: false, message: "" },
     toastTimer: null,
-    mobileMenuOpen: false,
 
     init() {
       this.applyTheme();
@@ -32,8 +31,8 @@ document.addEventListener("alpine:init", () => {
     },
 
     toggleLang() {
-      const nextLang = this.lang === "en" ? "th" : "en";
-      this.setLanguage(nextLang);
+      const next = this.lang === "en" ? "th" : "en";
+      this.setLanguage(next);
     },
 
     async setLanguage(lang) {
@@ -67,10 +66,10 @@ document.addEventListener("alpine:init", () => {
     toggleFavorite(slug) {
       if (this.favorites.includes(slug)) {
         this.favorites = this.favorites.filter((s) => s !== slug);
-        this.showToast(this.t("detail.removedFav", "Removed from favorites"), "info");
+        this.showToast(this.t("detail.removedFav", "Removed from favorites"));
       } else {
         this.favorites.push(slug);
-        this.showToast(this.t("detail.addedFav", "Added to favorites"), "success");
+        this.showToast(this.t("detail.addedFav", "Added to favorites"));
       }
       localStorage.setItem("favorites", JSON.stringify(this.favorites));
     },
@@ -84,16 +83,16 @@ document.addEventListener("alpine:init", () => {
       localStorage.setItem("recent", JSON.stringify(this.recent));
     },
 
-    showToast(message, type = "success") {
+    showToast(message) {
       if (this.toastTimer) clearTimeout(this.toastTimer);
-      this.toast = { show: true, message, type };
+      this.toast = { show: true, message };
       this.toastTimer = setTimeout(() => {
         this.toast.show = false;
-      }, 3000);
+      }, 2500);
     },
   });
 
-  // Storefront Component (Home Page)
+  // Storefront Component
   Alpine.data("storefront", () => ({
     loading: true,
     catalog: null,
@@ -102,11 +101,18 @@ document.addEventListener("alpine:init", () => {
     selectedPlatform: "all",
     sortBy: "popular",
     onlyFavorites: false,
-    viewMode: "grid", // 'grid' | 'list'
     fuse: null,
 
     async init() {
-      // Check query parameters
+      // Global shortcut "/" to focus search bar
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "/" && !["INPUT", "TEXTAREA"].includes(document.activeElement?.tagName)) {
+          e.preventDefault();
+          document.querySelector("#search-input")?.focus();
+        }
+      });
+
+      // Parse URL parameters
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.get("favorites") === "1" || window.location.hash === "#favorites") {
         this.onlyFavorites = true;
@@ -272,7 +278,6 @@ document.addEventListener("alpine:init", () => {
     primaryAsset: null,
     renderedReadme: "",
     renderedChangelog: "",
-    activeLightboxImg: null,
     copiedKey: null,
 
     init() {
@@ -301,11 +306,9 @@ document.addEventListener("alpine:init", () => {
       const assets = this.app?.latest?.assets || [];
       if (!assets.length) return;
 
-      // 1. Best match: OS + arch
+      // Match OS + arch
       let match = assets.find((a) => a.os === this.userOS && a.arch === this.userArch);
-      // 2. Fallback: OS only
       if (!match) match = assets.find((a) => a.os === this.userOS);
-      // 3. Fallback: First installer
       if (!match) match = assets[0];
 
       this.primaryAsset = match;
@@ -339,7 +342,7 @@ document.addEventListener("alpine:init", () => {
     copy(text, key = "default") {
       this.copiedKey = key;
       const onDone = () => {
-        Alpine.store("app").showToast("Copied to clipboard!");
+        Alpine.store("app").showToast("Copied to clipboard");
         setTimeout(() => {
           if (this.copiedKey === key) this.copiedKey = null;
         }, 2000);
@@ -366,14 +369,6 @@ document.addEventListener("alpine:init", () => {
       } catch (err) {
         console.warn("Copy failed:", err);
       }
-    },
-
-    openLightbox(src) {
-      this.activeLightboxImg = src;
-    },
-
-    closeLightbox() {
-      this.activeLightboxImg = null;
     },
 
     formatBytes(bytes) {
