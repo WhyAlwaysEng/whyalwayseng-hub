@@ -37,34 +37,29 @@ function escapeHtml(str) {
 
 function renderHeader(rootPath = "./") {
   return `
-  <!-- Minimalist Navbar (Linear / Vercel style) -->
+  <!-- Minimalist Navbar (Linear / Vercel style - No version badge) -->
   <header class="sticky top-0 z-30 w-full border-b border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/80 dark:bg-zinc-950/80 backdrop-blur-md transition-colors">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
       
-      <!-- Brand Logo -->
+      <!-- Brand Logo (Clean, no version label) -->
       <a href="${rootPath}" class="flex items-center gap-2.5 group focus:outline-none">
-        <div class="w-7 h-7 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 flex items-center justify-center font-black text-xs shadow-sm group-hover:scale-105 transition-transform">
+        <div class="w-7 h-7 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 flex items-center justify-center font-black text-xs shadow-xs group-hover:scale-105 transition-transform">
           ⬡
         </div>
-        <div class="flex items-center gap-2">
-          <span class="font-bold text-sm tracking-tight text-zinc-900 dark:text-zinc-100">
-            Software Hub
-          </span>
-          <span class="hidden sm:inline-block text-[10px] font-mono px-1.5 py-0.5 rounded bg-zinc-200/60 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
-            v2
-          </span>
-        </div>
+        <span class="font-bold text-sm tracking-tight text-zinc-900 dark:text-zinc-100">
+          Software Hub
+        </span>
       </a>
 
-      <!-- Right Header Actions -->
-      <div class="flex items-center gap-1.5 sm:gap-2">
+      <!-- Right Header Actions (Icons + Visible Fallback Labels) -->
+      <div class="flex items-center gap-2">
         
-        <!-- Favorites Counter Badge -->
+        <!-- Favorites Counter Button -->
         <a href="${rootPath}?favorites=1"
-           class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 transition"
+           class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 transition"
            title="Saved Favorites">
-          <svg class="w-3.5 h-3.5 text-amber-500 fill-current" viewBox="0 0 20 20">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" class="text-amber-500 flex-shrink-0">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
           </svg>
           <span class="hidden sm:inline" x-text="$store.app.t('nav.favorites', 'Favorites')">Favorites</span>
           <span class="font-mono text-[11px] font-bold text-amber-600 dark:text-amber-400"
@@ -76,29 +71,48 @@ function renderHeader(rootPath = "./") {
         <!-- Language Switcher -->
         <button type="button"
                 @click="$store.app.toggleLang()"
-                class="px-2.5 py-1.5 rounded-lg text-xs font-semibold font-mono border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 transition"
+                class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold font-mono border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 transition"
                 aria-label="Switch Language">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-500">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
           <span x-text="$store.app.lang === 'en' ? 'TH' : 'EN'">TH</span>
         </button>
 
-        <!-- Theme Toggle -->
+        <!-- Theme Toggle (Moon / Sun) -->
         <button type="button"
                 @click="$store.app.toggleTheme()"
-                class="p-2 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 transition"
-                aria-label="Toggle Dark/Light Mode">
-          <svg x-show="$store.app.theme === 'dark'" class="w-3.5 h-3.5 text-zinc-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 transition"
+                aria-label="Toggle Theme Mode">
+          <!-- Sun icon when dark mode is on -->
+          <svg x-show="$store.app.theme === 'dark'" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-amber-400">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
           </svg>
-          <svg x-show="$store.app.theme !== 'dark'" class="w-3.5 h-3.5 text-zinc-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          <!-- Moon icon when light mode is on -->
+          <svg x-show="$store.app.theme !== 'dark'" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-700">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
           </svg>
+          <span class="hidden sm:inline text-xs font-mono" x-text="$store.app.theme === 'dark' ? 'Light' : 'Dark'">Theme</span>
         </button>
 
-        <!-- GitHub / Submit -->
+        <!-- Submit App Button -->
         <a href="https://github.com" target="_blank" rel="noopener noreferrer"
-           class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-white text-xs font-semibold shadow-xs transition"
-           title="Submit software to repository">
-          <span class="text-xs">+</span>
+           class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-white text-xs font-semibold shadow-xs transition"
+           title="Submit App to Store">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
           <span class="hidden sm:inline" x-text="$store.app.t('nav.submit', 'Submit')">Submit</span>
         </a>
 
@@ -172,11 +186,12 @@ async function buildIndex(catalog) {
   <link rel="stylesheet" href="./styles.css">
   <link rel="manifest" href="./manifest.webmanifest">
 
+  <!-- Core App Scripts (app.js registered first so alpine:init always hooks) -->
+  <script src="./vendor/marked.min.js"></script>
+  <script src="./vendor/purify.min.js"></script>
+  <script src="./vendor/fuse.min.js"></script>
+  <script src="./app.js"></script>
   <script src="./vendor/alpine.min.js" defer></script>
-  <script src="./vendor/marked.min.js" defer></script>
-  <script src="./vendor/purify.min.js" defer></script>
-  <script src="./vendor/fuse.min.js" defer></script>
-  <script src="./app.js" defer></script>
 </head>
 <body class="bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 min-h-screen flex flex-col antialiased transition-colors"
       x-data="storefront">
@@ -238,7 +253,7 @@ async function buildIndex(catalog) {
           </kbd>
         </div>
 
-        <!-- Sort Select (Segmented style) -->
+        <!-- Sort Select -->
         <select x-model="sortBy"
                 class="px-3 py-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 text-xs font-medium text-zinc-700 dark:text-zinc-300 focus:outline-none focus:border-zinc-400 dark:focus:border-zinc-600 cursor-pointer">
           <option value="popular">Popular (Stars/Downloads)</option>
@@ -345,7 +360,7 @@ async function buildIndex(catalog) {
                     </h3>
                     <template x-if="app.verified">
                       <span class="text-blue-500 flex-shrink-0" title="Verified">
-                        <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20">
+                        <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
                           <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                         </svg>
                       </span>
@@ -361,7 +376,7 @@ async function buildIndex(catalog) {
                       class="p-1 rounded text-zinc-400 hover:text-amber-500 transition focus:outline-none"
                       :class="$store.app.isFavorite(app.slug) ? 'text-amber-500' : 'text-zinc-300 dark:text-zinc-700'"
                       aria-label="Favorite">
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
                 </svg>
               </button>
@@ -461,10 +476,11 @@ async function buildAppPage(app, catalog) {
 
   <link rel="stylesheet" href="${rootPath}styles.css">
 
+  <!-- Core App Scripts (app.js registered first so alpine:init always hooks) -->
+  <script src="${rootPath}vendor/marked.min.js"></script>
+  <script src="${rootPath}vendor/purify.min.js"></script>
+  <script src="${rootPath}app.js"></script>
   <script src="${rootPath}vendor/alpine.min.js" defer></script>
-  <script src="${rootPath}vendor/marked.min.js" defer></script>
-  <script src="${rootPath}vendor/purify.min.js" defer></script>
-  <script src="${rootPath}app.js" defer></script>
 </head>
 <body class="bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 min-h-screen flex flex-col antialiased transition-colors"
       x-data="appDetail(${escapeHtml(appJson)})">
@@ -480,7 +496,7 @@ async function buildAppPage(app, catalog) {
     </a>
   </div>
 
-  <!-- App Header Box (Linear / Vercel style split header) -->
+  <!-- App Header Box -->
   <header class="max-w-5xl mx-auto px-4 sm:px-6 py-6 w-full">
     <div class="p-6 rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/40 flex flex-col md:flex-row md:items-center justify-between gap-6">
       
@@ -528,8 +544,10 @@ async function buildAppPage(app, catalog) {
         <template x-if="primaryAsset">
           <a :href="primaryAsset.url"
              class="px-5 py-3 rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-white text-xs font-bold text-center flex items-center justify-center gap-2 transition shadow-xs">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
             </svg>
             <div>
               <span>Download for <span class="capitalize" x-text="userOS"></span></span>
@@ -594,7 +612,7 @@ async function buildAppPage(app, catalog) {
     </div>
   </section>
 
-  <!-- Clean Interactive Tabs (Vercel Style border-b) -->
+  <!-- Clean Interactive Tabs -->
   <main class="max-w-5xl mx-auto px-4 sm:px-6 py-6 flex-grow w-full space-y-6">
     
     <!-- Tab Navigation Bar -->
@@ -625,7 +643,7 @@ async function buildAppPage(app, catalog) {
       </button>
     </div>
 
-    <!-- Tab 1: Overview (Documentation Grade Markdown) -->
+    <!-- Tab 1: Overview -->
     <div x-show="activeTab === 'overview'" class="p-6 rounded-xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/30">
       <div class="markdown-body"
            x-html="renderedReadme || '<p class=\\'text-zinc-500 italic\\'>No README available for this project.</p>'">
@@ -648,7 +666,7 @@ async function buildAppPage(app, catalog) {
       </div>
     </div>
 
-    <!-- Tab 3: History (Clean Vertical Timeline) -->
+    <!-- Tab 3: History -->
     <div x-show="activeTab === 'history'" class="p-6 rounded-xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/30 space-y-3 font-mono text-xs">
       <template x-for="rel in app.releases" :key="rel.tag">
         <div class="p-3 rounded-lg border border-zinc-200/60 dark:border-zinc-800/60 flex items-center justify-between hover:bg-zinc-50 dark:hover:bg-zinc-900/60 transition">

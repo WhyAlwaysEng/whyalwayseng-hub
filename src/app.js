@@ -1,6 +1,9 @@
 // GitHub Software Store Hub - Minimalist Alpine.js Store & Components
 
-document.addEventListener("alpine:init", () => {
+function registerAlpine() {
+  if (window._softwareStoreRegistered) return;
+  window._softwareStoreRegistered = true;
+
   // Global Store: Theme, Locale, Favorites, Minimal Toast
   Alpine.store("app", {
     theme: localStorage.getItem("theme") || "dark",
@@ -403,4 +406,11 @@ document.addEventListener("alpine:init", () => {
       return this.app?.tagline || "";
     },
   }));
-});
+}
+
+// Ensure Alpine registers regardless of script load timing
+if (window.Alpine) {
+  registerAlpine();
+} else {
+  document.addEventListener("alpine:init", registerAlpine);
+}
