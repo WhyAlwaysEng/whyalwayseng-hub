@@ -53,7 +53,12 @@ const server = http.createServer(async (req, res) => {
     const method = req.method.toUpperCase();
 
     // 1. Admin Dashboard Route
-    if (pathname === "/admin" || pathname === "/admin/") {
+    if (pathname === "/admin") {
+      res.writeHead(301, { Location: "/admin/" });
+      res.end();
+      return;
+    }
+    if (pathname === "/admin/") {
       const adminHtml = await fs.readFile(path.resolve("src/admin.html"), "utf8");
       res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
       res.end(adminHtml);
