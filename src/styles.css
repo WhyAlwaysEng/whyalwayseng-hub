@@ -2,30 +2,160 @@
 
 @layer base {
   :root {
-    color-scheme: light dark;
+    color-scheme: light;
   }
 }
 
-/* Custom scrollbar and utilities */
+/* Rainbow animated gradients and glow effects */
+@keyframes rainbow-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes rainbow-rotate {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+}
+
+.animate-rainbow-flow {
+  background-size: 300% 300%;
+  animation: rainbow-flow 8s ease infinite;
+}
+
+.animate-rainbow-fast {
+  background-size: 300% 300%;
+  animation: rainbow-flow 4s ease infinite;
+}
+
+.animate-rainbow-hue {
+  animation: rainbow-rotate 12s linear infinite;
+}
+
+.animate-float {
+  animation: float-gentle 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Rainbow border gradient card */
+.rainbow-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.rainbow-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 1.6rem;
+  padding: 2px;
+  background: linear-gradient(135deg, #ff007f, #9b51e0, #00d2ff, #00f5a0, #ffb300, #ff007f);
+  background-size: 400% 400%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.35;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+  animation: rainbow-flow 6s ease infinite;
+  pointer-events: none;
+}
+
+.rainbow-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 35px -10px rgba(155, 81, 224, 0.25), 0 0 25px -5px rgba(0, 210, 255, 0.25);
+}
+
+.rainbow-card:hover::before {
+  opacity: 1;
+  filter: drop-shadow(0 0 8px rgba(155, 81, 224, 0.6));
+}
+
+/* Rainbow Badge */
+.rainbow-badge {
+  background: linear-gradient(90deg, #ff007a, #7928ca, #0070f3, #00dfd8, #7928ca);
+  background-size: 300% 300%;
+  animation: rainbow-flow 5s ease infinite;
+  color: white;
+}
+
+/* Rainbow Button */
+.rainbow-button {
+  background: linear-gradient(135deg, #ff007a 0%, #7928ca 35%, #0070f3 70%, #00dfd8 100%);
+  background-size: 300% 300%;
+  animation: rainbow-flow 6s ease infinite;
+  box-shadow: 0 10px 25px -5px rgba(121, 40, 202, 0.4);
+  transition: all 0.2s ease;
+}
+
+.rainbow-button:hover {
+  box-shadow: 0 14px 30px -4px rgba(255, 0, 122, 0.5), 0 0 20px rgba(0, 223, 216, 0.4);
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* Rainbow text gradient */
+.rainbow-text {
+  background: linear-gradient(135deg, #ff007a, #9b51e0, #0070f3, #00dfd8, #ff8a00, #ff007a);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow-flow 6s ease infinite;
+}
+
+/* Custom scrollbars */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(156, 163, 175, 0.4);
+  background: linear-gradient(180deg, #9b51e0, #00d2ff);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(156, 163, 175, 0.7);
+  background: linear-gradient(180deg, #ff007a, #9b51e0);
 }
 
-/* Line clamp helpers */
+/* Line clamps */
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;

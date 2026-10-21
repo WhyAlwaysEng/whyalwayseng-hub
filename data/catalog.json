@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-21T22:27:19.059Z",
+  "generatedAt": "2026-10-21T22:35:05.643Z",
   "store": {
     "name": "GitHub Software Store Hub",
     "description": "Curated zero-backend software store powered by GitHub Releases",
@@ -52,7 +52,7 @@
           "tagline": "ใช้งาน GitHub บน Command Line ได้สะดวกและรวดเร็ว"
         }
       },
-      "stale": false,
+      "stale": true,
       "repo": {
         "stars": 46721,
         "forks": 9203,
@@ -92,7 +92,7 @@
             "name": "gh_2.103.0_linux_386.tar.gz",
             "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_linux_386.tar.gz",
             "size": 14088604,
-            "downloads": 168,
+            "downloads": 169,
             "os": "linux",
             "arch": null,
             "sha256": "34f644a186d7c39a6662442c95af21c493a0574b838889e945bb67baf2e90eaf"
@@ -101,7 +101,7 @@
             "name": "gh_2.103.0_linux_amd64.deb",
             "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_linux_amd64.deb",
             "size": 15103762,
-            "downloads": 4816,
+            "downloads": 4905,
             "os": "linux",
             "arch": "x64",
             "sha256": "4a48fa23b9ce9581f3304b822f3e014812f26519b134f89b37db8bc7d74746e1"
@@ -119,7 +119,7 @@
             "name": "gh_2.103.0_linux_amd64.tar.gz",
             "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_linux_amd64.tar.gz",
             "size": 15030338,
-            "downloads": 10479,
+            "downloads": 10654,
             "os": "linux",
             "arch": "x64",
             "sha256": "fdd768eb70f6409f80fcfa9f3a1c0adf0fc98d827ab3ce0bed2ac22762c5d786"
@@ -227,7 +227,7 @@
             "name": "gh_2.103.0_windows_amd64.msi",
             "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_windows_amd64.msi",
             "size": 15446016,
-            "downloads": 5376,
+            "downloads": 5684,
             "os": "windows",
             "arch": "x64",
             "sha256": "58a5e6620407f5a74f9c0e4a7db21aef2f18c655b5304bf78d2d9f0fefc7a877"
@@ -236,7 +236,7 @@
             "name": "gh_2.103.0_windows_amd64.zip",
             "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_windows_amd64.zip",
             "size": 15194618,
-            "downloads": 4449,
+            "downloads": 4534,
             "os": "windows",
             "arch": "x64",
             "sha256": "80c846a5b8432672ca6373b34ce9de998c9686aaa1885c845f2e1ee81f713726"
@@ -291,7 +291,7 @@
               "name": "gh_2.103.0_linux_386.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_linux_386.tar.gz",
               "size": 14088604,
-              "downloads": 168,
+              "downloads": 169,
               "os": "linux",
               "arch": null,
               "sha256": "34f644a186d7c39a6662442c95af21c493a0574b838889e945bb67baf2e90eaf"
@@ -300,7 +300,7 @@
               "name": "gh_2.103.0_linux_amd64.deb",
               "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_linux_amd64.deb",
               "size": 15103762,
-              "downloads": 4816,
+              "downloads": 4905,
               "os": "linux",
               "arch": "x64",
               "sha256": "4a48fa23b9ce9581f3304b822f3e014812f26519b134f89b37db8bc7d74746e1"
@@ -318,7 +318,7 @@
               "name": "gh_2.103.0_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_linux_amd64.tar.gz",
               "size": 15030338,
-              "downloads": 10479,
+              "downloads": 10654,
               "os": "linux",
               "arch": "x64",
               "sha256": "fdd768eb70f6409f80fcfa9f3a1c0adf0fc98d827ab3ce0bed2ac22762c5d786"
@@ -426,7 +426,7 @@
               "name": "gh_2.103.0_windows_amd64.msi",
               "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_windows_amd64.msi",
               "size": 15446016,
-              "downloads": 5376,
+              "downloads": 5684,
               "os": "windows",
               "arch": "x64",
               "sha256": "58a5e6620407f5a74f9c0e4a7db21aef2f18c655b5304bf78d2d9f0fefc7a877"
@@ -435,7 +435,7 @@
               "name": "gh_2.103.0_windows_amd64.zip",
               "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_windows_amd64.zip",
               "size": 15194618,
-              "downloads": 4449,
+              "downloads": 4534,
               "os": "windows",
               "arch": "x64",
               "sha256": "80c846a5b8432672ca6373b34ce9de998c9686aaa1885c845f2e1ee81f713726"
@@ -516,7 +516,7 @@
               "name": "gh_2.102.1_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.102.1/gh_2.102.1_linux_amd64.tar.gz",
               "size": 15327429,
-              "downloads": 33729,
+              "downloads": 33848,
               "os": "linux",
               "arch": "x64",
               "sha256": "77b9e297e94c50336823d0f84de7ef1be60cba704601fa0d98f129f47a94987b"
@@ -588,7 +588,7 @@
               "name": "gh_2.102.1_macOS_arm64.zip",
               "url": "https://github.com/cli/cli/releases/download/v2.102.1/gh_2.102.1_macOS_arm64.zip",
               "size": 14367802,
-              "downloads": 7260,
+              "downloads": 7281,
               "os": "macos",
               "arch": "arm64",
               "sha256": "08bfef98b50c553df122bb34ee8dcf415cae7d3b108891488964a0df07aa2aeb"
@@ -651,7 +651,7 @@
               "name": "gh_2.102.1_windows_arm64.zip",
               "url": "https://github.com/cli/cli/releases/download/v2.102.1/gh_2.102.1_windows_arm64.zip",
               "size": 13917786,
-              "downloads": 428,
+              "downloads": 429,
               "os": "windows",
               "arch": "arm64",
               "sha256": "1fe7462f72424f9309f5444b4c24e2246f5c40130afa0b1c61a3fdc6fc54cc04"
@@ -714,7 +714,7 @@
               "name": "gh_2.102.0_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.102.0/gh_2.102.0_linux_amd64.tar.gz",
               "size": 15319960,
-              "downloads": 884372,
+              "downloads": 884662,
               "os": "linux",
               "arch": "x64",
               "sha256": "bb766f710eef8ede859c18578c72c327597cd4c8a85b06001b1f3843c6019386"
@@ -741,7 +741,7 @@
               "name": "gh_2.102.0_linux_arm64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.102.0/gh_2.102.0_linux_arm64.tar.gz",
               "size": 13917794,
-              "downloads": 217168,
+              "downloads": 217314,
               "os": "linux",
               "arch": "arm64",
               "sha256": "7862c86c72f43df3a2d93ddde6f473285b4e2af61b494849846827e513ef6484"
@@ -912,7 +912,7 @@
               "name": "gh_2.101.0_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.101.0/gh_2.101.0_linux_amd64.tar.gz",
               "size": 15282175,
-              "downloads": 894957,
+              "downloads": 895137,
               "os": "linux",
               "arch": "x64",
               "sha256": "9bca2d1c16825f109907a23307628a2f0698fbf99662b73a5cf0b020293072b8"
@@ -1110,7 +1110,7 @@
               "name": "gh_2.100.0_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.100.0/gh_2.100.0_linux_amd64.tar.gz",
               "size": 15152253,
-              "downloads": 924268,
+              "downloads": 924354,
               "os": "linux",
               "arch": "x64",
               "sha256": "e4d4bb4498e8d007abe545b6568926793ace1b6447da598294a610018cb164be"
@@ -1137,7 +1137,7 @@
               "name": "gh_2.100.0_linux_arm64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.100.0/gh_2.100.0_linux_arm64.tar.gz",
               "size": 13783869,
-              "downloads": 149525,
+              "downloads": 149546,
               "os": "linux",
               "arch": "arm64",
               "sha256": "ea4e7a581a32ccad6cc7923cb1576ac5859ba4b9a16ab22eb8f8a96e78e2e961"
@@ -1173,7 +1173,7 @@
               "name": "gh_2.100.0_macOS_amd64.zip",
               "url": "https://github.com/cli/cli/releases/download/v2.100.0/gh_2.100.0_macOS_amd64.zip",
               "size": 15818005,
-              "downloads": 33082,
+              "downloads": 33084,
               "os": "macos",
               "arch": "x64",
               "sha256": "fcd7799e85eb575f3c7d2b1679bfbfedaefa1269d4bc7d096b51e10939b4812b"
@@ -1182,7 +1182,7 @@
               "name": "gh_2.100.0_macOS_arm64.zip",
               "url": "https://github.com/cli/cli/releases/download/v2.100.0/gh_2.100.0_macOS_arm64.zip",
               "size": 14212224,
-              "downloads": 129846,
+              "downloads": 129850,
               "os": "macos",
               "arch": "arm64",
               "sha256": "45f9a62da2f6e641a7fad57e2ce39656dfd7ef331372d80a2a2aed65abb01642"
@@ -1704,7 +1704,7 @@
               "name": "gh_2.97.0_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.97.0/gh_2.97.0_linux_amd64.tar.gz",
               "size": 14770812,
-              "downloads": 1036499,
+              "downloads": 1036588,
               "os": "linux",
               "arch": "x64",
               "sha256": "a2c9b8497e1f85b1ad0dfcb78b5a622e098801b8e461e459e88e1ee12f018112"
@@ -1902,7 +1902,7 @@
               "name": "gh_2.96.0_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.96.0/gh_2.96.0_linux_amd64.tar.gz",
               "size": 14652560,
-              "downloads": 1773189,
+              "downloads": 1773294,
               "os": "linux",
               "arch": "x64",
               "sha256": "83d5c2ccad5498f58bf6368acb1ab32588cf43ab3a4b1c301bf36328b1c8bd60"
@@ -1929,7 +1929,7 @@
               "name": "gh_2.96.0_linux_arm64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.96.0/gh_2.96.0_linux_arm64.tar.gz",
               "size": 13321232,
-              "downloads": 280366,
+              "downloads": 280374,
               "os": "linux",
               "arch": "arm64",
               "sha256": "06f86ec7103d41993b76cd78072f43595c34aaa56506d971d9860e67140bf909"
@@ -2091,7 +2091,7 @@
               "name": "gh_2.95.0_linux_amd64.rpm",
               "url": "https://github.com/cli/cli/releases/download/v2.95.0/gh_2.95.0_linux_amd64.rpm",
               "size": 15317174,
-              "downloads": 5089,
+              "downloads": 5091,
               "os": "linux",
               "arch": "x64",
               "sha256": "13ef991d5b44f79d11f70b5364c78ca9461f5cd4e57b685961a3b64f0b39c6f5"
@@ -2325,7 +2325,7 @@
               "name": "gh_2.94.0_linux_arm64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.94.0/gh_2.94.0_linux_arm64.tar.gz",
               "size": 13152545,
-              "downloads": 61592,
+              "downloads": 61593,
               "os": "linux",
               "arch": "arm64",
               "sha256": "705a23b70b0f1b7ba4c302fdcef392ce3edaacfa7ce8e85e4d93d72ea800a538"
@@ -2496,7 +2496,7 @@
               "name": "gh_2.93.0_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.93.0/gh_2.93.0_linux_amd64.tar.gz",
               "size": 14332871,
-              "downloads": 951193,
+              "downloads": 951252,
               "os": "linux",
               "arch": "x64",
               "sha256": "02d1290eba130e0b896f3709ffff22e1c75a51475ddb70476a85abc6b5807af0"
@@ -2694,7 +2694,7 @@
               "name": "gh_2.92.0_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.92.0/gh_2.92.0_linux_amd64.tar.gz",
               "size": 14296784,
-              "downloads": 1764047,
+              "downloads": 1764095,
               "os": "linux",
               "arch": "x64",
               "sha256": "b57848131bdf0c229cd35e1f2a51aa718199858b2e728410b37e89a428943ec4"
@@ -3288,7 +3288,7 @@
               "name": "gh_2.89.0_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.89.0/gh_2.89.0_linux_amd64.tar.gz",
               "size": 14279890,
-              "downloads": 1017695,
+              "downloads": 1017748,
               "os": "linux",
               "arch": "x64",
               "sha256": "d0422caade520530e76c1c558da47daebaa8e1203d6b7ff10ad7d6faba3490d8"
@@ -3486,7 +3486,7 @@
               "name": "gh_2.88.1_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.88.1/gh_2.88.1_linux_amd64.tar.gz",
               "size": 13896340,
-              "downloads": 1138522,
+              "downloads": 1138604,
               "os": "linux",
               "arch": "x64",
               "sha256": "36352a993b97e9758793cdb87f9ba674bd6d88c914488e122be78a1962203803"
@@ -3603,7 +3603,7 @@
               "name": "gh_2.88.1_windows_amd64.zip",
               "url": "https://github.com/cli/cli/releases/download/v2.88.1/gh_2.88.1_windows_amd64.zip",
               "size": 14073007,
-              "downloads": 20347,
+              "downloads": 20348,
               "os": "windows",
               "arch": "x64",
               "sha256": "8fdaac525d8919f9f8c265f99ffa26189e5f1fd3a35636adad4fd890a141a555"
@@ -3882,7 +3882,7 @@
               "name": "gh_2.87.3_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.87.3/gh_2.87.3_linux_amd64.tar.gz",
               "size": 13736491,
-              "downloads": 2413602,
+              "downloads": 2413717,
               "os": "linux",
               "arch": "x64",
               "sha256": "c6e5537631fca45f277ef405ce8751d139b491e9402cc20891a003525a8773b2"
@@ -4223,7 +4223,7 @@
           ]
         }
       ],
-      "totalDownloads": 30952236,
+      "totalDownloads": 30954327,
       "readme": "# GitHub CLI\n\nGitHub CLI, or the gh CLI, is GitHub on the command line. It brings pull requests, issues, and other GitHub concepts to the terminal next to where you are already working with `git` and your code.\n\n> [!IMPORTANT]\n> GitHub CLI's PGP signing key rotation for Linux package repositories is effective September 5, 2026; users experiencing package installation or update problems can find solutions in the [public announcement](https://github.com/cli/cli/issues/13118).\n\n![screenshot of gh pr status](https://user-images.githubusercontent.com/98482/84171218-327e7a80-aa40-11ea-8cd1-5177fc2d0e72.png)\n\nGitHub CLI is supported for users on GitHub.com, GitHub Enterprise Cloud, and [supported GitHub Enterprise Server versions](https://docs.github.com/en/enterprise-server/admin/all-releases), with support for macOS, Windows, and Linux.\n\n## Documentation\n\nFor [installation options see below](#installation), for usage instructions [see the manual](https://cli.github.com/manual/).\n\n## Agent skills\n\nAn [agent skill](https://agentskills.io) is available for driving `gh` from coding agents. Install or update it with the built-in `gh skill` command:\n\n```shell\n# Install the skill (user scope recommended)\ngh skill install cli/cli gh --scope user\n\n# Update the skill after a `gh` release\ngh skill update gh\n```\n\n## Contributing\n\nIf anything feels off or if you feel that some functionality is missing, please check out the [contributing page](.github/CONTRIBUTING.md). There you will find instructions for sharing your feedback, building the tool locally, and submitting pull requests to the project.\n\nIf you are a hubber and are interested in shipping new commands for the CLI, check out our [doc on internal contributions](docs/working-with-us.md)\n\n<!-- this anchor is linked to from elsewhere, so avoid renaming it -->\n## Installation\n\n### [macOS](docs/install_macos.md)\n\n- [Homebrew](docs/install_macos.md#homebrew)\n- [Precompiled binaries](docs/install_macos.md#precompiled-binaries) on [releases page][]\n\nFor additional macOS packages and installers, see [community-supported docs](docs/install_macos.md#community-unofficial)\n\n### [Linux & Unix](docs/install_linux.md)\n\n- [Debian, Raspberry Pi, Ubuntu](docs/install_linux.md#debian)\n- [Amazon Linux, CentOS, Fedora, openSUSE, RHEL, SUSE](docs/install_linux.md#rpm)\n- [Precompiled binaries](docs/install_linux.md#precompiled-binaries) on [releases page][]\n\nFor additional Linux & Unix packages and installers, see [community-supported docs](docs/install_linux.md#community-unofficial)\n\n### [Windows](docs/install_windows.md)\n\n- [WinGet](docs/install_windows.md#winget)\n- [Precompiled binaries](docs/install_windows.md#precompiled-binaries) on [releases page][]\n\nFor additional Windows packages and installers, see [community-supported docs](docs/install_windows.md#community-unofficial)\n\n### Build from source\n\nSee here on how to [build GitHub CLI from source](docs/install_source.md).\n\n### GitHub Codespaces\n\nTo add GitHub CLI to your codespace, add the following to your [devcontainer file](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-features-to-a-devcontainer-file):\n\n```json\n\"features\": {\n  \"ghcr.io/devcontainers/features/github-cli:1\": {}\n}\n```\n\n### GitHub Actions\n\n[GitHub-hosted runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners) have the GitHub CLI pre-installed, which is updated weekly.\n\nIf a specific version is needed, your GitHub Actions workflow will need to install it based on the [macOS](#macos), [Linux & Unix](#linux--unix), or [Windows](#windows) instructions above.\n\nFor information on all pre-installed tools, see [`actions/runner-images`](https://github.com/actions/runner-images)\n\n### Verification of binaries\n\nStarting with v2.93.0, releases of `gh` are published as immutable releases. For more information, see [Immutable releases](https://docs.github.com/en/code-security/concepts/supply-chain-security/immutable-releases).\n\nSince version 2.50.0, `gh` has been producing [Build Provenance Attestation](https://github.blog/changelog/2024-06-25-artifact-attestations-is-generally-available/), enabling a cryptographically verifiable paper-trail back to the origin GitHub repository, git revision, and build instructions used. The build provenance attestations are signed and rely on Public Good [Sigstore](https://www.sigstore.dev/) for PKI.\n\nThere are two common ways to verify a downloaded release, depending on whether `gh` is already installed or not. If `gh` is installed, it's trivial to verify a new release:\n\n- **Option 1: Using `gh` if already installed:**\n\n  ```shell\n  $ gh at verify -R cli/cli gh_2.62.0_macOS_arm64.zip\n  Loaded digest sha256:fdb77f31b8a6dd23c3fd858758d692a45f7fc76383e37d475bdcae038df92afc for file://gh_2.62.0_macOS_arm64.zip\n  Loaded 1 attestation from GitHub API\n  ✓ Verification succeeded!\n\n  sha256:fdb77f31b8a6dd23c3fd858758d692a45f7fc76383e37d475bdcae038df92afc was attested by:\n  REPO     PREDICATE_TYPE                  WORKFLOW\n  cli/cli  https://slsa.dev/provenance/v1  .github/workflows/deployment.yml@refs/heads/trunk\n  ```\n\n- **Option 2: Using Sigstore [`cosign`](https://github.com/sigstore/cosign):**\n\n  To perform this, download the [attestation](https://github.com/cli/cli/attestations) for the downloaded release and use cosign to verify the authenticity of the downloaded release:\n\n  ```shell\n  $ cosign verify-blob-attestation --bundle cli-cli-attestation-3120304.sigstore.json \\\n        --new-bundle-format \\\n        --certificate-oidc-issuer=\"https://token.actions.githubusercontent.com\" \\\n        --certificate-identity=\"https://github.com/cli/cli/.github/workflows/deployment.yml@refs/heads/trunk\" \\\n        gh_2.62.0_macOS_arm64.zip\n  Verified OK\n  ```\n\n## Comparison with hub\n\nFor many years, [hub](https://github.com/github/hub) was the unofficial GitHub CLI tool. `gh` is a new project that helps us explore\nwhat an official GitHub CLI tool can look like with a fundamentally different design. While both\ntools bring GitHub to the terminal, `hub` behaves as a proxy to `git`, and `gh` is a standalone\ntool. Check out our [more detailed explanation](docs/gh-vs-hub.md) to learn more.\n\n[releases page]: https://github.com/cli/cli/releases/latest\n"
     },
     {
@@ -4267,10 +4267,10 @@
           "tagline": "เครื่องมือค้นหาข้อความและ regex ในไฟล์ที่ทำงานได้เร็วเป็นพิเศษ"
         }
       },
-      "stale": false,
+      "stale": true,
       "repo": {
         "stars": 69314,
-        "forks": 5449,
+        "forks": 5450,
         "openIssues": 221,
         "license": "MIT",
         "pushedAt": "2026-08-04T13:59:44Z",
@@ -4298,7 +4298,7 @@
             "name": "ripgrep-15.2.0-aarch64-pc-windows-msvc.zip",
             "url": "https://github.com/BurntSushi/ripgrep/releases/download/15.2.0/ripgrep-15.2.0-aarch64-pc-windows-msvc.zip",
             "size": 1640124,
-            "downloads": 133571,
+            "downloads": 133598,
             "os": "windows",
             "arch": "arm64",
             "sha256": "e4abca10c3a64ebea742667dd7009449d49403db5460dd6873e389fa2945360f"
@@ -4307,7 +4307,7 @@
             "name": "ripgrep-15.2.0-aarch64-unknown-linux-gnu.tar.gz",
             "url": "https://github.com/BurntSushi/ripgrep/releases/download/15.2.0/ripgrep-15.2.0-aarch64-unknown-linux-gnu.tar.gz",
             "size": 1854661,
-            "downloads": 1014183,
+            "downloads": 1014330,
             "os": "linux",
             "arch": "arm64",
             "sha256": "a740b91c82eaf9914cfedd353572f2791cbe0162c84101ee0951058f4dcbc90d"
@@ -4316,7 +4316,7 @@
             "name": "ripgrep-15.2.0-aarch64-unknown-linux-musl.tar.gz",
             "url": "https://github.com/BurntSushi/ripgrep/releases/download/15.2.0/ripgrep-15.2.0-aarch64-unknown-linux-musl.tar.gz",
             "size": 1982561,
-            "downloads": 271010,
+            "downloads": 271090,
             "os": "linux",
             "arch": "arm64",
             "sha256": "800b1e7206afe799dfb5a6901f23147cfaabe0e52210538100f61e86e1740915"
@@ -4388,7 +4388,7 @@
             "name": "ripgrep-15.2.0-x86_64-pc-windows-msvc.zip",
             "url": "https://github.com/BurntSushi/ripgrep/releases/download/15.2.0/ripgrep-15.2.0-x86_64-pc-windows-msvc.zip",
             "size": 1789611,
-            "downloads": 1999474,
+            "downloads": 1999719,
             "os": "windows",
             "arch": "x64",
             "sha256": "71b2fef860abe467217a538ff31de02f5258807c0129f771846f87bd029aafc5"
@@ -4397,7 +4397,7 @@
             "name": "ripgrep-15.2.0-x86_64-unknown-linux-musl.tar.gz",
             "url": "https://github.com/BurntSushi/ripgrep/releases/download/15.2.0/ripgrep-15.2.0-x86_64-unknown-linux-musl.tar.gz",
             "size": 2265718,
-            "downloads": 3191867,
+            "downloads": 3192362,
             "os": "linux",
             "arch": "x64",
             "sha256": "33e15bcf1624b25cdd2a55813a47a2f95dbe126268203e76aa6a585d1e7b149c"
@@ -4434,7 +4434,7 @@
               "name": "ripgrep-15.2.0-aarch64-pc-windows-msvc.zip",
               "url": "https://github.com/BurntSushi/ripgrep/releases/download/15.2.0/ripgrep-15.2.0-aarch64-pc-windows-msvc.zip",
               "size": 1640124,
-              "downloads": 133571,
+              "downloads": 133598,
               "os": "windows",
               "arch": "arm64",
               "sha256": "e4abca10c3a64ebea742667dd7009449d49403db5460dd6873e389fa2945360f"
@@ -4443,7 +4443,7 @@
               "name": "ripgrep-15.2.0-aarch64-unknown-linux-gnu.tar.gz",
               "url": "https://github.com/BurntSushi/ripgrep/releases/download/15.2.0/ripgrep-15.2.0-aarch64-unknown-linux-gnu.tar.gz",
               "size": 1854661,
-              "downloads": 1014183,
+              "downloads": 1014330,
               "os": "linux",
               "arch": "arm64",
               "sha256": "a740b91c82eaf9914cfedd353572f2791cbe0162c84101ee0951058f4dcbc90d"
@@ -4452,7 +4452,7 @@
               "name": "ripgrep-15.2.0-aarch64-unknown-linux-musl.tar.gz",
               "url": "https://github.com/BurntSushi/ripgrep/releases/download/15.2.0/ripgrep-15.2.0-aarch64-unknown-linux-musl.tar.gz",
               "size": 1982561,
-              "downloads": 271010,
+              "downloads": 271090,
               "os": "linux",
               "arch": "arm64",
               "sha256": "800b1e7206afe799dfb5a6901f23147cfaabe0e52210538100f61e86e1740915"
@@ -4524,7 +4524,7 @@
               "name": "ripgrep-15.2.0-x86_64-pc-windows-msvc.zip",
               "url": "https://github.com/BurntSushi/ripgrep/releases/download/15.2.0/ripgrep-15.2.0-x86_64-pc-windows-msvc.zip",
               "size": 1789611,
-              "downloads": 1999474,
+              "downloads": 1999719,
               "os": "windows",
               "arch": "x64",
               "sha256": "71b2fef860abe467217a538ff31de02f5258807c0129f771846f87bd029aafc5"
@@ -4533,7 +4533,7 @@
               "name": "ripgrep-15.2.0-x86_64-unknown-linux-musl.tar.gz",
               "url": "https://github.com/BurntSushi/ripgrep/releases/download/15.2.0/ripgrep-15.2.0-x86_64-unknown-linux-musl.tar.gz",
               "size": 2265718,
-              "downloads": 3191867,
+              "downloads": 3192362,
               "os": "linux",
               "arch": "x64",
               "sha256": "33e15bcf1624b25cdd2a55813a47a2f95dbe126268203e76aa6a585d1e7b149c"
@@ -4560,7 +4560,7 @@
               "name": "ripgrep-15.1.0-aarch64-apple-darwin.tar.gz",
               "url": "https://github.com/BurntSushi/ripgrep/releases/download/15.1.0/ripgrep-15.1.0-aarch64-apple-darwin.tar.gz",
               "size": 1777930,
-              "downloads": 1759517,
+              "downloads": 1759606,
               "os": "macos",
               "arch": "arm64",
               "sha256": "378e973289176ca0c6054054ee7f631a065874a352bf43f0fa60ef079b6ba715"
@@ -4578,7 +4578,7 @@
               "name": "ripgrep-15.1.0-aarch64-unknown-linux-gnu.tar.gz",
               "url": "https://github.com/BurntSushi/ripgrep/releases/download/15.1.0/ripgrep-15.1.0-aarch64-unknown-linux-gnu.tar.gz",
               "size": 1869959,
-              "downloads": 2239144,
+              "downloads": 2239289,
               "os": "linux",
               "arch": "arm64",
               "sha256": "2b661c6ef508e902f388e9098d9c4c5aca72c87b55922d94abdba830b4dc885e"
@@ -4659,7 +4659,7 @@
               "name": "ripgrep-15.1.0-x86_64-pc-windows-msvc.zip",
               "url": "https://github.com/BurntSushi/ripgrep/releases/download/15.1.0/ripgrep-15.1.0-x86_64-pc-windows-msvc.zip",
               "size": 1810687,
-              "downloads": 5962458,
+              "downloads": 5962643,
               "os": "windows",
               "arch": "x64",
               "sha256": "124510b94b6baa3380d051fdf4650eaa80a302c876d611e9dba0b2e18d87493a"
@@ -4668,7 +4668,7 @@
               "name": "ripgrep-15.1.0-x86_64-unknown-linux-musl.tar.gz",
               "url": "https://github.com/BurntSushi/ripgrep/releases/download/15.1.0/ripgrep-15.1.0-x86_64-unknown-linux-musl.tar.gz",
               "size": 2263077,
-              "downloads": 11155864,
+              "downloads": 11156341,
               "os": "linux",
               "arch": "x64",
               "sha256": "1c9297be4a084eea7ecaedf93eb03d058d6faae29bbc57ecdaf5063921491599"
@@ -4695,7 +4695,7 @@
               "name": "ripgrep-15.0.0-aarch64-apple-darwin.tar.gz",
               "url": "https://github.com/BurntSushi/ripgrep/releases/download/15.0.0/ripgrep-15.0.0-aarch64-apple-darwin.tar.gz",
               "size": 1775660,
-              "downloads": 39165,
+              "downloads": 39169,
               "os": "macos",
               "arch": "arm64",
               "sha256": "98bb2e61e7277ba0ea72d2ae2592497fd8d2940934a16b122448d302a6637e3b"
@@ -4929,7 +4929,7 @@
               "name": "ripgrep-14.1.1-x86_64-pc-windows-msvc.zip",
               "url": "https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/ripgrep-14.1.1-x86_64-pc-windows-msvc.zip",
               "size": 2058893,
-              "downloads": 3204347,
+              "downloads": 3204362,
               "os": "windows",
               "arch": "x64",
               "sha256": null
@@ -4938,7 +4938,7 @@
               "name": "ripgrep-14.1.1-x86_64-unknown-linux-musl.tar.gz",
               "url": "https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/ripgrep-14.1.1-x86_64-unknown-linux-musl.tar.gz",
               "size": 2566310,
-              "downloads": 12532420,
+              "downloads": 12532821,
               "os": "linux",
               "arch": "x64",
               "sha256": null
@@ -6422,7 +6422,7 @@
           ]
         }
       ],
-      "totalDownloads": 62122174,
+      "totalDownloads": 62124484,
       "readme": "ripgrep (rg)\n------------\nripgrep is a line-oriented search tool that recursively searches the current\ndirectory for a regex pattern. By default, ripgrep will respect gitignore rules\nand automatically skip hidden files/directories and binary files. (To disable\nall automatic filtering by default, use `rg -uuu`.) ripgrep has first class\nsupport on Windows, macOS and Linux, with binary downloads available for [every\nrelease](https://github.com/BurntSushi/ripgrep/releases). ripgrep is similar to\nother popular search tools like The Silver Searcher, ack and grep.\n\n[![Build status](https://github.com/BurntSushi/ripgrep/workflows/ci/badge.svg)](https://github.com/BurntSushi/ripgrep/actions)\n[![Crates.io](https://img.shields.io/crates/v/ripgrep.svg)](https://crates.io/crates/ripgrep)\n[![Packaging status](https://repology.org/badge/tiny-repos/ripgrep.svg)](https://repology.org/project/ripgrep/badges)\n\nDual-licensed under MIT or the [UNLICENSE](https://unlicense.org).\n\n\n### CHANGELOG\n\nPlease see the [CHANGELOG](CHANGELOG.md) for a release history.\n\n### Documentation quick links\n\n* [Installation](#installation)\n* [User Guide](GUIDE.md)\n* [Frequently Asked Questions](FAQ.md)\n* [Regex syntax](https://docs.rs/regex/1/regex/#syntax)\n* [Configuration files](GUIDE.md#configuration-file)\n* [Shell completions](FAQ.md#complete)\n* [Building](#building)\n* [Translations](#translations)\n\n\n### Screenshot of search results\n\n[![A screenshot of a sample search with ripgrep](https://burntsushi.net/stuff/ripgrep1.png)](https://burntsushi.net/stuff/ripgrep1.png)\n\n\n### Quick examples comparing tools\n\nThis example searches the entire\n[Linux kernel source tree](https://github.com/BurntSushi/linux)\n(after running `make defconfig && make -j8`) for `[A-Z]+_SUSPEND`, where\nall matches must be words. Timings were collected on a system with an Intel\ni9-12900K 5.2 GHz.\n\nPlease remember that a single benchmark is never enough! See my\n[blog post on ripgrep](https://blog.burntsushi.net/ripgrep/)\nfor a very detailed comparison with more benchmarks and analysis.\n\n| Tool | Command | Line count | Time |\n| ---- | ------- | ---------- | ---- |\n| ripgrep (Unicode) | `rg -n -w '[A-Z]+_SUSPEND'` | 536 | **0.082s** (1.00x) |\n| [hypergrep](https://github.com/p-ranav/hypergrep) | `hgrep -n -w '[A-Z]+_SUSPEND'` | 536 | 0.167s (2.04x) |\n| [git grep](https://www.kernel.org/pub/software/scm/git/docs/git-grep.html) | `git grep -P -n -w '[A-Z]+_SUSPEND'` | 536 | 0.273s (3.34x) |\n| [The Silver Searcher](https://github.com/ggreer/the_silver_searcher) | `ag -w '[A-Z]+_SUSPEND'` | 534 | 0.443s (5.43x) |\n| [ugrep](https://github.com/Genivia/ugrep) | `ugrep -r --ignore-files --no-hidden -I -w '[A-Z]+_SUSPEND'` | 536 | 0.639s (7.82x) |\n| [git grep](https://www.kernel.org/pub/software/scm/git/docs/git-grep.html) | `LC_ALL=C git grep -E -n -w '[A-Z]+_SUSPEND'` | 536 | 0.727s (8.91x) |\n| [git grep (Unicode)](https://www.kernel.org/pub/software/scm/git/docs/git-grep.html) | `LC_ALL=en_US.UTF-8 git grep -E -n -w '[A-Z]+_SUSPEND'` | 536 | 2.670s (32.70x) |\n| [ack](https://github.com/beyondgrep/ack3) | `ack -w '[A-Z]+_SUSPEND'` | 2677 | 2.935s (35.94x) |\n\nHere's another benchmark on the same corpus as above that disregards gitignore\nfiles and searches with a whitelist instead. The corpus is the same as in the\nprevious benchmark, and the flags passed to each command ensure that they are\ndoing equivalent work:\n\n| Tool | Command | Line count | Time |\n| ---- | ------- | ---------- | ---- |\n| ripgrep | `rg -uuu -tc -n -w '[A-Z]+_SUSPEND'` | 447 | **0.063s** (1.00x) |\n| [ugrep](https://github.com/Genivia/ugrep) | `ugrep -r -n --include='*.c' --include='*.h' -w '[A-Z]+_SUSPEND'` | 447 | 0.607s (9.62x) |\n| [GNU grep](https://www.gnu.org/software/grep/) | `grep -E -r -n --include='*.c' --include='*.h' -w '[A-Z]+_SUSPEND'` | 447 | 0.674s (10.69x) |\n\nNow we'll move to searching on single large file. Here is a straight-up\ncomparison between ripgrep, ugrep and GNU grep on a file cached in memory\n(~13GB, [`OpenSubtitles.raw.en.gz`](https://object.pouta.csc.fi/OPUS-OpenSubtitles/v2018/mono/en.txt.gz), decompressed):\n\n| Tool | Command | Line count | Time |\n| ---- | ------- | ---------- | ---- |\n| ripgrep (Unicode) | `rg -w 'Sherlock [A-Z]\\w+'` | 7882 | **1.042s** (1.00x) |\n| [ugrep](https://github.com/Genivia/ugrep) | `ugrep -w 'Sherlock [A-Z]\\w+'` | 7882 | 1.339s (1.28x) |\n| [GNU grep (Unicode)](https://www.gnu.org/software/grep/) | `LC_ALL=en_US.UTF-8 egrep -w 'Sherlock [A-Z]\\w+'` | 7882 | 6.577s (6.31x) |\n\nIn the above benchmark, passing the `-n` flag (for showing line numbers)\nincreases the times to `1.664s` for ripgrep and `9.484s` for GNU grep. ugrep\ntimes are unaffected by the presence or absence of `-n`.\n\nBeware of performance cliffs though:\n\n| Tool | Command | Line count | Time |\n| ---- | ------- | ---------- | ---- |\n| ripgrep (Unicode) | `rg -w '[A-Z]\\w+ Sherlock [A-Z]\\w+'` | 485 | **1.053s** (1.00x) |\n| [GNU grep (Unicode)](https://www.gnu.org/software/grep/) | `LC_ALL=en_US.UTF-8 grep -E -w '[A-Z]\\w+ Sherlock [A-Z]\\w+'` | 485 | 6.234s (5.92x) |\n| [ugrep](https://github.com/Genivia/ugrep) | `ugrep -w '[A-Z]\\w+ Sherlock [A-Z]\\w+'` | 485 | 28.973s (27.51x) |\n\nAnd performance can drop precipitously across the board when searching big\nfiles for patterns without any opportunities for literal optimizations:\n\n| Tool | Command | Line count | Time |\n| ---- | ------- | ---------- | ---- |\n| ripgrep | `rg '[A-Za-z]{30}'` | 6749 | **15.569s** (1.00x) |\n| [ugrep](https://github.com/Genivia/ugrep) | `ugrep -E '[A-Za-z]{30}'` | 6749 | 21.857s (1.40x) |\n| [GNU grep](https://www.gnu.org/software/grep/) | `LC_ALL=C grep -E '[A-Za-z]{30}'` | 6749 | 32.409s (2.08x) |\n| [GNU grep (Unicode)](https://www.gnu.org/software/grep/) | `LC_ALL=en_US.UTF-8 grep -E '[A-Za-z]{30}'` | 6795 | 8m30s (32.74x) |\n\nFinally, high match counts also tend to both tank performance and smooth\nout the differences between tools (because performance is dominated by how\nquickly one can handle a match and not the algorithm used to detect the match,\ngenerally speaking):\n\n| Tool | Command | Line count | Time |\n| ---- | ------- | ---------- | ---- |\n| ripgrep | `rg the` | 83499915 | **6.948s** (1.00x) |\n| [ugrep](https://github.com/Genivia/ugrep) | `ugrep the` | 83499915 | 11.721s (1.69x) |\n| [GNU grep](https://www.gnu.org/software/grep/) | `LC_ALL=C grep the` | 83499915 | 15.217s (2.19x) |\n\n### Why should I use ripgrep?\n\n* It can replace many use cases served by other search tools\n  because it contains most of their features and is generally faster. (See\n  [the FAQ](FAQ.md#posix4ever) for more details on whether ripgrep can truly\n  replace grep.)\n* Like other tools specialized to code search, ripgrep defaults to\n  [recursive search](GUIDE.md#recursive-search) and does [automatic\n  filtering](GUIDE.md#automatic-filtering). Namely, ripgrep won't search files\n  ignored by your `.gitignore`/`.ignore`/`.rgignore` files, it won't search\n  hidden files and it won't search binary files. Automatic filtering can be\n  disabled with `rg -uuu`.\n* ripgrep can [search specific types of files](GUIDE.md#manual-filtering-file-types).\n  For example, `rg -tpy foo` limits your search to Python files and `rg -Tjs\n  foo` excludes JavaScript files from your search. ripgrep can be taught about\n  new file types with custom matching rules.\n* ripgrep supports many features found in `grep`, such as showing the context\n  of search results, searching multiple patterns, highlighting matches with\n  color and full Unicode support. Unlike GNU grep, ripgrep stays fast while\n  supporting Unicode (which is always on).\n* ripgrep has optional support for switching its regex engine to use PCRE2.\n  Among other things, this makes it possible to use look-around and\n  backreferences in your patterns, which are not supported in ripgrep's default\n  regex engine. PCRE2 support can be enabled with `-P/--pcre2` (use PCRE2\n  always) or `--auto-hybrid-regex` (use PCRE2 only if needed). An alternative\n  syntax is provided via the `--engine (default|pcre2|auto)` option.\n* ripgrep has [rudimentary support for replacements](GUIDE.md#replacements),\n  which permit rewriting output based on what was matched.\n* ripgrep supports [searching files in text encodings](GUIDE.md#file-encoding)\n  other than UTF-8, such as UTF-16, latin-1, GBK, EUC-JP, Shift_JIS and more.\n  (Some support for automatically detecting UTF-16 is provided. Other text\n  encodings must be specifically specified with the `-E/--encoding` flag.)\n* ripgrep supports searching files compressed in a common format (brotli,\n  bzip2, gzip, lz4, lzma, xz, or zstandard) with the `-z/--search-zip` flag.\n* ripgrep supports\n  [arbitrary input preprocessing filters](GUIDE.md#preprocessor)\n  which could be PDF text extraction, less supported decompression, decrypting,\n  automatic encoding detection and so on.\n* ripgrep can be configured via a\n  [configuration file](GUIDE.md#configuration-file).\n\nIn other words, use ripgrep if you like speed, filtering by default, fewer\nbugs and Unicode support.\n\n\n### Why shouldn't I use ripgrep?\n\nDespite initially not wanting to add every feature under the sun to ripgrep,\nover time, ripgrep has grown support for most features found in other file\nsearching tools. This includes searching for results spanning across multiple\nlines, and opt-in support for PCRE2, which provides look-around and\nbackreference support.\n\nAt this point, the primary reasons not to use ripgrep probably consist of one\nor more of the following:\n\n* You need a portable and ubiquitous tool. While ripgrep works on Windows,\n  macOS and Linux, it is not ubiquitous and it does not conform to any\n  standard such as POSIX. The best tool for this job is good old grep.\n* There still exists some other feature (or bug) not listed in this README that\n  you rely on that's in another tool that isn't in ripgrep.\n* There is a performance edge case where ripgrep doesn't do well where another\n  tool does do well. (Please file a bug report!)\n* ripgrep isn't possible to install on your machine or isn't available for your\n  platform. (Please file a bug report!)\n\n\n### Is it really faster than everything else?\n\nGenerally, yes. A large number of benchmarks with detailed analysis for each is\n[available on my blog](https://blog.burntsushi.net/ripgrep/).\n\nSummarizing, ripgrep is fast because:\n\n* It is built on top of\n  [Rust's regex engine](https://github.com/rust-lang/regex).\n  Rust's regex engine uses finite automata, SIMD and aggressive literal\n  optimizations to make searching very fast. (PCRE2 support can be opted into\n  with the `-P/--pcre2` flag.)\n* Rust's regex library maintains performance with full Unicode support by\n  building UTF-8 decoding directly into its deterministic finite automaton\n  engine.\n* It supports searching with either memory maps or by searching incrementally\n  with an intermediate buffer. The former is better for single files and the\n  latter is better for large directories. ripgrep chooses the best searching\n  strategy for you automatically.\n* Applies your ignore patterns in `.gitignore` files using a\n  [`RegexSet`](https://docs.rs/regex/1/regex/struct.RegexSet.html).\n  That means a single file path can be matched against multiple glob patterns\n  simultaneously.\n* It uses a lock-free parallel recursive directory iterator, courtesy of\n  [`crossbeam`](https://docs.rs/crossbeam) and\n  [`ignore`](https://docs.rs/ignore).\n\n\n### Feature comparison\n\nAndy Lester, author of [ack](https://beyondgrep.com/), has published an\nexcellent table comparing the features of ack, ag, git-grep, GNU grep and\nripgrep: https://beyondgrep.com/feature-comparison/\n\nNote that ripgrep has grown a few significant new features recently that\nare not yet present in Andy's table. This includes, but is not limited to,\nconfiguration files, passthru, support for searching compressed files,\nmultiline search and opt-in fancy regex support via PCRE2.\n\n\n### Playground\n\nIf you'd like to try ripgrep before installing, there's an unofficial\n[playground](https://codapi.org/ripgrep/) and an [interactive\ntutorial](https://codapi.org/try/ripgrep/).\n\nIf you have any questions about these, please open an issue in the [tutorial\nrepo](https://github.com/nalgeon/tryxinyminutes).\n\n\n### Installation\n\nThe binary name for ripgrep is `rg`.\n\n**[Archives of precompiled binaries for ripgrep are available for Windows,\nmacOS and Linux.](https://github.com/BurntSushi/ripgrep/releases)** Linux and\nWindows binaries are static executables. Users of platforms not explicitly\nmentioned below are advised to download one of these archives.\n\nIf you're a **macOS Homebrew** or a **Linuxbrew** user, then you can install\nripgrep from homebrew-core:\n\n```\n$ brew install ripgrep\n```\n\nIf you're a **MacPorts** user, then you can install ripgrep from the\n[official ports](https://www.macports.org/ports.php?by=name&substr=ripgrep):\n\n```\n$ sudo port install ripgrep\n```\n\nIf you're a **Windows Chocolatey** user, then you can install ripgrep from the\n[official repo](https://chocolatey.org/packages/ripgrep):\n\n```\n$ choco install ripgrep\n```\n\nIf you're a **Windows Scoop** user, then you can install ripgrep from the\n[official bucket](https://github.com/ScoopInstaller/Main/blob/master/bucket/ripgrep.json):\n\n```\n$ scoop install ripgrep\n```\n\nIf you're a **Windows Winget** user, then you can install ripgrep from the\n[winget-pkgs](https://github.com/microsoft/winget-pkgs/tree/master/manifests/b/BurntSushi/ripgrep)\nrepository:\n\n```\n$ winget install BurntSushi.ripgrep.MSVC\n```\n\nIf you're an **Arch Linux** user, then you can install ripgrep from the official repos:\n\n```\n$ sudo pacman -S ripgrep\n```\n\nIf you're a **Gentoo** user, you can install ripgrep from the\n[official repo](https://packages.gentoo.org/packages/sys-apps/ripgrep):\n\n```\n$ sudo emerge sys-apps/ripgrep\n```\n\nIf you're a **Fedora** user, you can install ripgrep from official\nrepositories.\n\n```\n$ sudo dnf install ripgrep\n```\n\nIf you're an **openSUSE** user, ripgrep is included in **openSUSE Tumbleweed**\nand **openSUSE Leap** since 15.1.\n\n```\n$ sudo zypper install ripgrep\n```\n\nIf you're a **CentOS Stream 10** user, you can install ripgrep from the\n[EPEL](https://docs.fedoraproject.org/en-US/epel/getting-started/) repository:\n\n```\n$ sudo dnf config-manager --set-enabled crb\n$ sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm\n$ sudo dnf install ripgrep\n```\n\nIf you're a **Red Hat 10** user, you can install ripgrep from the\n[EPEL](https://docs.fedoraproject.org/en-US/epel/getting-started/) repository:\n\n```\n$ sudo subscription-manager repos --enable codeready-builder-for-rhel-10-$(arch)-rpms\n$ sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm\n$ sudo dnf install ripgrep\n```\n\nIf you're a **Rocky Linux 10** user, you can install ripgrep from the\n[EPEL](https://docs.fedoraproject.org/en-US/epel/getting-started/) repository:\n\n```\n$ sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rp"
     },
     {
@@ -6465,9 +6465,9 @@
           "tagline": "Terminal UI สำหรับจัดการคำสั่ง Git ที่ง่ายและสะดวก"
         }
       },
-      "stale": false,
+      "stale": true,
       "repo": {
-        "stars": 83341,
+        "stars": 83342,
         "forks": 3115,
         "openIssues": 1049,
         "license": "MIT",
@@ -6577,7 +6577,7 @@
             "name": "lazygit_0.66.2_windows_32-bit.zip",
             "url": "https://github.com/jesseduffield/lazygit/releases/download/v0.66.2/lazygit_0.66.2_windows_32-bit.zip",
             "size": 7271224,
-            "downloads": 289,
+            "downloads": 291,
             "os": "windows",
             "arch": null,
             "sha256": "d144ebd3cb0dded98870eaa233304e917788f4710ec89d4af1924fb3c189cc43"
@@ -6704,7 +6704,7 @@
               "name": "lazygit_0.66.2_windows_32-bit.zip",
               "url": "https://github.com/jesseduffield/lazygit/releases/download/v0.66.2/lazygit_0.66.2_windows_32-bit.zip",
               "size": 7271224,
-              "downloads": 289,
+              "downloads": 291,
               "os": "windows",
               "arch": null,
               "sha256": "d144ebd3cb0dded98870eaa233304e917788f4710ec89d4af1924fb3c189cc43"
@@ -8189,7 +8189,7 @@
               "name": "lazygit_0.61.1_linux_arm64.tar.gz",
               "url": "https://github.com/jesseduffield/lazygit/releases/download/v0.61.1/lazygit_0.61.1_linux_arm64.tar.gz",
               "size": 5937624,
-              "downloads": 14173,
+              "downloads": 14174,
               "os": "linux",
               "arch": "arm64",
               "sha256": "20b1abb2bee5dfd46173b9047353eb678bc51a23839e821958d0b1863ab1655e"
@@ -8207,7 +8207,7 @@
               "name": "lazygit_0.61.1_linux_x86_64.tar.gz",
               "url": "https://github.com/jesseduffield/lazygit/releases/download/v0.61.1/lazygit_0.61.1_linux_x86_64.tar.gz",
               "size": 6547048,
-              "downloads": 88863,
+              "downloads": 88864,
               "os": "linux",
               "arch": "x64",
               "sha256": "1b91e660700f2332696726b635202576b543e2bc49b639830dccd26bc5160d5d"
@@ -9178,7 +9178,7 @@
           ]
         }
       ],
-      "totalDownloads": 1614722,
+      "totalDownloads": 1614726,
       "readme": "<div align=\"center\">\n<sup>Special thanks to:</sup>\n<br>\n<br>\n<a href=\"https://www.warp.dev/?utm_source=github&utm_medium=referral&utm_campaign=lazygit_20231023\">\n  <div>\n    <img src=\"https://github.com/warpdotdev/brand-assets/blob/main/Github/Sponsor/Warp-Github-LG-02.png?raw=true\" width=\"400\" alt=\"Warp\">\n  </div>\n  <b>Warp, the intelligent terminal</b>\n  <br>\n  <b>Available for macOS and Linux</b>\n  <br>\n  <div>\n    <sup>Visit warp.dev to learn more.</sup>\n  </div>\n</a>\n<br>\n<hr>\n<a href=\"https://tuple.app/lazygit\">\n  <div>\n    <img src=\"../assets/tuple.png\" width=\"400\" alt=\"Tuple\">\n  </div>\n  <b>Tuple, the premier screen sharing app for developers on macOS and Windows.</b>\n</a>\n<br>\n<hr>\n<br>\n<a href=\"https://www.subble.com\">\n  <div>\n    <img src=\"../assets/subble.webp\" width=\"400\" alt=\"Subble\">\n  </div>\n  <b>I (Jesse) co-founded Subble to save your company time and money by finding unused and over-provisioned SaaS licences. Check it out!</b>\n</a>\n<br>\n\n<hr>\n</div>\n\n<p align=\"center\">\n  <img width=\"536\" src=\"https://user-images.githubusercontent.com/8456633/174470852-339b5011-5800-4bb9-a628-ff230aa8cd4e.png\">\n</p>\n\n<div align=\"center\">\n\nA simple terminal UI for git commands\n<br/>\n\n[![GitHub Releases](https://img.shields.io/github/downloads/jesseduffield/lazygit/total)](https://github.com/jesseduffield/lazygit/releases) [![golangci-lint](https://img.shields.io/badge/linted%20by-golangci--lint-brightgreen)](https://golangci-lint.run/) [![GitHub tag](https://img.shields.io/github/v/tag/jesseduffield/lazygit?color=blue)](https://github.com/jesseduffield/lazygit/releases/latest) [![homebrew](https://img.shields.io/homebrew/v/lazygit?color=blue)](https://formulae.brew.sh/formula/lazygit)\n\n<!-- demo: commit_and_push -->\n<video src=\"https://github.com/user-attachments/assets/031799d1-740d-4cda-90cf-689513fa9860\" controls></video>\n\n</div>\n\n## Sponsors\n\n<p align=\"center\">\n Maintenance of this project is made possible by all the <a href=\"https://github.com/jesseduffield/lazygit/graphs/contributors\">contributors</a> and <a href=\"https://github.com/sponsors/jesseduffield\">sponsors</a>. If you'd like to sponsor this project and have your avatar or company logo appear below <a href=\"https://github.com/sponsors/jesseduffield\">click here</a>. 💙\n</p>\n\n<p align=\"center\">\n<!-- sponsors --><a href=\"https://github.com/intabulas\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;intabulas.png\" width=\"60px\" alt=\"User avatar: Mark Lussier\" /></a><a href=\"https://github.com/peppy\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;peppy.png\" width=\"60px\" alt=\"User avatar: Dean Herbert\" /></a><a href=\"https://github.com/piot\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;piot.png\" width=\"60px\" alt=\"User avatar: Peter Bjorklund\" /></a><a href=\"https://github.com/oliverguenther\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;oliverguenther.png\" width=\"60px\" alt=\"User avatar: Oliver Günther\" /></a><a href=\"https://github.com/pawanjay176\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;pawanjay176.png\" width=\"60px\" alt=\"User avatar: Pawan Dhananjay\" /></a><a href=\"https://github.com/naoey\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;naoey.png\" width=\"60px\" alt=\"User avatar: \" /></a><a href=\"https://github.com/carstengehling\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;carstengehling.png\" width=\"60px\" alt=\"User avatar: Carsten Gehling\" /></a><a href=\"https://github.com/Xetera\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;Xetera.png\" width=\"60px\" alt=\"User avatar: Ali\" /></a><a href=\"https://github.com/nartc\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;nartc.png\" width=\"60px\" alt=\"User avatar: Chau Tran\" /></a><a href=\"https://github.com/matejcik\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;matejcik.png\" width=\"60px\" alt=\"User avatar: matejcik\" /></a><a href=\"https://github.com/lucatume\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;lucatume.png\" width=\"60px\" alt=\"User avatar: theAverageDev (Luca Tumedei)\" /></a><a href=\"https://github.com/escrafford\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;escrafford.png\" width=\"60px\" alt=\"User avatar: Erik Scrafford\" /></a><a href=\"https://github.com/IvanZuy\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;IvanZuy.png\" width=\"60px\" alt=\"User avatar: \" /></a><a href=\"https://github.com/ava1ar\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;ava1ar.png\" width=\"60px\" alt=\"User avatar: Alex Stelmachonak\" /></a><a href=\"https://github.com/pedropombeiro\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;pedropombeiro.png\" width=\"60px\" alt=\"User avatar: Pedro Pombeiro\" /></a><a href=\"https://github.com/bburgy\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;bburgy.png\" width=\"60px\" alt=\"User avatar: Burgy Benjamin\" /></a><a href=\"https://github.com/JoeKlemmer\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;JoeKlemmer.png\" width=\"60px\" alt=\"User avatar: Joe Klemmer\" /></a><a href=\"https://github.com/tobi\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;tobi.png\" width=\"60px\" alt=\"User avatar: Tobias Lütke\" /></a><a href=\"https://github.com/benbfortis\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;benbfortis.png\" width=\"60px\" alt=\"User avatar: Ben Beaumont\" /></a><a href=\"https://github.com/jakewarren\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;jakewarren.png\" width=\"60px\" alt=\"User avatar: \" /></a><a href=\"https://github.com/tgpholly\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;tgpholly.png\" width=\"60px\" alt=\"User avatar: Holly\" /></a><a href=\"https://github.com/Tommylans\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;Tommylans.png\" width=\"60px\" alt=\"User avatar: Tom Lanser\" /></a><a href=\"https://github.com/socketbox\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;socketbox.png\" width=\"60px\" alt=\"User avatar: Casey Boettcher\" /></a><a href=\"https://github.com/bitprophet\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;bitprophet.png\" width=\"60px\" alt=\"User avatar: Jeff Forcier\" /></a><a href=\"https://github.com/Novakov\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;Novakov.png\" width=\"60px\" alt=\"User avatar: Maciej T. Nowak\" /></a><a href=\"https://github.com/jhillyerd\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;jhillyerd.png\" width=\"60px\" alt=\"User avatar: James Hillyerd\" /></a><a href=\"https://github.com/nekhaevskiy\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;nekhaevskiy.png\" width=\"60px\" alt=\"User avatar: Yury\" /></a><a href=\"https://github.com/reivilibre\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;reivilibre.png\" width=\"60px\" alt=\"User avatar: Olivier reivilibre\" /></a><a href=\"https://github.com/BSteffaniak\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;BSteffaniak.png\" width=\"60px\" alt=\"User avatar: Braden Steffaniak\" /></a><a href=\"https://github.com/smangels\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;smangels.png\" width=\"60px\" alt=\"User avatar: Sebastian\" /></a><a href=\"https://github.com/amslezak\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;amslezak.png\" width=\"60px\" alt=\"User avatar: Andy Slezak\" /></a><a href=\"https://github.com/mkock\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;mkock.png\" width=\"60px\" alt=\"User avatar: Martin Kock\" /></a><a href=\"https://github.com/danielkokott\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;danielkokott.png\" width=\"60px\" alt=\"User avatar: Daniel Kokott\" /></a><a href=\"https://github.com/heijmans\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;heijmans.png\" width=\"60px\" alt=\"User avatar: Jan Heijmans\" /></a><a href=\"https://github.com/knowald\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;knowald.png\" width=\"60px\" alt=\"User avatar: Kevin Nowald\" /></a><a href=\"https://github.com/ethanjli\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;ethanjli.png\" width=\"60px\" alt=\"User avatar: Ethan Li\" /></a><a href=\"https://github.com/phubaba\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;phubaba.png\" width=\"60px\" alt=\"User avatar: Robert Forler\" /></a><a href=\"https://github.com/neunkasulle\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;neunkasulle.png\" width=\"60px\" alt=\"User avatar: Jan Zenkner\" /></a><a href=\"https://github.com/RVxLab\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;RVxLab.png\" width=\"60px\" alt=\"User avatar: \" /></a><a href=\"https://github.com/FrederickGeek8\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;FrederickGeek8.png\" width=\"60px\" alt=\"User avatar: Frederick Morlock\" /></a><a href=\"https://github.com/ezdac\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;ezdac.png\" width=\"60px\" alt=\"User avatar: Maximilian Langenfeld\" /></a><a href=\"https://github.com/amalavet\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;amalavet.png\" width=\"60px\" alt=\"User avatar: Alejandro\" /></a><a href=\"https://github.com/lppassos\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;lppassos.png\" width=\"60px\" alt=\"User avatar: \" /></a><a href=\"https://github.com/neilcode\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;neilcode.png\" width=\"60px\" alt=\"User avatar: Neil Lambert\" /></a><a href=\"https://github.com/dhh\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;dhh.png\" width=\"60px\" alt=\"User avatar: David Heinemeier Hansson\" /></a><a href=\"https://github.com/ethanfischer\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;ethanfischer.png\" width=\"60px\" alt=\"User avatar: Ethan Fischer\" /></a><a href=\"https://github.com/poshboytl\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;poshboytl.png\" width=\"60px\" alt=\"User avatar: Terry Tai\" /></a><a href=\"https://github.com/roesnera\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;roesnera.png\" width=\"60px\" alt=\"User avatar: Adam Roesner\" /></a><a href=\"https://github.com/seven1m\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;seven1m.png\" width=\"60px\" alt=\"User avatar: Tim Morgan\" /></a><a href=\"https://github.com/sgoridotla1\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;sgoridotla1.png\" width=\"60px\" alt=\"User avatar: Maksym Shypulniak\" /></a><a href=\"https://github.com/ADIX7\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;ADIX7.png\" width=\"60px\" alt=\"User avatar: Kovács Ádám\" /></a><a href=\"https://github.com/serranomorante\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;serranomorante.png\" width=\"60px\" alt=\"User avatar: Patricio Serrano\" /></a><a href=\"https://github.com/kiriDevs\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;kiriDevs.png\" width=\"60px\" alt=\"User avatar: Kiri\" /></a><a href=\"https://github.com/StevenMasini\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;StevenMasini.png\" width=\"60px\" alt=\"User avatar: Steven Masini\" /></a><a href=\"https://github.com/bjornevik\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;bjornevik.png\" width=\"60px\" alt=\"User avatar: John Even Bjørnevik\" /></a><a href=\"https://github.com/moberst\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;moberst.png\" width=\"60px\" alt=\"User avatar: Michael Oberst\" /></a><a href=\"https://github.com/adam-e-trepanier\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;adam-e-trepanier.png\" width=\"60px\" alt=\"User avatar: Adam Trepanier\" /></a><a href=\"https://github.com/arkalon76\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;arkalon76.png\" width=\"60px\" alt=\"User avatar: Kenth Fagerlund\" /></a><a href=\"https://github.com/Djuuu\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;Djuuu.png\" width=\"60px\" alt=\"User avatar: Julien Tardot\" /></a><a href=\"https://github.com/ellord\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;ellord.png\" width=\"60px\" alt=\"User avatar: Ellord Tayag\" /></a><a href=\"https://github.com/EdgarPost\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;EdgarPost.png\" width=\"60px\" alt=\"User avatar: Edgar Post-Buijs\" /></a><a href=\"https://github.com/caillou\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;caillou.png\" width=\"60px\" alt=\"User avatar: Pierre Spring\" /></a><a href=\"https://github.com/mebezac\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;mebezac.png\" width=\"60px\" alt=\"User avatar: Zac Clay\" /></a><a href=\"https://github.com/Tom94\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;Tom94.png\" width=\"60px\" alt=\"User avatar: Thomas Müller\" /></a><a href=\"https://github.com/carlassmann\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;carlassmann.png\" width=\"60px\" alt=\"User avatar: Carl Assmann\" /></a><a href=\"https://github.com/moodyhunter\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;moodyhunter.png\" width=\"60px\" alt=\"User avatar: Moody Liu\" /></a><a href=\"https://github.com/LasseBloch\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;LasseBloch.png\" width=\"60px\" alt=\"User avatar: Lasse Bloch Lauritsen\" /></a><a href=\"https://github.com/slavshik\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;slavshik.png\" width=\"60px\" alt=\"User avatar: Alexander Slavschik\" /></a><a href=\"https://github.com/aidalgol\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;aidalgol.png\" width=\"60px\" alt=\"User avatar: Aidan Gauland\" /></a><a href=\"https://github.com/mbienkowsk\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;mbienkowsk.png\" width=\"60px\" alt=\"User avatar: Maksym Bieńkowski\" /></a><a href=\"https://github.com/joshuawootonn\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;joshuawootonn.png\" width=\"60px\" alt=\"User avatar: Joshua Wootonn\" /></a><a href=\"https://github.com/I4nJ\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;I4nJ.png\" width=\"60px\" alt=\"User avatar: \" /></a><a href=\"https://github.com/sandviklee\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;sandviklee.png\" width=\"60px\" alt=\"User avatar: Simon Sandvik Lee\" /></a><a href=\"https://github.com/glagnar\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;glagnar.png\" width=\"60px\" alt=\"User avatar: Thomas Gilbert\" /></a><a href=\"https://github.com/skrzepto\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;skrzepto.png\" width=\"60px\" alt=\"User avatar: Szymon Mucha\" /></a><a href=\"https://github.com/unnawut\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;unnawut.png\" width=\"60px\" alt=\"User avatar: Unnawut Leepaisalsuwanna\" /></a><a href=\"https://github.com/wortmanb\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;wortmanb.png\" width=\"60px\" alt=\"User avatar: Bret Wortman\" /></a><a href=\"https://github.com/simoncdna\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;simoncdna.png\" width=\"60px\" alt=\"User avatar: Simon Cardona\" /></a><a href=\"https://github.com/andre-lameirinhas\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;andre-lameirinhas.png\" width=\"60px\" alt=\"User avatar: André Lameirinhas\" /></a><a href=\"https://github.com/SVappsLAB\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;SVappsLAB.png\" width=\"60px\" alt=\"User avatar: Scott Velez\" /></a><a href=\"https://github.com/ooojustin\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;ooojustin.png\" width=\"60px\" alt=\"User avatar: justin\" /></a><a href=\"https://github.com/mayfieldiv\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;mayfieldiv.png\" width=\"60px\" alt=\"User avatar: Mayfield\" /></a><a href=\"https://github.com/somaholiday\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;somaholiday.png\" width=\"60px\" alt=\"User avatar: Soma Holiday\" /></a><a href=\"https://github.com/drew-council\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;drew-council.png\" width=\"60px\" alt=\"User avatar: Drew Council\" /></a><a href=\"https://github.com/dessalines\"><img src=\"https:&#x2F;&#x2F;github.com&#x2F;dessalines.png\" width=\"60px\" alt=\"User avatar: Dessalines\" /></a><a href=\"https://github.com/asukaminato0721\"><img sr"
     },
     {
@@ -9222,7 +9222,7 @@
           "tagline": "คำสั่ง cat ที่มาพร้อม Syntax Highlighting และเชื่อมต่อกับ Git"
         }
       },
-      "stale": false,
+      "stale": true,
       "repo": {
         "stars": 60887,
         "forks": 4415,
@@ -12600,7 +12600,7 @@
           "tagline": "เครื่องมือแสดงข้อมูลระบบปฏิบัติการและฮาร์ดแวร์ที่ทำงานได้เร็วที่สุด"
         }
       },
-      "stale": false,
+      "stale": true,
       "repo": {
         "stars": 25093,
         "forks": 929,
