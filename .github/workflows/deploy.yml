@@ -1,0 +1,66 @@
+name: Build & Deploy Software Store
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  schedule:
+    # Run automatically every day at 00:00 UTC (07:00 AM Thailand time)
+    # You do NOT need to leave your computer on! GitHub runs this in the cloud.
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub web UI
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Catalog, Site & Styles
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run build
+
+      - name: Commit Updated Catalog Data (if changed)
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain data/catalog.json)" ]; then
+            git add data/catalog.json
+            git commit -m "chore: auto-update catalog releases & download stats [skip ci]"
+            git push
+          else
+            echo "No catalog updates to commit."
+          fi
+
+      - name: Upload GitHub Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

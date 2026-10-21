@@ -106,17 +106,6 @@ function renderHeader(rootPath = "./") {
           <span class="hidden sm:inline text-xs font-mono" x-text="$store.app.theme === 'dark' ? 'Light' : 'Dark'">Light</span>
         </button>
 
-        <!-- Submit App Button -->
-        <a href="https://github.com" target="_blank" rel="noopener noreferrer"
-           class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-white text-xs font-semibold shadow-xs transition cursor-pointer"
-           title="Submit App to Store">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="12" y1="5" x2="12" y2="19"></line>
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-          </svg>
-          <span class="hidden sm:inline" x-text="$store.app.t('nav.submit', 'Submit')">Submit</span>
-        </a>
-
       </div>
     </div>
   </header>`;
