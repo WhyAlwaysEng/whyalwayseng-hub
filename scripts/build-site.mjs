@@ -35,7 +35,7 @@ function escapeHtml(str) {
     .replace(/'/g, "&#039;");
 }
 
-function renderHeader(rootPath = "./") {
+function renderHeader(rootPath = "./", storeName = "WhyAlwaysEng Hub") {
   return `
   <!-- Minimalist Navbar (Linear / Vercel style) -->
   <header class="sticky top-0 z-30 w-full border-b border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/80 dark:bg-zinc-950/80 backdrop-blur-md transition-colors">
@@ -47,7 +47,7 @@ function renderHeader(rootPath = "./") {
           ⬡
         </div>
         <span class="font-bold text-sm tracking-tight text-zinc-900 dark:text-zinc-100">
-          Software Hub
+          ${escapeHtml(storeName)}
         </span>
       </a>
 
@@ -111,13 +111,13 @@ function renderHeader(rootPath = "./") {
   </header>`;
 }
 
-function renderFooter() {
+function renderFooter(storeName = "WhyAlwaysEng Hub") {
   return `
   <!-- Minimalist Footer -->
   <footer class="border-t border-zinc-200/80 dark:border-zinc-800/80 py-10 mt-20 text-xs text-zinc-500">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div class="flex items-center gap-2">
-        <span class="font-semibold text-zinc-800 dark:text-zinc-200">GitHub Software Store Hub</span>
+        <span class="font-semibold text-zinc-800 dark:text-zinc-200">${escapeHtml(storeName)}</span>
         <span>•</span>
         <span>Zero-Backend</span>
       </div>

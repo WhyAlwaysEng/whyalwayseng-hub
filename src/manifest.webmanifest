@@ -1,7 +1,7 @@
 {
-  "name": "GitHub Software Store Hub",
-  "short_name": "Software Store",
-  "description": "Zero-backend software distribution store powered by GitHub Releases",
+  "name": "WhyAlwaysEng Hub",
+  "short_name": "WhyAlwaysEng",
+  "description": "Official software distribution and developer tools by WhyAlwaysEng",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#0f172a",

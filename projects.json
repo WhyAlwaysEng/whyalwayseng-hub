@@ -1,8 +1,8 @@
 {
   "$schema": "./schema/projects.schema.json",
   "store": {
-    "name": "Software Store Hub",
-    "description": "Personal software distribution hub powered by GitHub Releases",
+    "name": "WhyAlwaysEng Hub",
+    "description": "Official software distribution and developer tools by WhyAlwaysEng",
     "defaultLanguage": "en",
     "includePrereleaseByDefault": false
   },
