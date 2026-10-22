@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-22T00:23:12.381Z",
+  "generatedAt": "2026-10-22T00:32:08.994Z",
   "store": {
     "name": "WhyAlwaysEng Hub",
     "description": "Official software distribution and developer tools by WhyAlwaysEng",
@@ -54,7 +54,7 @@
       },
       "stale": false,
       "repo": {
-        "stars": 46725,
+        "stars": 46726,
         "forks": 9203,
         "openIssues": 1091,
         "license": "MIT",
@@ -92,7 +92,7 @@
             "name": "gh_2.103.0_linux_386.tar.gz",
             "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_linux_386.tar.gz",
             "size": 14088604,
-            "downloads": 202,
+            "downloads": 209,
             "os": "linux",
             "arch": null,
             "sha256": "34f644a186d7c39a6662442c95af21c493a0574b838889e945bb67baf2e90eaf"
@@ -101,7 +101,7 @@
             "name": "gh_2.103.0_linux_amd64.deb",
             "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_linux_amd64.deb",
             "size": 15103762,
-            "downloads": 5906,
+            "downloads": 6003,
             "os": "linux",
             "arch": "x64",
             "sha256": "4a48fa23b9ce9581f3304b822f3e014812f26519b134f89b37db8bc7d74746e1"
@@ -110,7 +110,7 @@
             "name": "gh_2.103.0_linux_amd64.rpm",
             "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_linux_amd64.rpm",
             "size": 15652956,
-            "downloads": 88,
+            "downloads": 90,
             "os": "linux",
             "arch": "x64",
             "sha256": "0c8f0608c5859a8ca3cc58df1e852e1e55fead1dedb662b7c635769853adafc2"
@@ -119,7 +119,7 @@
             "name": "gh_2.103.0_linux_amd64.tar.gz",
             "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_linux_amd64.tar.gz",
             "size": 15030338,
-            "downloads": 12791,
+            "downloads": 13017,
             "os": "linux",
             "arch": "x64",
             "sha256": "fdd768eb70f6409f80fcfa9f3a1c0adf0fc98d827ab3ce0bed2ac22762c5d786"
@@ -128,7 +128,7 @@
             "name": "gh_2.103.0_linux_arm64.deb",
             "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_linux_arm64.deb",
             "size": 13721044,
-            "downloads": 777,
+            "downloads": 787,
             "os": "linux",
             "arch": "arm64",
             "sha256": "5e218097cf3e02c4855a07fd4f5719b1523fa799f24eeb70d6b795a9a74fffe2"
@@ -146,7 +146,7 @@
             "name": "gh_2.103.0_linux_arm64.tar.gz",
             "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_linux_arm64.tar.gz",
             "size": 13658228,
-            "downloads": 2316,
+            "downloads": 2347,
             "os": "linux",
             "arch": "arm64",
             "sha256": "7f322df34e624d14f5ec0c4acb121fd6dfa14392fdbbd1066aa8e0a05ac3721e"
@@ -182,7 +182,7 @@
             "name": "gh_2.103.0_macOS_amd64.zip",
             "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_macOS_amd64.zip",
             "size": 15698812,
-            "downloads": 767,
+            "downloads": 778,
             "os": "macos",
             "arch": "x64",
             "sha256": "64d1734941f104f996271c820daa50e96902c2618f9b4c1e63c41519517a9c6b"
@@ -191,7 +191,7 @@
             "name": "gh_2.103.0_macOS_arm64.zip",
             "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_macOS_arm64.zip",
             "size": 14105033,
-            "downloads": 2846,
+            "downloads": 2879,
             "os": "macos",
             "arch": "arm64",
             "sha256": "54be566e9f614bea5de8021e95b9ad33dfee3b9d2ea120c9c294c00defaa5014"
@@ -200,7 +200,7 @@
             "name": "gh_2.103.0_macOS_universal.pkg",
             "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_macOS_universal.pkg",
             "size": 28878915,
-            "downloads": 492,
+            "downloads": 500,
             "os": "macos",
             "arch": null,
             "sha256": "fe22860b1b1c3b0c01885bd07a80f3370661c614bdf9440512649ca859143f15"
@@ -209,7 +209,7 @@
             "name": "gh_2.103.0_windows_386.msi",
             "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_windows_386.msi",
             "size": 14831616,
-            "downloads": 255,
+            "downloads": 258,
             "os": "windows",
             "arch": null,
             "sha256": "77ea212a06350c9b10eaf6a64631a3f21927ba015f41c53b749af72fff7cc884"
@@ -227,7 +227,7 @@
             "name": "gh_2.103.0_windows_amd64.msi",
             "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_windows_amd64.msi",
             "size": 15446016,
-            "downloads": 9461,
+            "downloads": 9866,
             "os": "windows",
             "arch": "x64",
             "sha256": "58a5e6620407f5a74f9c0e4a7db21aef2f18c655b5304bf78d2d9f0fefc7a877"
@@ -236,7 +236,7 @@
             "name": "gh_2.103.0_windows_amd64.zip",
             "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_windows_amd64.zip",
             "size": 15194618,
-            "downloads": 5349,
+            "downloads": 5439,
             "os": "windows",
             "arch": "x64",
             "sha256": "80c846a5b8432672ca6373b34ce9de998c9686aaa1885c845f2e1ee81f713726"
@@ -245,7 +245,7 @@
             "name": "gh_2.103.0_windows_arm64.msi",
             "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_windows_arm64.msi",
             "size": 13836288,
-            "downloads": 898,
+            "downloads": 929,
             "os": "windows",
             "arch": "arm64",
             "sha256": "d6b25481791926e0e5a83f142c73b7de1e161a9b7ab7d08b6132ad97c0d71e1d"
@@ -291,7 +291,7 @@
               "name": "gh_2.103.0_linux_386.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_linux_386.tar.gz",
               "size": 14088604,
-              "downloads": 202,
+              "downloads": 209,
               "os": "linux",
               "arch": null,
               "sha256": "34f644a186d7c39a6662442c95af21c493a0574b838889e945bb67baf2e90eaf"
@@ -300,7 +300,7 @@
               "name": "gh_2.103.0_linux_amd64.deb",
               "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_linux_amd64.deb",
               "size": 15103762,
-              "downloads": 5906,
+              "downloads": 6003,
               "os": "linux",
               "arch": "x64",
               "sha256": "4a48fa23b9ce9581f3304b822f3e014812f26519b134f89b37db8bc7d74746e1"
@@ -309,7 +309,7 @@
               "name": "gh_2.103.0_linux_amd64.rpm",
               "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_linux_amd64.rpm",
               "size": 15652956,
-              "downloads": 88,
+              "downloads": 90,
               "os": "linux",
               "arch": "x64",
               "sha256": "0c8f0608c5859a8ca3cc58df1e852e1e55fead1dedb662b7c635769853adafc2"
@@ -318,7 +318,7 @@
               "name": "gh_2.103.0_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_linux_amd64.tar.gz",
               "size": 15030338,
-              "downloads": 12791,
+              "downloads": 13017,
               "os": "linux",
               "arch": "x64",
               "sha256": "fdd768eb70f6409f80fcfa9f3a1c0adf0fc98d827ab3ce0bed2ac22762c5d786"
@@ -327,7 +327,7 @@
               "name": "gh_2.103.0_linux_arm64.deb",
               "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_linux_arm64.deb",
               "size": 13721044,
-              "downloads": 777,
+              "downloads": 787,
               "os": "linux",
               "arch": "arm64",
               "sha256": "5e218097cf3e02c4855a07fd4f5719b1523fa799f24eeb70d6b795a9a74fffe2"
@@ -345,7 +345,7 @@
               "name": "gh_2.103.0_linux_arm64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_linux_arm64.tar.gz",
               "size": 13658228,
-              "downloads": 2316,
+              "downloads": 2347,
               "os": "linux",
               "arch": "arm64",
               "sha256": "7f322df34e624d14f5ec0c4acb121fd6dfa14392fdbbd1066aa8e0a05ac3721e"
@@ -381,7 +381,7 @@
               "name": "gh_2.103.0_macOS_amd64.zip",
               "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_macOS_amd64.zip",
               "size": 15698812,
-              "downloads": 767,
+              "downloads": 778,
               "os": "macos",
               "arch": "x64",
               "sha256": "64d1734941f104f996271c820daa50e96902c2618f9b4c1e63c41519517a9c6b"
@@ -390,7 +390,7 @@
               "name": "gh_2.103.0_macOS_arm64.zip",
               "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_macOS_arm64.zip",
               "size": 14105033,
-              "downloads": 2846,
+              "downloads": 2879,
               "os": "macos",
               "arch": "arm64",
               "sha256": "54be566e9f614bea5de8021e95b9ad33dfee3b9d2ea120c9c294c00defaa5014"
@@ -399,7 +399,7 @@
               "name": "gh_2.103.0_macOS_universal.pkg",
               "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_macOS_universal.pkg",
               "size": 28878915,
-              "downloads": 492,
+              "downloads": 500,
               "os": "macos",
               "arch": null,
               "sha256": "fe22860b1b1c3b0c01885bd07a80f3370661c614bdf9440512649ca859143f15"
@@ -408,7 +408,7 @@
               "name": "gh_2.103.0_windows_386.msi",
               "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_windows_386.msi",
               "size": 14831616,
-              "downloads": 255,
+              "downloads": 258,
               "os": "windows",
               "arch": null,
               "sha256": "77ea212a06350c9b10eaf6a64631a3f21927ba015f41c53b749af72fff7cc884"
@@ -426,7 +426,7 @@
               "name": "gh_2.103.0_windows_amd64.msi",
               "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_windows_amd64.msi",
               "size": 15446016,
-              "downloads": 9461,
+              "downloads": 9866,
               "os": "windows",
               "arch": "x64",
               "sha256": "58a5e6620407f5a74f9c0e4a7db21aef2f18c655b5304bf78d2d9f0fefc7a877"
@@ -435,7 +435,7 @@
               "name": "gh_2.103.0_windows_amd64.zip",
               "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_windows_amd64.zip",
               "size": 15194618,
-              "downloads": 5349,
+              "downloads": 5439,
               "os": "windows",
               "arch": "x64",
               "sha256": "80c846a5b8432672ca6373b34ce9de998c9686aaa1885c845f2e1ee81f713726"
@@ -444,7 +444,7 @@
               "name": "gh_2.103.0_windows_arm64.msi",
               "url": "https://github.com/cli/cli/releases/download/v2.103.0/gh_2.103.0_windows_arm64.msi",
               "size": 13836288,
-              "downloads": 898,
+              "downloads": 929,
               "os": "windows",
               "arch": "arm64",
               "sha256": "d6b25481791926e0e5a83f142c73b7de1e161a9b7ab7d08b6132ad97c0d71e1d"
@@ -498,7 +498,7 @@
               "name": "gh_2.102.1_linux_amd64.deb",
               "url": "https://github.com/cli/cli/releases/download/v2.102.1/gh_2.102.1_linux_amd64.deb",
               "size": 15396970,
-              "downloads": 12259,
+              "downloads": 12260,
               "os": "linux",
               "arch": "x64",
               "sha256": "5b91c75d971509e96f673fa9f46e5d8ea294b6bbfedbc8ff458aedd88775d94c"
@@ -516,7 +516,7 @@
               "name": "gh_2.102.1_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.102.1/gh_2.102.1_linux_amd64.tar.gz",
               "size": 15327429,
-              "downloads": 34985,
+              "downloads": 35075,
               "os": "linux",
               "arch": "x64",
               "sha256": "77b9e297e94c50336823d0f84de7ef1be60cba704601fa0d98f129f47a94987b"
@@ -543,7 +543,7 @@
               "name": "gh_2.102.1_linux_arm64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.102.1/gh_2.102.1_linux_arm64.tar.gz",
               "size": 13922552,
-              "downloads": 6891,
+              "downloads": 6918,
               "os": "linux",
               "arch": "arm64",
               "sha256": "5019b3cc6e8a03bb4d88600f8dbda2add8e6407705c159b0c63151036e77a1af"
@@ -579,7 +579,7 @@
               "name": "gh_2.102.1_macOS_amd64.zip",
               "url": "https://github.com/cli/cli/releases/download/v2.102.1/gh_2.102.1_macOS_amd64.zip",
               "size": 16008903,
-              "downloads": 1914,
+              "downloads": 1919,
               "os": "macos",
               "arch": "x64",
               "sha256": "91c5fbd493274b545b03ef32a89c2a21238393c0c0b1108210967199b3230d9d"
@@ -588,7 +588,7 @@
               "name": "gh_2.102.1_macOS_arm64.zip",
               "url": "https://github.com/cli/cli/releases/download/v2.102.1/gh_2.102.1_macOS_arm64.zip",
               "size": 14367802,
-              "downloads": 7520,
+              "downloads": 7538,
               "os": "macos",
               "arch": "arm64",
               "sha256": "08bfef98b50c553df122bb34ee8dcf415cae7d3b108891488964a0df07aa2aeb"
@@ -687,7 +687,7 @@
               "name": "gh_2.102.0_linux_386.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.102.0/gh_2.102.0_linux_386.tar.gz",
               "size": 14356793,
-              "downloads": 55078,
+              "downloads": 55110,
               "os": "linux",
               "arch": null,
               "sha256": "307972902a54bf5e05e3cdc80a6ac0d30c2dd7c817ba5249a4ecccf9f11754f7"
@@ -696,7 +696,7 @@
               "name": "gh_2.102.0_linux_amd64.deb",
               "url": "https://github.com/cli/cli/releases/download/v2.102.0/gh_2.102.0_linux_amd64.deb",
               "size": 15392446,
-              "downloads": 255675,
+              "downloads": 255691,
               "os": "linux",
               "arch": "x64",
               "sha256": "7e54a307f90afdc59796c325ec0c49fb09e6c18537727207a8ac7513584ea5b0"
@@ -705,7 +705,7 @@
               "name": "gh_2.102.0_linux_amd64.rpm",
               "url": "https://github.com/cli/cli/releases/download/v2.102.0/gh_2.102.0_linux_amd64.rpm",
               "size": 15967030,
-              "downloads": 5011,
+              "downloads": 5012,
               "os": "linux",
               "arch": "x64",
               "sha256": "eba164e2b9be93d210690010436ff4fb7834221dd902b4fbac37a61d0124520e"
@@ -714,7 +714,7 @@
               "name": "gh_2.102.0_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.102.0/gh_2.102.0_linux_amd64.tar.gz",
               "size": 15319960,
-              "downloads": 887769,
+              "downloads": 888018,
               "os": "linux",
               "arch": "x64",
               "sha256": "bb766f710eef8ede859c18578c72c327597cd4c8a85b06001b1f3843c6019386"
@@ -741,7 +741,7 @@
               "name": "gh_2.102.0_linux_arm64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.102.0/gh_2.102.0_linux_arm64.tar.gz",
               "size": 13917794,
-              "downloads": 219001,
+              "downloads": 219105,
               "os": "linux",
               "arch": "arm64",
               "sha256": "7862c86c72f43df3a2d93ddde6f473285b4e2af61b494849846827e513ef6484"
@@ -786,7 +786,7 @@
               "name": "gh_2.102.0_macOS_arm64.zip",
               "url": "https://github.com/cli/cli/releases/download/v2.102.0/gh_2.102.0_macOS_arm64.zip",
               "size": 14359983,
-              "downloads": 312814,
+              "downloads": 312897,
               "os": "macos",
               "arch": "arm64",
               "sha256": "da922c20d1792e5b2cbf375593d7a658acf034c12c84e007e71c76ef959c337e"
@@ -831,7 +831,7 @@
               "name": "gh_2.102.0_windows_amd64.zip",
               "url": "https://github.com/cli/cli/releases/download/v2.102.0/gh_2.102.0_windows_amd64.zip",
               "size": 15512013,
-              "downloads": 222106,
+              "downloads": 222117,
               "os": "windows",
               "arch": "x64",
               "sha256": "ae64e556ecc240b200f7eba60d550e4bb60d78e860e69dd88c449405b86067f4"
@@ -894,7 +894,7 @@
               "name": "gh_2.101.0_linux_amd64.deb",
               "url": "https://github.com/cli/cli/releases/download/v2.101.0/gh_2.101.0_linux_amd64.deb",
               "size": 15352870,
-              "downloads": 190158,
+              "downloads": 190167,
               "os": "linux",
               "arch": "x64",
               "sha256": "f876a3b87bf67c94f773d17becca4dc7340b056dab901473a9260ee2a73e237b"
@@ -903,7 +903,7 @@
               "name": "gh_2.101.0_linux_amd64.rpm",
               "url": "https://github.com/cli/cli/releases/download/v2.101.0/gh_2.101.0_linux_amd64.rpm",
               "size": 15920854,
-              "downloads": 5489,
+              "downloads": 5504,
               "os": "linux",
               "arch": "x64",
               "sha256": "72ef6dcd0ee459645cda485f2e55f18eca7b9252fce85a3be4c2446ae7627f36"
@@ -912,7 +912,7 @@
               "name": "gh_2.101.0_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.101.0/gh_2.101.0_linux_amd64.tar.gz",
               "size": 15282175,
-              "downloads": 896827,
+              "downloads": 896957,
               "os": "linux",
               "arch": "x64",
               "sha256": "9bca2d1c16825f109907a23307628a2f0698fbf99662b73a5cf0b020293072b8"
@@ -939,7 +939,7 @@
               "name": "gh_2.101.0_linux_arm64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.101.0/gh_2.101.0_linux_arm64.tar.gz",
               "size": 13885041,
-              "downloads": 199717,
+              "downloads": 199745,
               "os": "linux",
               "arch": "arm64",
               "sha256": "b57e8063f18862647c9d22727c32e9da1b963f8bf9db648fe123a6975695640f"
@@ -984,7 +984,7 @@
               "name": "gh_2.101.0_macOS_arm64.zip",
               "url": "https://github.com/cli/cli/releases/download/v2.101.0/gh_2.101.0_macOS_arm64.zip",
               "size": 14328800,
-              "downloads": 214046,
+              "downloads": 214075,
               "os": "macos",
               "arch": "arm64",
               "sha256": "e4303e39d8f07141c4bad4b99b01079f05029c59b27076e8fbc825c985ecdd8b"
@@ -1020,7 +1020,7 @@
               "name": "gh_2.101.0_windows_amd64.msi",
               "url": "https://github.com/cli/cli/releases/download/v2.101.0/gh_2.101.0_windows_amd64.msi",
               "size": 15716352,
-              "downloads": 366531,
+              "downloads": 366533,
               "os": "windows",
               "arch": "x64",
               "sha256": "9ba92256a431d254706844ee1991f6f4a9559a3c3646ff7ae7fe23724bfaef83"
@@ -1110,7 +1110,7 @@
               "name": "gh_2.100.0_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.100.0/gh_2.100.0_linux_amd64.tar.gz",
               "size": 15152253,
-              "downloads": 925457,
+              "downloads": 925549,
               "os": "linux",
               "arch": "x64",
               "sha256": "e4d4bb4498e8d007abe545b6568926793ace1b6447da598294a610018cb164be"
@@ -1137,7 +1137,7 @@
               "name": "gh_2.100.0_linux_arm64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.100.0/gh_2.100.0_linux_arm64.tar.gz",
               "size": 13783869,
-              "downloads": 149737,
+              "downloads": 149761,
               "os": "linux",
               "arch": "arm64",
               "sha256": "ea4e7a581a32ccad6cc7923cb1576ac5859ba4b9a16ab22eb8f8a96e78e2e961"
@@ -1173,7 +1173,7 @@
               "name": "gh_2.100.0_macOS_amd64.zip",
               "url": "https://github.com/cli/cli/releases/download/v2.100.0/gh_2.100.0_macOS_amd64.zip",
               "size": 15818005,
-              "downloads": 33110,
+              "downloads": 33112,
               "os": "macos",
               "arch": "x64",
               "sha256": "fcd7799e85eb575f3c7d2b1679bfbfedaefa1269d4bc7d096b51e10939b4812b"
@@ -1182,7 +1182,7 @@
               "name": "gh_2.100.0_macOS_arm64.zip",
               "url": "https://github.com/cli/cli/releases/download/v2.100.0/gh_2.100.0_macOS_arm64.zip",
               "size": 14212224,
-              "downloads": 129937,
+              "downloads": 129946,
               "os": "macos",
               "arch": "arm64",
               "sha256": "45f9a62da2f6e641a7fad57e2ce39656dfd7ef331372d80a2a2aed65abb01642"
@@ -1299,7 +1299,7 @@
               "name": "gh_2.99.0_linux_amd64.rpm",
               "url": "https://github.com/cli/cli/releases/download/v2.99.0/gh_2.99.0_linux_amd64.rpm",
               "size": 15562471,
-              "downloads": 2163,
+              "downloads": 2164,
               "os": "linux",
               "arch": "x64",
               "sha256": "ebb00a0d501730ca6f6487f7c2dfc43c9694dabd2b44fff39032cd68f8378066"
@@ -1308,7 +1308,7 @@
               "name": "gh_2.99.0_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.99.0/gh_2.99.0_linux_amd64.tar.gz",
               "size": 14930607,
-              "downloads": 203837,
+              "downloads": 203857,
               "os": "linux",
               "arch": "x64",
               "sha256": "ed4960225d2833e04a61590d9fa2b5773d147f3aa375459e5466a40c102f3832"
@@ -1380,7 +1380,7 @@
               "name": "gh_2.99.0_macOS_arm64.zip",
               "url": "https://github.com/cli/cli/releases/download/v2.99.0/gh_2.99.0_macOS_arm64.zip",
               "size": 14001348,
-              "downloads": 23049,
+              "downloads": 23051,
               "os": "macos",
               "arch": "arm64",
               "sha256": "94d4bd7e88563a9cb414e651e88acc4f1728a87476752460906d824230748d37"
@@ -1488,7 +1488,7 @@
               "name": "gh_2.98.0_linux_amd64.deb",
               "url": "https://github.com/cli/cli/releases/download/v2.98.0/gh_2.98.0_linux_amd64.deb",
               "size": 14935072,
-              "downloads": 141729,
+              "downloads": 141730,
               "os": "linux",
               "arch": "x64",
               "sha256": "f65a3fa2fa0eb2e97c445ee3f5e087a40aae03b64847f45a8f13805e504535d6"
@@ -1506,7 +1506,7 @@
               "name": "gh_2.98.0_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.98.0/gh_2.98.0_linux_amd64.tar.gz",
               "size": 14863663,
-              "downloads": 775367,
+              "downloads": 775410,
               "os": "linux",
               "arch": "x64",
               "sha256": "3b8ac6b30336802fc1a858d7c084e11cdf24ac1a761ca90b68022d7d729208de"
@@ -1533,7 +1533,7 @@
               "name": "gh_2.98.0_linux_arm64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.98.0/gh_2.98.0_linux_arm64.tar.gz",
               "size": 13523338,
-              "downloads": 102417,
+              "downloads": 102419,
               "os": "linux",
               "arch": "arm64",
               "sha256": "cf689084f3a3618f7eae4a2420d335d74626d65f5e594b9828d125d69f800d86"
@@ -1578,7 +1578,7 @@
               "name": "gh_2.98.0_macOS_arm64.zip",
               "url": "https://github.com/cli/cli/releases/download/v2.98.0/gh_2.98.0_macOS_arm64.zip",
               "size": 13938611,
-              "downloads": 89610,
+              "downloads": 89612,
               "os": "macos",
               "arch": "arm64",
               "sha256": "8cfb027cc5310675f2b830eac8f9865c1155a45ffcf9757f699fdd5a22046ca4"
@@ -1614,7 +1614,7 @@
               "name": "gh_2.98.0_windows_amd64.msi",
               "url": "https://github.com/cli/cli/releases/download/v2.98.0/gh_2.98.0_windows_amd64.msi",
               "size": 15286272,
-              "downloads": 304432,
+              "downloads": 304433,
               "os": "windows",
               "arch": "x64",
               "sha256": "1793a0dd0064b3f03fe8ceb16b18da751d60e0c7efcfe7bbb4715fca3b675392"
@@ -1686,7 +1686,7 @@
               "name": "gh_2.97.0_linux_amd64.deb",
               "url": "https://github.com/cli/cli/releases/download/v2.97.0/gh_2.97.0_linux_amd64.deb",
               "size": 14841130,
-              "downloads": 273302,
+              "downloads": 273307,
               "os": "linux",
               "arch": "x64",
               "sha256": "7c7fa3bb890db0934baf65910d97b8c0fa437b2e590f7f7daf6bdf82c5c486d7"
@@ -1695,7 +1695,7 @@
               "name": "gh_2.97.0_linux_amd64.rpm",
               "url": "https://github.com/cli/cli/releases/download/v2.97.0/gh_2.97.0_linux_amd64.rpm",
               "size": 15424894,
-              "downloads": 28606,
+              "downloads": 28609,
               "os": "linux",
               "arch": "x64",
               "sha256": "d5e8706ba3f2caa752c766651c6c1f0a332042a4db5ce8809bcc1391adc94d07"
@@ -1704,7 +1704,7 @@
               "name": "gh_2.97.0_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.97.0/gh_2.97.0_linux_amd64.tar.gz",
               "size": 14770812,
-              "downloads": 1037279,
+              "downloads": 1037343,
               "os": "linux",
               "arch": "x64",
               "sha256": "a2c9b8497e1f85b1ad0dfcb78b5a622e098801b8e461e459e88e1ee12f018112"
@@ -1731,7 +1731,7 @@
               "name": "gh_2.97.0_linux_arm64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.97.0/gh_2.97.0_linux_arm64.tar.gz",
               "size": 13428558,
-              "downloads": 158835,
+              "downloads": 158841,
               "os": "linux",
               "arch": "arm64",
               "sha256": "73ea440ecad9c9e284429997ee6f93577bc6f7bc6fba357ef62c53ad8fb641a5"
@@ -1767,7 +1767,7 @@
               "name": "gh_2.97.0_macOS_amd64.zip",
               "url": "https://github.com/cli/cli/releases/download/v2.97.0/gh_2.97.0_macOS_amd64.zip",
               "size": 15418698,
-              "downloads": 29632,
+              "downloads": 29634,
               "os": "macos",
               "arch": "x64",
               "sha256": "63298c998cc2a924c9e254c6af6a1caad6ece281122687a91f079bc0a462700e"
@@ -1821,7 +1821,7 @@
               "name": "gh_2.97.0_windows_amd64.zip",
               "url": "https://github.com/cli/cli/releases/download/v2.97.0/gh_2.97.0_windows_amd64.zip",
               "size": 14938517,
-              "downloads": 166203,
+              "downloads": 166204,
               "os": "windows",
               "arch": "x64",
               "sha256": "35d7fe05c4dd1411ffda1e73dfc7c6f44b75c936ca51fa6595c657fdc0350cec"
@@ -1902,7 +1902,7 @@
               "name": "gh_2.96.0_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.96.0/gh_2.96.0_linux_amd64.tar.gz",
               "size": 14652560,
-              "downloads": 1774449,
+              "downloads": 1774573,
               "os": "linux",
               "arch": "x64",
               "sha256": "83d5c2ccad5498f58bf6368acb1ab32588cf43ab3a4b1c301bf36328b1c8bd60"
@@ -1929,7 +1929,7 @@
               "name": "gh_2.96.0_linux_arm64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.96.0/gh_2.96.0_linux_arm64.tar.gz",
               "size": 13321232,
-              "downloads": 280565,
+              "downloads": 280581,
               "os": "linux",
               "arch": "arm64",
               "sha256": "06f86ec7103d41993b76cd78072f43595c34aaa56506d971d9860e67140bf909"
@@ -2100,7 +2100,7 @@
               "name": "gh_2.95.0_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.95.0/gh_2.95.0_linux_amd64.tar.gz",
               "size": 14642738,
-              "downloads": 637500,
+              "downloads": 637522,
               "os": "linux",
               "arch": "x64",
               "sha256": "25d1e4729e8808c9ed3d613e96ebd3f3e44446f2d368c89d878a71a36ddb3d8c"
@@ -2127,7 +2127,7 @@
               "name": "gh_2.95.0_linux_arm64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.95.0/gh_2.95.0_linux_arm64.tar.gz",
               "size": 13315600,
-              "downloads": 96162,
+              "downloads": 96164,
               "os": "linux",
               "arch": "arm64",
               "sha256": "d41e0b3b6218e5741c8bb4db39b16e53a59e0e06299a8489bd38f623ef7ebaae"
@@ -2217,7 +2217,7 @@
               "name": "gh_2.95.0_windows_amd64.zip",
               "url": "https://github.com/cli/cli/releases/download/v2.95.0/gh_2.95.0_windows_amd64.zip",
               "size": 14814893,
-              "downloads": 107547,
+              "downloads": 107556,
               "os": "windows",
               "arch": "x64",
               "sha256": "19a7154161ada9cfaa9e57edb752ecc679b75c391a62e4f7b586eea1df30b5bb"
@@ -2478,7 +2478,7 @@
               "name": "gh_2.93.0_linux_amd64.deb",
               "url": "https://github.com/cli/cli/releases/download/v2.93.0/gh_2.93.0_linux_amd64.deb",
               "size": 14407622,
-              "downloads": 190110,
+              "downloads": 190113,
               "os": "linux",
               "arch": "x64",
               "sha256": "5371f77155e5dd81b6e897c379431f734949b99b99ae1f01c5e3ab6d3795cf4d"
@@ -2487,7 +2487,7 @@
               "name": "gh_2.93.0_linux_amd64.rpm",
               "url": "https://github.com/cli/cli/releases/download/v2.93.0/gh_2.93.0_linux_amd64.rpm",
               "size": 14959127,
-              "downloads": 9822,
+              "downloads": 9824,
               "os": "linux",
               "arch": "x64",
               "sha256": "653321dc80ae8c6b70b35213c43f67050f787d08b9ca06e3dc1a33b88d2cf60b"
@@ -2496,7 +2496,7 @@
               "name": "gh_2.93.0_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.93.0/gh_2.93.0_linux_amd64.tar.gz",
               "size": 14332871,
-              "downloads": 951841,
+              "downloads": 951877,
               "os": "linux",
               "arch": "x64",
               "sha256": "02d1290eba130e0b896f3709ffff22e1c75a51475ddb70476a85abc6b5807af0"
@@ -2604,7 +2604,7 @@
               "name": "gh_2.93.0_windows_amd64.msi",
               "url": "https://github.com/cli/cli/releases/download/v2.93.0/gh_2.93.0_windows_amd64.msi",
               "size": 14757888,
-              "downloads": 334441,
+              "downloads": 334442,
               "os": "windows",
               "arch": "x64",
               "sha256": "f6d13d271083201acb02ea728c4522e72d8f67caaf053a7d97508eba0c474993"
@@ -2613,7 +2613,7 @@
               "name": "gh_2.93.0_windows_amd64.zip",
               "url": "https://github.com/cli/cli/releases/download/v2.93.0/gh_2.93.0_windows_amd64.zip",
               "size": 14507687,
-              "downloads": 70947,
+              "downloads": 70948,
               "os": "windows",
               "arch": "x64",
               "sha256": "77aa01ed7317295ad550de0ad04f3f276b1ef0e9272e3d002ac28dd99853d211"
@@ -2694,7 +2694,7 @@
               "name": "gh_2.92.0_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.92.0/gh_2.92.0_linux_amd64.tar.gz",
               "size": 14296784,
-              "downloads": 1764593,
+              "downloads": 1764640,
               "os": "linux",
               "arch": "x64",
               "sha256": "b57848131bdf0c229cd35e1f2a51aa718199858b2e728410b37e89a428943ec4"
@@ -2721,7 +2721,7 @@
               "name": "gh_2.92.0_linux_arm64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.92.0/gh_2.92.0_linux_arm64.tar.gz",
               "size": 13002970,
-              "downloads": 186111,
+              "downloads": 186120,
               "os": "linux",
               "arch": "arm64",
               "sha256": "c2248526dd0160c08d3fccca2332c3c1a07c15a78b23978e77735f1b5a18cfee"
@@ -2766,7 +2766,7 @@
               "name": "gh_2.92.0_macOS_arm64.zip",
               "url": "https://github.com/cli/cli/releases/download/v2.92.0/gh_2.92.0_macOS_arm64.zip",
               "size": 13614671,
-              "downloads": 88883,
+              "downloads": 88886,
               "os": "macos",
               "arch": "arm64",
               "sha256": "b11c54f6bd7d15ed6590475079e5b2fcf36f45d3991a80041b29c9d0cc1f1d07"
@@ -2892,7 +2892,7 @@
               "name": "gh_2.91.0_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.91.0/gh_2.91.0_linux_amd64.tar.gz",
               "size": 14287621,
-              "downloads": 274087,
+              "downloads": 274096,
               "os": "linux",
               "arch": "x64",
               "sha256": "304a0d2460f4a8847d2f192bad4e2a32cd9420d28716e7ae32198181b65b5f9c"
@@ -3090,7 +3090,7 @@
               "name": "gh_2.90.0_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.90.0/gh_2.90.0_linux_amd64.tar.gz",
               "size": 14226921,
-              "downloads": 228364,
+              "downloads": 228368,
               "os": "linux",
               "arch": "x64",
               "sha256": "b2aef7b23ec6899bf27f37a32c57a7935d0a178568ac33dc9bb03842f724195a"
@@ -3099,7 +3099,7 @@
               "name": "gh_2.90.0_linux_arm64.deb",
               "url": "https://github.com/cli/cli/releases/download/v2.90.0/gh_2.90.0_linux_arm64.deb",
               "size": 13003872,
-              "downloads": 8650,
+              "downloads": 8651,
               "os": "linux",
               "arch": "arm64",
               "sha256": "b6ca0f9c942d56ae96fd8219b2d067f76b478d3b46f07e060762e681482f2658"
@@ -3288,7 +3288,7 @@
               "name": "gh_2.89.0_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.89.0/gh_2.89.0_linux_amd64.tar.gz",
               "size": 14279890,
-              "downloads": 1018195,
+              "downloads": 1018243,
               "os": "linux",
               "arch": "x64",
               "sha256": "d0422caade520530e76c1c558da47daebaa8e1203d6b7ff10ad7d6faba3490d8"
@@ -3315,7 +3315,7 @@
               "name": "gh_2.89.0_linux_arm64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.89.0/gh_2.89.0_linux_arm64.tar.gz",
               "size": 12989135,
-              "downloads": 163558,
+              "downloads": 163559,
               "os": "linux",
               "arch": "arm64",
               "sha256": "9e64a623dfc242990aa5d9b3f507111149c4282f66b68eaad1dc79eeb13b9ce5"
@@ -3360,7 +3360,7 @@
               "name": "gh_2.89.0_macOS_arm64.zip",
               "url": "https://github.com/cli/cli/releases/download/v2.89.0/gh_2.89.0_macOS_arm64.zip",
               "size": 13593749,
-              "downloads": 102406,
+              "downloads": 102407,
               "os": "macos",
               "arch": "arm64",
               "sha256": "2423d02ec0a2094898c378703a1b28a5846c08700f87461363857cb8cb3fda94"
@@ -3405,7 +3405,7 @@
               "name": "gh_2.89.0_windows_amd64.zip",
               "url": "https://github.com/cli/cli/releases/download/v2.89.0/gh_2.89.0_windows_amd64.zip",
               "size": 14454894,
-              "downloads": 141770,
+              "downloads": 141775,
               "os": "windows",
               "arch": "x64",
               "sha256": "f3326f6406c98c99701b257d77e2b040eedf83d0176c2c2e9809aa339ceb467e"
@@ -3468,7 +3468,7 @@
               "name": "gh_2.88.1_linux_amd64.deb",
               "url": "https://github.com/cli/cli/releases/download/v2.88.1/gh_2.88.1_linux_amd64.deb",
               "size": 13963618,
-              "downloads": 131367,
+              "downloads": 131372,
               "os": "linux",
               "arch": "x64",
               "sha256": "21de9d7af8112159ea8a18d8b7819ee4519da0437bfb1e5aa1cf0b51639ced0f"
@@ -3486,7 +3486,7 @@
               "name": "gh_2.88.1_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.88.1/gh_2.88.1_linux_amd64.tar.gz",
               "size": 13896340,
-              "downloads": 1139296,
+              "downloads": 1139341,
               "os": "linux",
               "arch": "x64",
               "sha256": "36352a993b97e9758793cdb87f9ba674bd6d88c914488e122be78a1962203803"
@@ -3684,7 +3684,7 @@
               "name": "gh_2.88.0_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.88.0/gh_2.88.0_linux_amd64.tar.gz",
               "size": 13895992,
-              "downloads": 74503,
+              "downloads": 74506,
               "os": "linux",
               "arch": "x64",
               "sha256": "4d268420ad31846a807e3012ac4b6547df662777e7776fa7f4c55ce062e15b15"
@@ -3882,7 +3882,7 @@
               "name": "gh_2.87.3_linux_amd64.tar.gz",
               "url": "https://github.com/cli/cli/releases/download/v2.87.3/gh_2.87.3_linux_amd64.tar.gz",
               "size": 13736491,
-              "downloads": 2414943,
+              "downloads": 2415050,
               "os": "linux",
               "arch": "x64",
               "sha256": "c6e5537631fca45f277ef405ce8751d139b491e9402cc20891a003525a8773b2"
@@ -4223,7 +4223,7 @@
           ]
         }
       ],
-      "totalDownloads": 30985788,
+      "totalDownloads": 30988376,
       "readme": "# GitHub CLI\n\nGitHub CLI, or the gh CLI, is GitHub on the command line. It brings pull requests, issues, and other GitHub concepts to the terminal next to where you are already working with `git` and your code.\n\n> [!IMPORTANT]\n> GitHub CLI's PGP signing key rotation for Linux package repositories is effective September 5, 2026; users experiencing package installation or update problems can find solutions in the [public announcement](https://github.com/cli/cli/issues/13118).\n\n![screenshot of gh pr status](https://user-images.githubusercontent.com/98482/84171218-327e7a80-aa40-11ea-8cd1-5177fc2d0e72.png)\n\nGitHub CLI is supported for users on GitHub.com, GitHub Enterprise Cloud, and [supported GitHub Enterprise Server versions](https://docs.github.com/en/enterprise-server/admin/all-releases), with support for macOS, Windows, and Linux.\n\n## Documentation\n\nFor [installation options see below](#installation), for usage instructions [see the manual](https://cli.github.com/manual/).\n\n## Agent skills\n\nAn [agent skill](https://agentskills.io) is available for driving `gh` from coding agents. Install or update it with the built-in `gh skill` command:\n\n```shell\n# Install the skill (user scope recommended)\ngh skill install cli/cli gh --scope user\n\n# Update the skill after a `gh` release\ngh skill update gh\n```\n\n## Contributing\n\nIf anything feels off or if you feel that some functionality is missing, please check out the [contributing page](.github/CONTRIBUTING.md). There you will find instructions for sharing your feedback, building the tool locally, and submitting pull requests to the project.\n\nIf you are a hubber and are interested in shipping new commands for the CLI, check out our [doc on internal contributions](docs/working-with-us.md)\n\n<!-- this anchor is linked to from elsewhere, so avoid renaming it -->\n## Installation\n\n### [macOS](docs/install_macos.md)\n\n- [Homebrew](docs/install_macos.md#homebrew)\n- [Precompiled binaries](docs/install_macos.md#precompiled-binaries) on [releases page][]\n\nFor additional macOS packages and installers, see [community-supported docs](docs/install_macos.md#community-unofficial)\n\n### [Linux & Unix](docs/install_linux.md)\n\n- [Debian, Raspberry Pi, Ubuntu](docs/install_linux.md#debian)\n- [Amazon Linux, CentOS, Fedora, openSUSE, RHEL, SUSE](docs/install_linux.md#rpm)\n- [Precompiled binaries](docs/install_linux.md#precompiled-binaries) on [releases page][]\n\nFor additional Linux & Unix packages and installers, see [community-supported docs](docs/install_linux.md#community-unofficial)\n\n### [Windows](docs/install_windows.md)\n\n- [WinGet](docs/install_windows.md#winget)\n- [Precompiled binaries](docs/install_windows.md#precompiled-binaries) on [releases page][]\n\nFor additional Windows packages and installers, see [community-supported docs](docs/install_windows.md#community-unofficial)\n\n### Build from source\n\nSee here on how to [build GitHub CLI from source](docs/install_source.md).\n\n### GitHub Codespaces\n\nTo add GitHub CLI to your codespace, add the following to your [devcontainer file](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-features-to-a-devcontainer-file):\n\n```json\n\"features\": {\n  \"ghcr.io/devcontainers/features/github-cli:1\": {}\n}\n```\n\n### GitHub Actions\n\n[GitHub-hosted runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners) have the GitHub CLI pre-installed, which is updated weekly.\n\nIf a specific version is needed, your GitHub Actions workflow will need to install it based on the [macOS](#macos), [Linux & Unix](#linux--unix), or [Windows](#windows) instructions above.\n\nFor information on all pre-installed tools, see [`actions/runner-images`](https://github.com/actions/runner-images)\n\n### Verification of binaries\n\nStarting with v2.93.0, releases of `gh` are published as immutable releases. For more information, see [Immutable releases](https://docs.github.com/en/code-security/concepts/supply-chain-security/immutable-releases).\n\nSince version 2.50.0, `gh` has been producing [Build Provenance Attestation](https://github.blog/changelog/2024-06-25-artifact-attestations-is-generally-available/), enabling a cryptographically verifiable paper-trail back to the origin GitHub repository, git revision, and build instructions used. The build provenance attestations are signed and rely on Public Good [Sigstore](https://www.sigstore.dev/) for PKI.\n\nThere are two common ways to verify a downloaded release, depending on whether `gh` is already installed or not. If `gh` is installed, it's trivial to verify a new release:\n\n- **Option 1: Using `gh` if already installed:**\n\n  ```shell\n  $ gh at verify -R cli/cli gh_2.62.0_macOS_arm64.zip\n  Loaded digest sha256:fdb77f31b8a6dd23c3fd858758d692a45f7fc76383e37d475bdcae038df92afc for file://gh_2.62.0_macOS_arm64.zip\n  Loaded 1 attestation from GitHub API\n  ✓ Verification succeeded!\n\n  sha256:fdb77f31b8a6dd23c3fd858758d692a45f7fc76383e37d475bdcae038df92afc was attested by:\n  REPO     PREDICATE_TYPE                  WORKFLOW\n  cli/cli  https://slsa.dev/provenance/v1  .github/workflows/deployment.yml@refs/heads/trunk\n  ```\n\n- **Option 2: Using Sigstore [`cosign`](https://github.com/sigstore/cosign):**\n\n  To perform this, download the [attestation](https://github.com/cli/cli/attestations) for the downloaded release and use cosign to verify the authenticity of the downloaded release:\n\n  ```shell\n  $ cosign verify-blob-attestation --bundle cli-cli-attestation-3120304.sigstore.json \\\n        --new-bundle-format \\\n        --certificate-oidc-issuer=\"https://token.actions.githubusercontent.com\" \\\n        --certificate-identity=\"https://github.com/cli/cli/.github/workflows/deployment.yml@refs/heads/trunk\" \\\n        gh_2.62.0_macOS_arm64.zip\n  Verified OK\n  ```\n\n## Comparison with hub\n\nFor many years, [hub](https://github.com/github/hub) was the unofficial GitHub CLI tool. `gh` is a new project that helps us explore\nwhat an official GitHub CLI tool can look like with a fundamentally different design. While both\ntools bring GitHub to the terminal, `hub` behaves as a proxy to `git`, and `gh` is a standalone\ntool. Check out our [more detailed explanation](docs/gh-vs-hub.md) to learn more.\n\n[releases page]: https://github.com/cli/cli/releases/latest\n"
     }
   ]

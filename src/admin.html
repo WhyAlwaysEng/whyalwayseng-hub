@@ -262,32 +262,101 @@
               </div>
 
               <!-- Editable Overrides Form Fields -->
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs pt-1" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem;">
+              <div class="space-y-4 pt-1" style="display: flex; flex-direction: column; gap: 1rem; padding-top: 0.25rem;">
+                
+                <!-- Category Field (Preset Select + Custom Input Mode) -->
                 <div class="space-y-1.5" style="display: flex; flex-direction: column; gap: 0.375rem;">
-                  <label class="block font-mono text-[11px] text-zinc-300" style="font-size: 0.6875rem; font-family: monospace; color: #d4d4d8;">Category</label>
-                  <select x-model="analysisResult.appConfig.category"
-                          class="w-full px-3 py-2 rounded-xl border border-zinc-700 bg-zinc-900 text-xs text-white focus:outline-none"
-                          style="width: 100%; padding: 0.5rem 0.75rem; border-radius: 0.75rem; border: 1px solid #3f3f46; background: #18181b; color: #fff; font-size: 0.75rem;">
-                    <option value="CLI Tool">CLI Tool</option>
-                    <option value="Developer Tool">Developer Tool</option>
-                    <option value="Utility">Utility</option>
-                    <option value="Desktop App">Desktop App</option>
-                  </select>
+                  <div class="flex items-center justify-between" style="display: flex; align-items: center; justify-content: space-between;">
+                    <label class="block font-mono text-[11px] text-zinc-300" style="font-size: 0.6875rem; font-family: monospace; color: #d4d4d8;">Category (หมวดหมู่)</label>
+                    <button type="button"
+                            @click="customCategoryMode = !customCategoryMode"
+                            class="text-[11px] font-mono text-emerald-400 hover:text-emerald-300 underline cursor-pointer bg-transparent border-none p-0"
+                            style="font-size: 0.6875rem; font-family: monospace; color: #34d399; background: transparent; border: none; cursor: pointer; text-decoration: underline;">
+                      <span x-text="customCategoryMode ? '← Choose Preset' : '+ Custom Category'"></span>
+                    </button>
+                  </div>
+
+                  <!-- Preset Category Select -->
+                  <div x-show="!customCategoryMode">
+                    <select x-model="analysisResult.appConfig.category"
+                            class="w-full px-3 py-2 rounded-xl border border-zinc-700 bg-zinc-900 text-xs text-white focus:outline-none"
+                            style="width: 100%; padding: 0.5rem 0.75rem; border-radius: 0.75rem; border: 1px solid #3f3f46; background: #18181b; color: #fff; font-size: 0.75rem;">
+                      <optgroup label="Standard Categories">
+                        <option value="Desktop App">Desktop App</option>
+                        <option value="CLI Tool">CLI Tool</option>
+                        <option value="Developer Tool">Developer Tool</option>
+                        <option value="Utility">Utility</option>
+                        <option value="Game">Game</option>
+                        <option value="AI & Machine Learning">AI & Machine Learning</option>
+                        <option value="Automation & Bot">Automation & Bot</option>
+                        <option value="Productivity">Productivity</option>
+                        <option value="Cybersecurity">Cybersecurity</option>
+                        <option value="Web App">Web App</option>
+                      </optgroup>
+                      <template x-if="existingCustomCategories.length > 0">
+                        <optgroup label="Store Categories">
+                          <template x-for="cat in existingCustomCategories" :key="cat">
+                            <option :value="cat" x-text="cat"></option>
+                          </template>
+                        </optgroup>
+                      </template>
+                    </select>
+                  </div>
+
+                  <!-- Custom Category Text Input -->
+                  <div x-show="customCategoryMode" x-cloak>
+                    <input type="text"
+                           x-model="analysisResult.appConfig.category"
+                           placeholder="Type custom category (e.g. Media Player, Emulator, Bot)..."
+                           class="w-full px-3 py-2 rounded-xl border border-emerald-500/60 bg-zinc-900 text-xs text-white placeholder-zinc-500 focus:outline-none font-mono"
+                           style="width: 100%; padding: 0.5rem 0.75rem; border-radius: 0.75rem; border: 1px solid #10b981; background: #18181b; color: #fff; font-size: 0.75rem; font-family: monospace;">
+                  </div>
                 </div>
+
+                <!-- Platforms Field (All 6 Platforms) -->
                 <div class="space-y-1.5" style="display: flex; flex-direction: column; gap: 0.375rem;">
-                  <label class="block font-mono text-[11px] text-zinc-300" style="font-size: 0.6875rem; font-family: monospace; color: #d4d4d8;">Platforms</label>
-                  <div class="flex items-center gap-3 pt-2 text-xs font-mono" style="display: flex; align-items: center; gap: 0.75rem; padding-top: 0.5rem; font-size: 0.75rem; font-family: monospace;">
-                    <label class="inline-flex items-center gap-1.5 cursor-pointer">
+                  <label class="block font-mono text-[11px] text-zinc-300" style="font-size: 0.6875rem; font-family: monospace; color: #d4d4d8;">Platforms (ระบบปฏิบัติการที่รองรับ)</label>
+                  <div class="grid grid-cols-3 sm:grid-cols-6 gap-2 text-xs font-mono" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(75px, 1fr)); gap: 0.5rem; font-size: 0.75rem; font-family: monospace;">
+                    <label class="inline-flex items-center gap-1.5 cursor-pointer bg-zinc-900/60 border border-zinc-800 rounded-lg px-2 py-1.5 hover:border-zinc-700" style="display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.375rem 0.5rem; background: rgba(24, 24, 27, 0.6); border: 1px solid #27272a; border-radius: 0.5rem; cursor: pointer;">
                       <input type="checkbox" value="windows" x-model="analysisResult.appConfig.platforms"> Win
                     </label>
-                    <label class="inline-flex items-center gap-1.5 cursor-pointer">
+                    <label class="inline-flex items-center gap-1.5 cursor-pointer bg-zinc-900/60 border border-zinc-800 rounded-lg px-2 py-1.5 hover:border-zinc-700" style="display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.375rem 0.5rem; background: rgba(24, 24, 27, 0.6); border: 1px solid #27272a; border-radius: 0.5rem; cursor: pointer;">
                       <input type="checkbox" value="macos" x-model="analysisResult.appConfig.platforms"> Mac
                     </label>
-                    <label class="inline-flex items-center gap-1.5 cursor-pointer">
+                    <label class="inline-flex items-center gap-1.5 cursor-pointer bg-zinc-900/60 border border-zinc-800 rounded-lg px-2 py-1.5 hover:border-zinc-700" style="display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.375rem 0.5rem; background: rgba(24, 24, 27, 0.6); border: 1px solid #27272a; border-radius: 0.5rem; cursor: pointer;">
                       <input type="checkbox" value="linux" x-model="analysisResult.appConfig.platforms"> Linux
+                    </label>
+                    <label class="inline-flex items-center gap-1.5 cursor-pointer bg-zinc-900/60 border border-zinc-800 rounded-lg px-2 py-1.5 hover:border-zinc-700" style="display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.375rem 0.5rem; background: rgba(24, 24, 27, 0.6); border: 1px solid #27272a; border-radius: 0.5rem; cursor: pointer;">
+                      <input type="checkbox" value="web" x-model="analysisResult.appConfig.platforms"> Web
+                    </label>
+                    <label class="inline-flex items-center gap-1.5 cursor-pointer bg-zinc-900/60 border border-zinc-800 rounded-lg px-2 py-1.5 hover:border-zinc-700" style="display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.375rem 0.5rem; background: rgba(24, 24, 27, 0.6); border: 1px solid #27272a; border-radius: 0.5rem; cursor: pointer;">
+                      <input type="checkbox" value="android" x-model="analysisResult.appConfig.platforms"> Android
+                    </label>
+                    <label class="inline-flex items-center gap-1.5 cursor-pointer bg-zinc-900/60 border border-zinc-800 rounded-lg px-2 py-1.5 hover:border-zinc-700" style="display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.375rem 0.5rem; background: rgba(24, 24, 27, 0.6); border: 1px solid #27272a; border-radius: 0.5rem; cursor: pointer;">
+                      <input type="checkbox" value="ios" x-model="analysisResult.appConfig.platforms"> iOS
                     </label>
                   </div>
                 </div>
+
+                <!-- Custom Tags & Featured Row -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem;">
+                  <div class="sm:col-span-2 space-y-1.5" style="display: flex; flex-direction: column; gap: 0.375rem;">
+                    <label class="block font-mono text-[11px] text-zinc-300" style="font-size: 0.6875rem; font-family: monospace; color: #d4d4d8;">Tags (แท็ก คั่นด้วยจุลภาค)</label>
+                    <input type="text"
+                           x-model="tagsInputString"
+                           @input="updateTagsFromInput()"
+                           placeholder="e.g. tools, productivity, git"
+                           class="w-full px-3 py-2 rounded-xl border border-zinc-700 bg-zinc-900 text-xs text-white placeholder-zinc-500 focus:outline-none font-mono"
+                           style="width: 100%; padding: 0.5rem 0.75rem; border-radius: 0.75rem; border: 1px solid #3f3f46; background: #18181b; color: #fff; font-size: 0.75rem; font-family: monospace;">
+                  </div>
+                  <div class="space-y-1.5 flex flex-col justify-end" style="display: flex; flex-direction: column; justify-content: flex-end;">
+                    <label class="inline-flex items-center gap-2 cursor-pointer bg-zinc-900/60 border border-zinc-800 rounded-xl px-3 py-2 text-xs font-mono hover:border-zinc-700" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.75rem; background: rgba(24, 24, 27, 0.6); border: 1px solid #27272a; border-radius: 0.75rem; cursor: pointer;">
+                      <input type="checkbox" x-model="analysisResult.appConfig.featured">
+                      <span class="text-zinc-200">Featured App ⭐</span>
+                    </label>
+                  </div>
+                </div>
+
               </div>
 
               <!-- Save Actions Button Group -->
@@ -528,6 +597,8 @@
         building: false,
         deletingSlug: null,
         analysisResult: null,
+        customCategoryMode: false,
+        tagsInputString: "",
 
         // Security / Production state
         isProduction: false,
@@ -542,7 +613,7 @@
         showToast(msg) {
           this.toast.message = msg;
           this.toast.show = true;
-          setTimeout(() => { this.toast.show = false; }, 3000);
+          setTimeout(() => { this.toast.show = false; }, 3500);
         },
 
         resetFilters() {
@@ -554,6 +625,24 @@
 
         get categories() {
           return Array.from(new Set(this.apps.map(a => a.category))).filter(Boolean);
+        },
+
+        get existingCustomCategories() {
+          const standards = [
+            "Desktop App", "CLI Tool", "Developer Tool", "Utility",
+            "Game", "AI & Machine Learning", "Automation & Bot",
+            "Productivity", "Cybersecurity", "Web App"
+          ];
+          return this.categories.filter(c => !standards.includes(c));
+        },
+
+        updateTagsFromInput() {
+          if (this.analysisResult && this.analysisResult.appConfig) {
+            this.analysisResult.appConfig.tags = this.tagsInputString
+              .split(",")
+              .map(t => t.trim())
+              .filter(Boolean);
+          }
         },
 
         get filteredApps() {
@@ -646,14 +735,6 @@
             this.verifyingToken = false;
           }
         },
-              sessionStorage.removeItem("gh_token");
-            }
-          } catch (e) {
-            this.isAuthenticated = false;
-          } finally {
-            this.verifyingToken = false;
-          }
-        },
 
         async authenticateToken() {
           if (!this.tokenInput.trim()) return;
@@ -711,6 +792,7 @@
               const data = await res.json();
               if (!res.ok) throw new Error(data.error || "Analysis failed");
               this.analysisResult = data;
+              this.tagsInputString = (this.analysisResult.appConfig.tags || []).join(", ");
             } else {
               let cleaned = this.repoInput.trim().replace(/^https?:\/\/github\.com\//i, "").replace(/\.git$/i, "").replace(/^\/+|\/+$/g, "");
               const parts = cleaned.split("/");
@@ -733,12 +815,36 @@
 
               const latest = releasesData.find(r => !r.draft) || releasesData[0];
               const assetNames = (latest?.assets || []).map(a => a.name.toLowerCase());
+              const topics = (repoData.topics || []).map(t => t.toLowerCase());
+              const desc = (repoData.description || "").toLowerCase();
 
+              // Detect platforms
               const platforms = [];
               if (assetNames.some(n => n.endsWith(".exe") || n.endsWith(".msi") || n.includes("win"))) platforms.push("windows");
               if (assetNames.some(n => n.endsWith(".dmg") || n.endsWith(".pkg") || n.includes("mac") || n.includes("darwin"))) platforms.push("macos");
-              if (assetNames.some(n => n.endsWith(".deb") || n.endsWith(".rpm") || n.includes("linux"))) platforms.push("linux");
+              if (assetNames.some(n => n.endsWith(".deb") || n.endsWith(".rpm") || n.endsWith(".appimage") || n.includes("linux"))) platforms.push("linux");
+              if (assetNames.some(n => n.endsWith(".apk") || n.endsWith(".aab"))) platforms.push("android");
+              if (assetNames.some(n => n.endsWith(".ipa"))) platforms.push("ios");
+              if (topics.some(t => ["web", "webapp", "web-app", "frontend", "pwa"].includes(t))) platforms.push("web");
               if (platforms.length === 0) platforms.push("windows", "macos", "linux");
+
+              // Guess category
+              let category = "Utility";
+              if (topics.some(t => ["game", "gaming", "unity", "godot", "gamedev", "arcade"].includes(t)) || desc.includes("game")) {
+                category = "Game";
+              } else if (topics.some(t => ["ai", "llm", "machine-learning", "deep-learning", "openai", "gemini"].includes(t)) || desc.includes("machine learning")) {
+                category = "AI & Machine Learning";
+              } else if (topics.some(t => ["bot", "discord-bot", "automation", "crawler", "scraper"].includes(t)) || desc.includes("discord bot") || desc.includes("automation")) {
+                category = "Automation & Bot";
+              } else if (topics.some(t => ["security", "cybersecurity", "pentest", "vulnerability"].includes(t)) || desc.includes("security")) {
+                category = "Cybersecurity";
+              } else if (topics.some(t => ["cli", "terminal", "command-line", "shell"].includes(t)) || desc.includes("command line") || desc.includes("cli tool")) {
+                category = "CLI Tool";
+              } else if (topics.some(t => ["database", "sql", "editor", "ide", "git", "devtools", "developer-tools"].includes(t))) {
+                category = "Developer Tool";
+              } else if (platforms.includes("windows") || platforms.includes("macos")) {
+                category = "Desktop App";
+              }
 
               this.analysisResult = {
                 appConfig: {
@@ -747,8 +853,8 @@
                   repo,
                   name: repoData.name,
                   tagline: repoData.description || `${repoData.name} - Open source software`,
-                  category: "Utility",
-                  tags: (repoData.topics || []).slice(0, 5),
+                  category,
+                  tags: topics.slice(0, 5),
                   icon: `https://github.com/${owner}.png`,
                   screenshots: [],
                   featured: false,
@@ -778,6 +884,7 @@
                   assetCount: assetNames.length
                 }
               };
+              this.tagsInputString = (this.analysisResult.appConfig.tags || []).join(", ");
             }
           } catch (err) {
             alert("Error: " + err.message);
@@ -788,6 +895,7 @@
 
         async saveApp() {
           if (!this.analysisResult) return;
+          this.updateTagsFromInput();
           this.saving = true;
 
           try {
@@ -802,9 +910,78 @@
               this.showToast(`Saved "${this.analysisResult.appConfig.name}"!`);
               this.analysisResult = null;
               this.repoInput = "";
+              this.tagsInputString = "";
               await this.loadApps();
             } else {
-              alert("Production Commit: Saving directly to GitHub repo requires the repository owner/repo details.");
+              // Direct GitHub Contents API commit to projects.json
+              const owner = "WhyAlwaysEng";
+              const repo = "whyalwayseng-hub";
+              const filePath = "projects.json";
+
+              const headers = {
+                Accept: "application/vnd.github+json",
+                Authorization: `Bearer ${this.githubToken}`
+              };
+
+              // 1. Fetch current projects.json from GitHub
+              const getRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`, { headers });
+              if (!getRes.ok) throw new Error("Could not fetch projects.json from GitHub repository");
+              const fileData = await getRes.json();
+
+              // 2. Base64 decode UTF-8
+              const binaryString = atob(fileData.content.replace(/\s/g, ""));
+              const bytes = new Uint8Array(binaryString.length);
+              for (let i = 0; i < binaryString.length; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+              }
+              const currentText = new TextDecoder().decode(bytes);
+              const config = JSON.parse(currentText);
+
+              // 3. Upsert app into projects
+              const newApp = this.analysisResult.appConfig;
+              const idx = config.projects.findIndex(p => p.slug === newApp.slug);
+              if (idx >= 0) {
+                config.projects[idx] = newApp;
+              } else {
+                config.projects.push(newApp);
+              }
+
+              // 4. Encode to UTF-8 Base64
+              const updatedJson = JSON.stringify(config, null, 2) + "\n";
+              const encodedContent = btoa(unescape(encodeURIComponent(updatedJson)));
+
+              // 5. Commit to GitHub master branch
+              const putRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`, {
+                method: "PUT",
+                headers: {
+                  ...headers,
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                  message: `feat(catalog): add app "${newApp.name}" via Admin Dashboard`,
+                  content: encodedContent,
+                  sha: fileData.sha,
+                  branch: "master"
+                })
+              });
+
+              if (!putRes.ok) {
+                const putErr = await putRes.json();
+                throw new Error(putErr.message || "Failed to commit changes to GitHub");
+              }
+
+              this.showToast(`Saved "${newApp.name}" to GitHub! Deploying in ~1 min 🚀`);
+              this.analysisResult = null;
+              this.repoInput = "";
+              this.tagsInputString = "";
+
+              // Optimistically update local apps list
+              const existingIndex = this.apps.findIndex(a => a.slug === newApp.slug);
+              if (existingIndex >= 0) {
+                this.apps[existingIndex] = { ...this.apps[existingIndex], ...newApp };
+              } else {
+                this.apps.push(newApp);
+              }
             }
           } catch (err) {
             alert("Error: " + err.message);
@@ -825,7 +1002,59 @@
               this.showToast(`Removed "${app.name}"`);
               await this.loadApps();
             } else {
-              alert("In production mode, remove through GitHub or local dev environment.");
+              // Direct GitHub Contents API commit to remove app from projects.json
+              const owner = "WhyAlwaysEng";
+              const repo = "whyalwayseng-hub";
+              const filePath = "projects.json";
+
+              const headers = {
+                Accept: "application/vnd.github+json",
+                Authorization: `Bearer ${this.githubToken}`
+              };
+
+              // 1. Fetch current projects.json
+              const getRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`, { headers });
+              if (!getRes.ok) throw new Error("Could not fetch projects.json from GitHub repository");
+              const fileData = await getRes.json();
+
+              // 2. Decode
+              const binaryString = atob(fileData.content.replace(/\s/g, ""));
+              const bytes = new Uint8Array(binaryString.length);
+              for (let i = 0; i < binaryString.length; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+              }
+              const currentText = new TextDecoder().decode(bytes);
+              const config = JSON.parse(currentText);
+
+              // 3. Remove app
+              config.projects = config.projects.filter(p => p.slug !== app.slug);
+
+              // 4. Encode
+              const updatedJson = JSON.stringify(config, null, 2) + "\n";
+              const encodedContent = btoa(unescape(encodeURIComponent(updatedJson)));
+
+              // 5. Commit to GitHub master branch
+              const putRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`, {
+                method: "PUT",
+                headers: {
+                  ...headers,
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                  message: `chore(catalog): remove app "${app.name}" via Admin Dashboard`,
+                  content: encodedContent,
+                  sha: fileData.sha,
+                  branch: "master"
+                })
+              });
+
+              if (!putRes.ok) {
+                const putErr = await putRes.json();
+                throw new Error(putErr.message || "Failed to commit deletion to GitHub");
+              }
+
+              this.showToast(`Removed "${app.name}" from GitHub! Updating in ~1 min...`);
+              this.apps = this.apps.filter(a => a.slug !== app.slug);
             }
           } catch (err) {
             alert("Error: " + err.message);
@@ -837,10 +1066,27 @@
         async triggerBuild() {
           this.building = true;
           try {
-            const res = await fetch("/api/build", { method: "POST" });
-            const data = await res.json();
-            if (!res.ok) throw new Error(data.error || "Build failed");
-            this.showToast("Site build finished successfully!");
+            if (!this.isProduction) {
+              const res = await fetch("/api/build", { method: "POST" });
+              const data = await res.json();
+              if (!res.ok) throw new Error(data.error || "Build failed");
+              this.showToast("Site build finished successfully!");
+            } else {
+              const res = await fetch("https://api.github.com/repos/WhyAlwaysEng/whyalwayseng-hub/actions/workflows/deploy.yml/dispatches", {
+                method: "POST",
+                headers: {
+                  Accept: "application/vnd.github+json",
+                  Authorization: `Bearer ${this.githubToken}`,
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ ref: "master" })
+              });
+              if (!res.ok) {
+                const err = await res.json();
+                throw new Error(err.message || "Could not trigger GitHub Actions dispatch");
+              }
+              this.showToast("GitHub Actions build triggered! Updating in ~1 min 🚀");
+            }
           } catch (err) {
             alert("Build Error: " + err.message);
           } finally {

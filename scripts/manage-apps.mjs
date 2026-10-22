@@ -70,15 +70,22 @@ export async function analyzeRepository(input) {
   const latestRelease = releases[0] || null;
   const assetNames = (latestRelease?.assets || []).map((a) => a.name.toLowerCase());
 
-  // Determine platforms based on release assets
+  // Determine platforms based on release assets and topics
   const platforms = new Set();
   const hasWin = assetNames.some((n) => n.endsWith(".exe") || n.endsWith(".msi") || n.includes("windows") || n.includes("win"));
   const hasMac = assetNames.some((n) => n.endsWith(".dmg") || n.endsWith(".pkg") || n.includes("darwin") || n.includes("mac"));
   const hasLinux = assetNames.some((n) => n.endsWith(".deb") || n.endsWith(".rpm") || n.endsWith(".appimage") || n.includes("linux"));
+  const hasAndroid = assetNames.some((n) => n.endsWith(".apk") || n.endsWith(".aab"));
+  const hasIos = assetNames.some((n) => n.endsWith(".ipa"));
 
   if (hasWin) platforms.add("windows");
   if (hasMac) platforms.add("macos");
   if (hasLinux) platforms.add("linux");
+  if (hasAndroid) platforms.add("android");
+  if (hasIos) platforms.add("ios");
+  if ((repo.topics || []).some((t) => ["web", "webapp", "web-app", "frontend", "pwa"].includes(t.toLowerCase()))) {
+    platforms.add("web");
+  }
   if (platforms.size === 0) {
     platforms.add("windows");
     platforms.add("macos");
@@ -95,7 +102,15 @@ export async function analyzeRepository(input) {
   const topics = repo.topics || [];
   const desc = (repo.description || "").toLowerCase();
   let category = "Utility";
-  if (topics.some((t) => ["cli", "terminal", "command-line", "shell"].includes(t)) || desc.includes("command line") || desc.includes("cli tool")) {
+  if (topics.some((t) => ["game", "gaming", "unity", "godot", "gamedev", "rpg", "arcade"].includes(t.toLowerCase())) || desc.includes("game") || desc.includes("gaming")) {
+    category = "Game";
+  } else if (topics.some((t) => ["ai", "llm", "machine-learning", "deep-learning", "openai", "gemini", "chatgpt"].includes(t.toLowerCase())) || desc.includes("machine learning") || desc.includes("large language model")) {
+    category = "AI & Machine Learning";
+  } else if (topics.some((t) => ["bot", "discord-bot", "telegram-bot", "automation", "crawler", "scraper"].includes(t.toLowerCase())) || desc.includes("discord bot") || desc.includes("automation")) {
+    category = "Automation & Bot";
+  } else if (topics.some((t) => ["security", "cybersecurity", "pentest", "vulnerability", "infosec"].includes(t.toLowerCase())) || desc.includes("security")) {
+    category = "Cybersecurity";
+  } else if (topics.some((t) => ["cli", "terminal", "command-line", "shell"].includes(t)) || desc.includes("command line") || desc.includes("cli tool")) {
     category = "CLI Tool";
   } else if (topics.some((t) => ["database", "sql", "editor", "ide", "git", "devtools", "developer-tools"].includes(t))) {
     category = "Developer Tool";

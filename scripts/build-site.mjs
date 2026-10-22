@@ -309,6 +309,21 @@ async function buildIndex(catalog) {
                   @click="setPlatform('linux')"
                   :class="selectedPlatform === 'linux' ? 'text-zinc-950 dark:text-white font-bold border-b border-zinc-950 dark:border-white' : 'text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300'"
                   class="px-1.5 pb-0.5 transition cursor-pointer">LINUX</button>
+          <span class="text-zinc-300 dark:text-zinc-700">/</span>
+          <button type="button"
+                  @click="setPlatform('web')"
+                  :class="selectedPlatform === 'web' ? 'text-zinc-950 dark:text-white font-bold border-b border-zinc-950 dark:border-white' : 'text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300'"
+                  class="px-1.5 pb-0.5 transition cursor-pointer">WEB</button>
+          <span class="text-zinc-300 dark:text-zinc-700">/</span>
+          <button type="button"
+                  @click="setPlatform('android')"
+                  :class="selectedPlatform === 'android' ? 'text-zinc-950 dark:text-white font-bold border-b border-zinc-950 dark:border-white' : 'text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300'"
+                  class="px-1.5 pb-0.5 transition cursor-pointer">ANDROID</button>
+          <span class="text-zinc-300 dark:text-zinc-700">/</span>
+          <button type="button"
+                  @click="setPlatform('ios')"
+                  :class="selectedPlatform === 'ios' ? 'text-zinc-950 dark:text-white font-bold border-b border-zinc-950 dark:border-white' : 'text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300'"
+                  class="px-1.5 pb-0.5 transition cursor-pointer">IOS</button>
         </div>
 
       </div>
