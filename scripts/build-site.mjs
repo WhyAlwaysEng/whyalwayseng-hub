@@ -945,7 +945,19 @@ async function main() {
   console.log("  📄 Building Home Page (dist/index.html)...");
   await buildIndex(catalog);
 
-  // 3. Build App Detail Pages
+  // 3. Clean up deleted apps from dist/apps/
+  const validSlugs = new Set(catalog.apps.map((a) => a.slug));
+  try {
+    const existingDirs = await fs.readdir("dist/apps");
+    for (const d of existingDirs) {
+      if (!validSlugs.has(d)) {
+        console.log(`  🗑️ Purging deleted app from dist/apps: ${d}`);
+        await fs.rm(path.join("dist/apps", d), { recursive: true, force: true });
+      }
+    }
+  } catch {}
+
+  // 4. Build App Detail Pages
   console.log(`  📄 Building ${catalog.apps.length} App Pages (dist/apps/<slug>/index.html)...`);
   for (const app of catalog.apps) {
     await buildAppPage(app, catalog);
