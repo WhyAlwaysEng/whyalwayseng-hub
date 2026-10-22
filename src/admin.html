@@ -39,8 +39,8 @@
         </div>
 
         <p class="text-xs text-zinc-400 leading-relaxed" style="font-size: 0.8125rem; color: #a1a1aa; line-height: 1.6; margin-bottom: 1.5rem;">
-          This store is running on production. To prevent unauthorized modifications, please provide your 
-          <strong class="text-zinc-200" style="color: #e4e4e7;">GitHub Personal Access Token</strong> (with repository write permission).
+          This store is running on production. Only <strong class="text-white" style="color: #fff;">@WhyAlwaysEng</strong> is authorized to manage this hub. Please provide your 
+          <strong class="text-zinc-200" style="color: #e4e4e7;">GitHub Personal Access Token</strong> to unlock.
         </p>
 
         <form @submit.prevent="authenticateToken()" class="space-y-5" style="display: flex; flex-direction: column; gap: 1.25rem;">
@@ -622,12 +622,30 @@
             });
             if (res.ok) {
               const u = await res.json();
+              const login = (u.login || "").toLowerCase();
+              if (login !== "whyalwayseng") {
+                this.isAuthenticated = false;
+                this.githubToken = "";
+                this.authUsername = "";
+                sessionStorage.removeItem("gh_token");
+                localStorage.removeItem("gh_token");
+                alert(`⛔ Access Denied: Signed in as @${u.login}. Only @WhyAlwaysEng is authorized to access this dashboard.`);
+                return;
+              }
               this.authUsername = u.login;
               this.isAuthenticated = true;
               sessionStorage.setItem("gh_token", this.githubToken);
             } else {
               this.isAuthenticated = false;
               this.githubToken = "";
+              sessionStorage.removeItem("gh_token");
+            }
+          } catch (e) {
+            this.isAuthenticated = false;
+          } finally {
+            this.verifyingToken = false;
+          }
+        },
               sessionStorage.removeItem("gh_token");
             }
           } catch (e) {
