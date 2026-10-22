@@ -43,9 +43,10 @@ function renderHeader(rootPath = "./", storeName = "WhyAlwaysEng Hub") {
       
       <!-- Brand Logo -->
       <a href="${rootPath}" class="flex items-center gap-2.5 group focus:outline-none">
-        <div class="w-7 h-7 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 flex items-center justify-center font-black text-xs shadow-xs group-hover:scale-105 transition-transform">
-          ⬡
-        </div>
+        <svg class="w-7 h-7 rounded-lg shadow-xs group-hover:scale-105 transition-transform" viewBox="0 0 32 32">
+          <rect width="32" height="32" rx="8" fill="#09090b" class="dark:fill-white"/>
+          <polygon points="16,6 25,11 25,21 16,26 7,21 7,11" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linejoin="round" class="dark:stroke-zinc-950"/>
+        </svg>
         <span class="font-bold text-sm tracking-tight text-zinc-900 dark:text-zinc-100">
           ${escapeHtml(storeName)}
         </span>
@@ -186,6 +187,7 @@ async function buildIndex(catalog) {
   </script>
 
   <link rel="stylesheet" href="./styles.css">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
   <link rel="manifest" href="./manifest.webmanifest">
 
   <!-- Core App Scripts -->
@@ -490,6 +492,7 @@ async function buildAppPage(app, catalog) {
   </script>
 
   <link rel="stylesheet" href="${rootPath}styles.css">
+  <link rel="icon" type="image/svg+xml" href="${rootPath}favicon.svg">
 
   <!-- Core App Scripts -->
   <script src="${rootPath}vendor/marked.min.js"></script>
@@ -500,7 +503,7 @@ async function buildAppPage(app, catalog) {
 <body class="bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 min-h-screen flex flex-col antialiased transition-colors"
       x-data="appDetail(${escapeHtml(appJson)})">
 
-  ${renderHeader(rootPath)}
+  ${renderHeader(rootPath, catalog.store.name)}
 
   <!-- Top Breadcrumb -->
   <div class="max-w-5xl mx-auto px-4 sm:px-6 pt-6 w-full">
@@ -931,6 +934,7 @@ async function main() {
   await fs.copyFile("src/app.js", "dist/app.js");
   await fs.copyFile("src/sw.js", "dist/sw.js");
   await fs.copyFile("src/manifest.webmanifest", "dist/manifest.webmanifest");
+  await fs.copyFile("src/favicon.svg", "dist/favicon.svg");
   await copyDir("assets", "dist/assets");
 
   // Copy Admin page to dist/admin/index.html
