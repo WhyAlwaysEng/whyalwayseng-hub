@@ -8,66 +8,6 @@
   },
   "projects": [
     {
-      "slug": "github-cli",
-      "owner": "cli",
-      "repo": "cli",
-      "name": "GitHub CLI",
-      "tagline": "Take GitHub to the command line",
-      "category": "CLI Tool",
-      "tags": [
-        "cli",
-        "git",
-        "github",
-        "developer-tools"
-      ],
-      "featured": true,
-      "verified": true,
-      "license": "MIT",
-      "platforms": [
-        "windows",
-        "macos",
-        "linux"
-      ],
-      "architectures": [
-        "x64",
-        "arm64"
-      ],
-      "assetRules": {
-        "include": [
-          "\\.(exe|msi|dmg|pkg|deb|rpm|tar\\.gz|zip)$"
-        ],
-        "exclude": [
-          "\\.(sha256|sig|asc|blockmap)$",
-          "^source"
-        ],
-        "osPatterns": {
-          "macos": "(macOS|darwin|mac|\\.dmg|\\.pkg)",
-          "windows": "(windows|\\bwin\\b|[-_]win[-_.]|\\.exe|\\.msi)",
-          "linux": "(linux|\\.deb|\\.rpm)"
-        },
-        "archPatterns": {
-          "x64": "(amd64|x86_64|x64)",
-          "arm64": "(arm64|aarch64)"
-        }
-      },
-      "install": {
-        "winget": "winget install --id GitHub.cli",
-        "scoop": "scoop install gh",
-        "brew": "brew install gh"
-      },
-      "website": "https://cli.github.com",
-      "sponsor": "https://github.com/cli/cli",
-      "i18n": {
-        "th": {
-          "tagline": "ใช้งาน GitHub บน Command Line ได้สะดวกและรวดเร็ว"
-        }
-      },
-      "icon": "https://github.com/cli.png",
-      "screenshots": [
-        "https://user-images.githubusercontent.com/98482/84171218-327e7a80-aa40-11ea-8cd1-5177fc2d0e72.png"
-      ]
-    },
-    {
       "slug": "whyalwayseng-hub",
       "owner": "WhyAlwaysEng",
       "repo": "whyalwayseng-hub",
