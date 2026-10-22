@@ -106,6 +106,47 @@
       },
       "install": {},
       "website": "https://github.com/WhyAlwaysEng/whyalwayseng-hub"
+    },
+    {
+      "slug": "zerocast",
+      "owner": "WhyAlwaysEng",
+      "repo": "ZeroCast",
+      "name": "ZeroCast",
+      "tagline": "ZeroCast - Open source software",
+      "category": "Desktop App",
+      "tags": [],
+      "icon": "https://github.com/WhyAlwaysEng.png",
+      "screenshots": [],
+      "featured": false,
+      "verified": false,
+      "license": "MIT",
+      "platforms": [
+        "windows",
+        "android"
+      ],
+      "architectures": [
+        "x64"
+      ],
+      "assetRules": {
+        "include": [
+          "\\.(exe|msi|dmg|pkg|deb|rpm|tar\\.gz|zip|AppImage)$"
+        ],
+        "exclude": [
+          "\\.(sha256|sig|asc|blockmap)$",
+          "^source"
+        ],
+        "osPatterns": {
+          "macos": "(macOS|darwin|mac|\\.dmg|\\.pkg)",
+          "windows": "(windows|\\bwin\\b|[-_]win[-_.]|\\.exe|\\.msi)",
+          "linux": "(linux|\\.deb|\\.rpm|\\.AppImage)"
+        },
+        "archPatterns": {
+          "x64": "(amd64|x86_64|x64)",
+          "arm64": "(arm64|aarch64)"
+        }
+      },
+      "install": {},
+      "website": "https://github.com/WhyAlwaysEng/ZeroCast"
     }
   ]
 }
