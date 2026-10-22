@@ -188,7 +188,13 @@
                style="padding-bottom: 1rem; border-bottom: 1px solid #27272a; display: flex; flex-direction: column; gap: 0.375rem;">
             <div class="flex items-center justify-between" style="display: flex; align-items: center; justify-content: space-between;">
               <h2 class="text-sm font-bold text-white uppercase tracking-wider font-mono" style="font-size: 0.875rem; font-weight: 700; color: #fff; font-family: monospace; letter-spacing: 0.05em;">Import Software</h2>
-              <span class="text-[11px] text-zinc-400 font-mono px-2 py-0.5 rounded bg-zinc-800" style="font-size: 0.6875rem; padding: 0.125rem 0.5rem; border-radius: 0.375rem; background: #27272a; color: #a1a1aa;">GitHub API</span>
+              <button type="button"
+                      @click="showGuideModal = true"
+                      class="text-[11px] text-emerald-400 hover:text-emerald-300 font-mono px-2.5 py-1 rounded-lg bg-zinc-800/80 hover:bg-zinc-800 border border-zinc-700/60 transition flex items-center gap-1.5 cursor-pointer"
+                      style="font-size: 0.6875rem; font-family: monospace; padding: 0.25rem 0.625rem; border-radius: 0.5rem; background: rgba(39, 39, 42, 0.8); border: 1px solid rgba(63, 63, 70, 0.6); color: #34d399; cursor: pointer;">
+                <span>📖</span>
+                <span>คำแนะนำ Category & Platform</span>
+              </button>
             </div>
             <p class="text-xs text-zinc-400 leading-relaxed" style="font-size: 0.8125rem; color: #a1a1aa; line-height: 1.5;">
               Enter GitHub repository format <code class="text-zinc-200 bg-zinc-800 px-1.5 py-0.5 rounded" style="color: #e4e4e7; background: #27272a; padding: 0.125rem 0.375rem; border-radius: 0.25rem;">owner/repo</code> or full URL.
@@ -267,7 +273,15 @@
                 <!-- Category Field (Preset Select + Custom Input Mode) -->
                 <div class="space-y-1.5" style="display: flex; flex-direction: column; gap: 0.375rem;">
                   <div class="flex items-center justify-between" style="display: flex; align-items: center; justify-content: space-between;">
-                    <label class="block font-mono text-[11px] text-zinc-300" style="font-size: 0.6875rem; font-family: monospace; color: #d4d4d8;">Category (หมวดหมู่)</label>
+                    <div class="flex items-center gap-2" style="display: flex; align-items: center; gap: 0.5rem;">
+                      <label class="block font-mono text-[11px] text-zinc-300" style="font-size: 0.6875rem; font-family: monospace; color: #d4d4d8;">Category (หมวดหมู่)</label>
+                      <button type="button"
+                              @click="showGuideModal = true"
+                              class="text-[10px] font-mono text-zinc-400 hover:text-emerald-400 cursor-pointer bg-zinc-800/60 hover:bg-zinc-800 border border-zinc-700/50 rounded px-1.5 py-0.5 transition"
+                              style="font-size: 0.625rem; font-family: monospace; color: #a1a1aa; background: rgba(39, 39, 42, 0.6); border: 1px solid rgba(63, 63, 70, 0.5); border-radius: 0.25rem; padding: 0.125rem 0.375rem; cursor: pointer;">
+                        💡 คำแนะนำ
+                      </button>
+                    </div>
                     <button type="button"
                             @click="customCategoryMode = !customCategoryMode"
                             class="text-[11px] font-mono text-emerald-400 hover:text-emerald-300 underline cursor-pointer bg-transparent border-none p-0"
@@ -402,6 +416,16 @@
               <span><strong>Production:</strong> Commits to GitHub repository via Git API to trigger automated Cloud Build.</span>
             </li>
           </ul>
+
+          <div class="pt-3 border-t border-zinc-800/80 flex items-center justify-between" style="padding-top: 0.75rem; border-top: 1px solid rgba(39, 39, 42, 0.8); display: flex; align-items: center; justify-content: space-between;">
+            <span class="text-[11px] text-zinc-400" style="font-size: 0.6875rem; color: #a1a1aa;">ยังไม่แน่ใจหมวดหมู่หรือระบบ?</span>
+            <button type="button"
+                    @click="showGuideModal = true"
+                    class="text-[11px] font-mono text-emerald-400 hover:text-emerald-300 underline cursor-pointer bg-transparent border-none p-0"
+                    style="font-size: 0.6875rem; font-family: monospace; color: #34d399; background: transparent; border: none; cursor: pointer; text-decoration: underline;">
+              เปิดคู่มือ Category & Platform →
+            </button>
+          </div>
         </div>
 
       </div>
@@ -573,6 +597,234 @@
 
   </main>
 
+  <!-- Category & Platform Guidelines Modal Popup -->
+  <div x-show="showGuideModal"
+       x-transition:enter="transition ease-out duration-200"
+       x-transition:enter-start="opacity-0"
+       x-transition:enter-end="opacity-100"
+       x-transition:leave="transition ease-in duration-150"
+       x-transition:leave-start="opacity-100"
+       x-transition:leave-end="opacity-0"
+       class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md overflow-y-auto"
+       style="position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; padding: 1rem; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(12px);"
+       @keydown.window.escape="showGuideModal = false"
+       x-cloak>
+    
+    <!-- Modal Backdrop Click Dismiss -->
+    <div class="fixed inset-0" @click="showGuideModal = false" style="position: fixed; inset: 0;"></div>
+
+    <!-- Modal Dialog Window -->
+    <div class="relative w-full max-w-3xl rounded-3xl border border-zinc-700/80 bg-zinc-950 shadow-2xl overflow-hidden z-10 max-h-[90vh] flex flex-col my-auto"
+         style="position: relative; width: 100%; max-width: 48rem; border-radius: 1.5rem; border: 1px solid #3f3f46; background: #09090b; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); z-index: 10; max-height: 90vh; display: flex; flex-direction: column;">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-5 border-b border-zinc-800 flex items-center justify-between flex-shrink-0 bg-zinc-900/60"
+           style="padding: 1.25rem 1.5rem; border-bottom: 1px solid #27272a; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; background: rgba(24, 24, 27, 0.6);">
+        <div class="flex items-center gap-3" style="display: flex; align-items: center; gap: 0.75rem;">
+          <div class="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold"
+               style="width: 2.25rem; height: 2.25rem; border-radius: 0.75rem; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); display: flex; align-items: center; justify-content: center; color: #34d399;">
+            📖
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-white font-mono flex items-center gap-2" style="font-size: 0.875rem; font-weight: 700; color: #fff; font-family: monospace;">
+              คำแนะนำการเลือก Category & Platform
+            </h3>
+            <p class="text-xs text-zinc-400 font-mono mt-0.5" style="font-size: 0.75rem; color: #a1a1aa; font-family: monospace;">
+              คู่มือเลือกหมวดหมู่และระบบปฏิบัติการสำหรับ WhyAlwaysEng Hub
+            </p>
+          </div>
+        </div>
+        <button type="button"
+                @click="showGuideModal = false"
+                class="w-8 h-8 rounded-full bg-zinc-800/80 hover:bg-zinc-700 text-zinc-400 hover:text-white flex items-center justify-center text-sm transition cursor-pointer border border-zinc-700/60"
+                style="width: 2rem; height: 2rem; border-radius: 9999px; background: rgba(39, 39, 42, 0.8); border: 1px solid rgba(63, 63, 70, 0.6); color: #a1a1aa; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+          ✕
+        </button>
+      </div>
+
+      <!-- Modal Body (Scrollable) -->
+      <div class="p-6 space-y-6 overflow-y-auto text-xs text-zinc-300 font-sans leading-relaxed"
+           style="padding: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem; overflow-y: auto; font-size: 0.8125rem; color: #d4d4d8; line-height: 1.6;">
+        
+        <!-- Section 1: Categories -->
+        <div class="space-y-3" style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <div class="flex items-center justify-between border-b border-zinc-800 pb-2" style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #27272a; padding-bottom: 0.5rem;">
+            <div class="font-bold text-white font-mono text-xs uppercase tracking-wider flex items-center gap-2" style="font-size: 0.75rem; font-weight: 700; color: #fff; font-family: monospace; letter-spacing: 0.05em;">
+              <span class="text-emerald-400">01</span> หมวดหมู่ซอฟต์แวร์ (Category)
+            </div>
+            <span class="text-[11px] font-mono text-emerald-400/90 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20" style="font-size: 0.6875rem; font-family: monospace; color: #34d399; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 0.25rem; padding: 0.125rem 0.5rem;">
+              หน้าร้านเจนปุ่มกรองให้อัตโนมัติ
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.625rem;">
+            
+            <div class="p-3 rounded-xl bg-zinc-900/50 border border-zinc-800/80 space-y-1" style="padding: 0.75rem; border-radius: 0.75rem; background: rgba(24, 24, 27, 0.5); border: 1px solid rgba(39, 39, 42, 0.8);">
+              <div class="font-mono font-bold text-emerald-400 text-xs flex items-center gap-1.5" style="font-family: monospace; font-weight: 700; color: #34d399; font-size: 0.75rem;">
+                <span>🖥️</span> Desktop App
+              </div>
+              <p class="text-zinc-400 text-[11px]" style="color: #a1a1aa; font-size: 0.6875rem;">
+                โปรแกรมทั่วไปที่มีหน้าต่าง GUI (Tauri, Electron, Qt, WinForms, Flutter, C#) มีปุ่มและเมนูให้คลิกใช้งาน
+              </p>
+            </div>
+
+            <div class="p-3 rounded-xl bg-zinc-900/50 border border-zinc-800/80 space-y-1" style="padding: 0.75rem; border-radius: 0.75rem; background: rgba(24, 24, 27, 0.5); border: 1px solid rgba(39, 39, 42, 0.8);">
+              <div class="font-mono font-bold text-emerald-400 text-xs flex items-center gap-1.5" style="font-family: monospace; font-weight: 700; color: #34d399; font-size: 0.75rem;">
+                <span>⌨️</span> CLI Tool
+              </div>
+              <p class="text-zinc-400 text-[11px]" style="color: #a1a1aa; font-size: 0.6875rem;">
+                โปรแกรมรันบน Terminal / Command Prompt ไม่มีหน้าต่าง UI เช่น git, gh, ffmpeg, ripgrep, curl
+              </p>
+            </div>
+
+            <div class="p-3 rounded-xl bg-zinc-900/50 border border-zinc-800/80 space-y-1" style="padding: 0.75rem; border-radius: 0.75rem; background: rgba(24, 24, 27, 0.5); border: 1px solid rgba(39, 39, 42, 0.8);">
+              <div class="font-mono font-bold text-emerald-400 text-xs flex items-center gap-1.5" style="font-family: monospace; font-weight: 700; color: #34d399; font-size: 0.75rem;">
+                <span>🛠️</span> Developer Tool
+              </div>
+              <p class="text-zinc-400 text-[11px]" style="color: #a1a1aa; font-size: 0.6875rem;">
+                เครื่องมือช่วยพัฒนาซอฟต์แวร์ เช่น Code Editor, API Tester, Debugger, SDK, Database Management
+              </p>
+            </div>
+
+            <div class="p-3 rounded-xl bg-zinc-900/50 border border-zinc-800/80 space-y-1" style="padding: 0.75rem; border-radius: 0.75rem; background: rgba(24, 24, 27, 0.5); border: 1px solid rgba(39, 39, 42, 0.8);">
+              <div class="font-mono font-bold text-emerald-400 text-xs flex items-center gap-1.5" style="font-family: monospace; font-weight: 700; color: #34d399; font-size: 0.75rem;">
+                <span>🔧</span> Utility
+              </div>
+              <p class="text-zinc-400 text-[11px]" style="color: #a1a1aa; font-size: 0.6875rem;">
+                โปรแกรมอรรถประโยชน์ เช่น เครื่องคิดเลข, โปรแกรมแตกไฟล์, Screen Recorder, File Renamer
+              </p>
+            </div>
+
+            <div class="p-3 rounded-xl bg-zinc-900/50 border border-zinc-800/80 space-y-1" style="padding: 0.75rem; border-radius: 0.75rem; background: rgba(24, 24, 27, 0.5); border: 1px solid rgba(39, 39, 42, 0.8);">
+              <div class="font-mono font-bold text-emerald-400 text-xs flex items-center gap-1.5" style="font-family: monospace; font-weight: 700; color: #34d399; font-size: 0.75rem;">
+                <span>🎮</span> Game
+              </div>
+              <p class="text-zinc-400 text-[11px]" style="color: #a1a1aa; font-size: 0.6875rem;">
+                เกมทุกรูปแบบ (2D/3D, Unity, Godot, Unreal), เกมอินดี้ หรือ Emulator โปรแกรมจำลองเกม
+              </p>
+            </div>
+
+            <div class="p-3 rounded-xl bg-zinc-900/50 border border-zinc-800/80 space-y-1" style="padding: 0.75rem; border-radius: 0.75rem; background: rgba(24, 24, 27, 0.5); border: 1px solid rgba(39, 39, 42, 0.8);">
+              <div class="font-mono font-bold text-emerald-400 text-xs flex items-center gap-1.5" style="font-family: monospace; font-weight: 700; color: #34d399; font-size: 0.75rem;">
+                <span>🤖</span> AI & Machine Learning
+              </div>
+              <p class="text-zinc-400 text-[11px]" style="color: #a1a1aa; font-size: 0.6875rem;">
+                ซอฟต์แวร์ประมวลผลด้วย AI, LLM, Vision, Image Generation, Voice Assistant, หรือ Machine Learning
+              </p>
+            </div>
+
+            <div class="p-3 rounded-xl bg-zinc-900/50 border border-zinc-800/80 space-y-1" style="padding: 0.75rem; border-radius: 0.75rem; background: rgba(24, 24, 27, 0.5); border: 1px solid rgba(39, 39, 42, 0.8);">
+              <div class="font-mono font-bold text-emerald-400 text-xs flex items-center gap-1.5" style="font-family: monospace; font-weight: 700; color: #34d399; font-size: 0.75rem;">
+                <span>⚡</span> Automation & Bot
+              </div>
+              <p class="text-zinc-400 text-[11px]" style="color: #a1a1aa; font-size: 0.6875rem;">
+                บอท Discord, บอท Telegram, Web Scraper, Auto Task, หรือสคริปต์ทำงานอัตโนมัติ
+              </p>
+            </div>
+
+            <div class="p-3 rounded-xl bg-zinc-900/50 border border-zinc-800/80 space-y-1" style="padding: 0.75rem; border-radius: 0.75rem; background: rgba(24, 24, 27, 0.5); border: 1px solid rgba(39, 39, 42, 0.8);">
+              <div class="font-mono font-bold text-emerald-400 text-xs flex items-center gap-1.5" style="font-family: monospace; font-weight: 700; color: #34d399; font-size: 0.75rem;">
+                <span>🛡️</span> Cybersecurity
+              </div>
+              <p class="text-zinc-400 text-[11px]" style="color: #a1a1aa; font-size: 0.6875rem;">
+                เครื่องมือความปลอดภัย, Network Scanner, Password Manager, VPN, ตรวจสอบช่องโหว่
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Custom Category Tip Box -->
+          <div class="p-3.5 rounded-xl bg-zinc-900/80 border border-emerald-500/30 text-xs flex items-start gap-2.5"
+               style="padding: 0.875rem; border-radius: 0.75rem; background: rgba(24, 24, 27, 0.8); border: 1px solid rgba(16, 185, 129, 0.3); display: flex; align-items: flex-start; gap: 0.625rem;">
+            <span class="text-emerald-400 text-sm">💡</span>
+            <div class="space-y-1" style="display: flex; flex-direction: column; gap: 0.25rem;">
+              <span class="font-bold text-white font-mono" style="font-weight: 700; color: #fff; font-family: monospace;">พิมพ์ชื่อหมวดหมู่เองได้อิสระ (+ Custom Category):</span>
+              <span class="text-zinc-400 leading-relaxed text-[11px]" style="color: #a1a1aa; font-size: 0.6875rem; line-height: 1.5;">
+                หากแอปของคุณไม่ตรงกับตัวเลือกมาตรฐาน สามารถกดปุ่ม <code class="text-emerald-400 font-mono">+ Custom Category</code> แล้วพิมพ์หมวดหมู่ใดก็ได้ เช่น <span class="text-zinc-200">"Media Player", "Audio Editor", "Design", "Education"</span> หน้าเว็บจะสร้าง Filter Tab ใหม่บนหน้าร้านให้ทันที!
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Platforms -->
+        <div class="space-y-3" style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <div class="font-bold text-white font-mono text-xs uppercase tracking-wider border-b border-zinc-800 pb-2 flex items-center gap-2" style="font-size: 0.75rem; font-weight: 700; color: #fff; font-family: monospace; letter-spacing: 0.05em; border-bottom: 1px solid #27272a; padding-bottom: 0.5rem;">
+            <span class="text-emerald-400">02</span> ระบบปฏิบัติการที่รองรับ (Platforms)
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.625rem;">
+            <div class="p-3 rounded-xl bg-zinc-900/50 border border-zinc-800/80 space-y-1" style="padding: 0.75rem; border-radius: 0.75rem; background: rgba(24, 24, 27, 0.5); border: 1px solid rgba(39, 39, 42, 0.8);">
+              <div class="font-mono font-bold text-zinc-200 text-xs flex items-center gap-1.5" style="font-family: monospace; font-weight: 700; color: #e4e4e7; font-size: 0.75rem;">
+                <span class="text-blue-400">🪟</span> Win (Windows)
+              </div>
+              <p class="text-zinc-400 text-[11px]" style="color: #a1a1aa; font-size: 0.6875rem;">ไฟล์ .exe, .msi, .zip หรือ winget</p>
+            </div>
+
+            <div class="p-3 rounded-xl bg-zinc-900/50 border border-zinc-800/80 space-y-1" style="padding: 0.75rem; border-radius: 0.75rem; background: rgba(24, 24, 27, 0.5); border: 1px solid rgba(39, 39, 42, 0.8);">
+              <div class="font-mono font-bold text-zinc-200 text-xs flex items-center gap-1.5" style="font-family: monospace; font-weight: 700; color: #e4e4e7; font-size: 0.75rem;">
+                <span class="text-zinc-300">🍎</span> Mac (macOS)
+              </div>
+              <p class="text-zinc-400 text-[11px]" style="color: #a1a1aa; font-size: 0.6875rem;">ไฟล์ .dmg, .pkg หรือ brew</p>
+            </div>
+
+            <div class="p-3 rounded-xl bg-zinc-900/50 border border-zinc-800/80 space-y-1" style="padding: 0.75rem; border-radius: 0.75rem; background: rgba(24, 24, 27, 0.5); border: 1px solid rgba(39, 39, 42, 0.8);">
+              <div class="font-mono font-bold text-zinc-200 text-xs flex items-center gap-1.5" style="font-family: monospace; font-weight: 700; color: #e4e4e7; font-size: 0.75rem;">
+                <span class="text-amber-400">🐧</span> Linux
+              </div>
+              <p class="text-zinc-400 text-[11px]" style="color: #a1a1aa; font-size: 0.6875rem;">ไฟล์ .deb, .rpm, .AppImage, .tar.gz</p>
+            </div>
+
+            <div class="p-3 rounded-xl bg-zinc-900/50 border border-zinc-800/80 space-y-1" style="padding: 0.75rem; border-radius: 0.75rem; background: rgba(24, 24, 27, 0.5); border: 1px solid rgba(39, 39, 42, 0.8);">
+              <div class="font-mono font-bold text-zinc-200 text-xs flex items-center gap-1.5" style="font-family: monospace; font-weight: 700; color: #e4e4e7; font-size: 0.75rem;">
+                <span class="text-emerald-400">🌐</span> Web
+              </div>
+              <p class="text-zinc-400 text-[11px]" style="color: #a1a1aa; font-size: 0.6875rem;">เว็บแอปพลิเคชัน ใช้งานผ่าน Browser</p>
+            </div>
+
+            <div class="p-3 rounded-xl bg-zinc-900/50 border border-zinc-800/80 space-y-1" style="padding: 0.75rem; border-radius: 0.75rem; background: rgba(24, 24, 27, 0.5); border: 1px solid rgba(39, 39, 42, 0.8);">
+              <div class="font-mono font-bold text-zinc-200 text-xs flex items-center gap-1.5" style="font-family: monospace; font-weight: 700; color: #e4e4e7; font-size: 0.75rem;">
+                <span class="text-green-400">🤖</span> Android
+              </div>
+              <p class="text-zinc-400 text-[11px]" style="color: #a1a1aa; font-size: 0.6875rem;">ไฟล์ติดตั้ง .apk หรือ .aab</p>
+            </div>
+
+            <div class="p-3 rounded-xl bg-zinc-900/50 border border-zinc-800/80 space-y-1" style="padding: 0.75rem; border-radius: 0.75rem; background: rgba(24, 24, 27, 0.5); border: 1px solid rgba(39, 39, 42, 0.8);">
+              <div class="font-mono font-bold text-zinc-200 text-xs flex items-center gap-1.5" style="font-family: monospace; font-weight: 700; color: #e4e4e7; font-size: 0.75rem;">
+                <span class="text-indigo-400">📱</span> iOS
+              </div>
+              <p class="text-zinc-400 text-[11px]" style="color: #a1a1aa; font-size: 0.6875rem;">ไฟล์ .ipa หรือ App Store Link</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Extra Tips -->
+        <div class="space-y-2 border-t border-zinc-800 pt-3" style="display: flex; flex-direction: column; gap: 0.5rem; border-top: 1px solid #27272a; padding-top: 0.75rem;">
+          <div class="font-bold text-zinc-200 font-mono text-[11px] uppercase tracking-wider" style="font-size: 0.6875rem; font-weight: 700; color: #e4e4e7; font-family: monospace; letter-spacing: 0.05em;">
+            ✨ ข้อแนะนำเพิ่มเติม
+          </div>
+          <ul class="list-disc list-inside text-zinc-400 space-y-1 text-[11px] leading-relaxed" style="display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.6875rem; color: #a1a1aa; line-height: 1.5; padding-left: 0.5rem;">
+            <li><strong class="text-zinc-200">ตั้งชื่อ Tags:</strong> ใส่คีย์เวิร์ดภาษาอังกฤษคั่นด้วยจุลภาค เช่น <code class="text-emerald-400">discord, bot, automation</code> เพื่อให้ช่องค้นหาบนเว็บหลักค้นเจอได้รวดเร็ว</li>
+            <li><strong class="text-zinc-200">ปุ่ม Quick Download:</strong> ระบบจะเลือกไฟล์ติดตั้งให้ตรงกับระบบของผู้ใช้โดยอัตโนมัติจาก Platform ที่คุณติ๊กไว้</li>
+            <li><strong class="text-zinc-200">Featured App ⭐:</strong> ติ๊กเลือกแอปเด่นเพื่อนำขึ้นไปแสดงในแถวบนสุดของหน้าร้าน</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-6 py-4 border-t border-zinc-800 bg-zinc-900/40 flex items-center justify-end flex-shrink-0"
+           style="padding: 1rem 1.5rem; border-top: 1px solid #27272a; background: rgba(24, 24, 27, 0.4); display: flex; align-items: center; justify-content: flex-end; flex-shrink: 0;">
+        <button type="button"
+                @click="showGuideModal = false"
+                class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold font-mono text-xs transition cursor-pointer"
+                style="padding: 0.625rem 1.25rem; border-radius: 0.75rem; background: #10b981; color: #09090b; font-weight: 700; font-family: monospace; font-size: 0.75rem; border: none; cursor: pointer;">
+          ✓ เข้าใจแล้ว (Got it)
+        </button>
+      </div>
+
+    </div>
+  </div>
+
   <!-- Notification Toast -->
   <div x-show="toast.show"
        x-transition
@@ -599,6 +851,7 @@
         analysisResult: null,
         customCategoryMode: false,
         tagsInputString: "",
+        showGuideModal: false,
 
         // Security / Production state
         isProduction: false,
