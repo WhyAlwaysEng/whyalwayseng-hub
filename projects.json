@@ -66,6 +66,46 @@
       "screenshots": [
         "https://user-images.githubusercontent.com/98482/84171218-327e7a80-aa40-11ea-8cd1-5177fc2d0e72.png"
       ]
+    },
+    {
+      "slug": "whyalwayseng-hub",
+      "owner": "WhyAlwaysEng",
+      "repo": "whyalwayseng-hub",
+      "name": "whyalwayseng-hub",
+      "tagline": "whyalwayseng-hub - Open source software",
+      "category": "Web App",
+      "tags": [],
+      "icon": "https://github.com/WhyAlwaysEng.png",
+      "screenshots": [],
+      "featured": false,
+      "verified": false,
+      "license": "Open Source",
+      "platforms": [
+        "web"
+      ],
+      "architectures": [
+        "x64"
+      ],
+      "assetRules": {
+        "include": [
+          "\\.(exe|msi|dmg|pkg|deb|rpm|tar\\.gz|zip|AppImage)$"
+        ],
+        "exclude": [
+          "\\.(sha256|sig|asc|blockmap)$",
+          "^source"
+        ],
+        "osPatterns": {
+          "macos": "(macOS|darwin|mac|\\.dmg|\\.pkg)",
+          "windows": "(windows|\\bwin\\b|[-_]win[-_.]|\\.exe|\\.msi)",
+          "linux": "(linux|\\.deb|\\.rpm|\\.AppImage)"
+        },
+        "archPatterns": {
+          "x64": "(amd64|x86_64|x64)",
+          "arm64": "(arm64|aarch64)"
+        }
+      },
+      "install": {},
+      "website": "https://github.com/WhyAlwaysEng/whyalwayseng-hub"
     }
   ]
 }
